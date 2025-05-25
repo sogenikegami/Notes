@@ -1,0 +1,900 @@
+\documentclass[11pt, aps, longbibliography]{article}
+\input{../preemble}
+\addbibresource{reference}
+\begin{document}
+\title{Note: Kitaev+AKLT model}
+\author{Sogen Ikegami}
+\date{\today}
+\maketitle
+
+\tableofcontents
+
+\section*{preface}
+
+This note aims to summarize and discuss the ambiguity of bi-quadrutic and bi-cubic interaction when we consider SU$(N)$ spin coherent state.
+Here we skip the definition and properties of SU$(N)$ coherent state. When we want to check them, Refs. \cite{Nemoto_2000,PhysRevB.108.L241108} would be helpful.
+
+\newpage
+\section{Setup}
+    \subsection{Model}
+        Now we are considering the $S=3/2$ system on the honeycomb lattice with following Hamiltonian:
+        \begin{equation}\label{eq:Hamiltonian}
+            H = \cos (2\pi \xi) H_{\rm AKLT} + \sin (2\pi \xi) H_{\rm Kitaev},
+        \end{equation}
+        with
+        \begin{align}
+            &H_{\rm AKLT} = \sum_{\langle i,j \rangle}J_1(\hat{\bold{S}}_{i}\cdot \hat{\bold{S}}_{j}) + J_2(\hat{\bold{S}}_{i}\cdot \hat{\bold{S}}_{j})^2 + J_3(\hat{\bold{S}}_{i}\cdot \hat{\bold{S}}_{j})^3, \\
+            &H_{\rm Kitaev} = \sum_{\alpha \in \{x,y,z\}}\sum_{\langle i,j \rangle_\alpha} K_{\alpha}\hat{S}_{i}^{\alpha}\hat{S}_{j}^{\alpha}.
+        \end{align}
+        $J_1=1, J_2=116/243, J_3=16/243$ recovers the original 2D AKLT Hamiltonian on the honeycomb lattice. In my calculation, I set $K_x=K_y=K_z=1$ for simplicity.
+
+    \subsection{Spin operators}
+        Here we confirm the explicit spin operators in matrix forms. It is assumed to be in $S_z$ basis from now on, if no mention is made.
+
+        \begin{itemize}
+            \item $S=1/2$
+        \end{itemize}
+        \begin{equation}
+            \hat{S}_x = \frac{1}{2}\sigma_x = \frac{1}{2}\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \ 
+            \hat{S}_y = \frac{1}{2}\sigma_y = \frac{1}{2}\begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}, \ 
+            \hat{S}_z = \frac{1}{2}\sigma_y = \frac{1}{2}\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}.
+        \end{equation}
+        They satisfy the following relation, which is unique in $S=1/2$,
+        \begin{equation}\label{eq:pauli}
+            \hat{S}_{i}\hat{S}_j = \frac{i}{2}\epsilon_{ijk}\hat{S}_k + \frac{\bold{1}_{2\times2}}{4}\delta_{ij}.
+        \end{equation}
+
+        \begin{itemize}
+            \item $S=1$
+        \end{itemize}
+        \begin{equation}\label{eq:SU3-matrix}
+            \hat{S}_x = \frac{1}{\sqrt{2}}\begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix}, \ 
+            \hat{S}_y = \frac{1}{\sqrt{2}i}\begin{pmatrix} 0 & 1 & 0 \\ -1 & 0 & 1 \\ 0 & -1 & 0 \end{pmatrix}, \ 
+            \hat{S}_z = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & -1 \end{pmatrix}.
+        \end{equation}
+        Eq.\eqref{eq:pauli} no longer holds\footnote{Commutation relationship of Lie algebra $\mathfrak{su}$(2) \begin{equation}\label{eq:commutation-SU2}
+            \left[S^i, S^j\right] = i\epsilon_{ijk}S^k
+        \end{equation}
+        holds also for matrices \eqref{eq:SU3-matrix} and \eqref{eq:SU4-matrix}. Matrices \eqref{eq:SU3-matrix} and \eqref{eq:SU4-matrix} form SU(2) subalgebra in each algebra. In papers they are said to be higher dimensional representation of SU(2),
+        because commutation \eqref{eq:commutation-SU2} is special commutation relationship for $\mathfrak{su}$(2), while commutation in general $\mathfrak{su}$(N) (general Lie algebra) is \begin{equation}
+            \left[S^i, S^j\right] = if_{ijk}S^k,
+        \end{equation}
+        where $f$ is structure constant.
+        }
+        . For example,
+        \begin{equation}
+            \hat{S}_x\hat{S}_y = \frac{1}{2i} \begin{pmatrix}-1 & 0 & 1 \\ 0 & 0 & 0 \\ -1 & 0 & 1\end{pmatrix} \neq \hat{S}_z.
+        \end{equation}
+
+        \begin{itemize}
+            \item $S=3/2$
+        \end{itemize}
+        \begin{equation}\label{eq:SU4-matrix}
+            \hat{S}_x = \frac{1}{2}\begin{pmatrix} 0 & \sqrt{3} & 0 & 0 \\ \sqrt{3} & 0 & 2 & 0 \\ 0 & 2 & 0 & \sqrt{3} \\ 0 & 0 & \sqrt{3} & 0 \end{pmatrix}, \ 
+            \hat{S}_y = \frac{1}{2i}\begin{pmatrix} 0 & \sqrt{3} & 0 & 0 \\ -\sqrt{3} & 0 & 2 & 0 \\ 0 & -2 & 0 & \sqrt{3} \\ 0 & 0 & -\sqrt{3} & 0 \end{pmatrix}, \ 
+            \hat{S}_z = \begin{pmatrix} \frac{3}{2} & 0 & 0 & 0 \\ 0 & \frac{1}{2} & 0 & 0 \\ 0 & 0 & -\frac{1}{2} & 0 \\ 0 & 0 & 0 & -\frac{3}{2} \end{pmatrix}.
+        \end{equation}
+
+    \subsection{Multipole Operators}
+        Higher spins ($S>1/2$) possess local multipolar degrees of freedom, such as quadrupoles and octupoles.
+        Multipole operators are defined by the product of the generators of the $\mathfrak{su}(2)$ subalgebra of $\mathfrak{su}(N)$.
+        The identity matrix, dipole (usual $S_x, S_y, S_z$) operators and multipole operators form the generators of the Lie algebra $\mathfrak{su}(N)$.
+
+        When $S\geq 1$, the local Hilbert space has quadrupole degrees of freedom. 
+        Quadrupole has 5 components and their operators are usually defined as follows.
+        \begin{align}\label{eq:defQ}
+            Q_{3z^2-x^2-y^2} &= \frac{1}{\sqrt{3}}\left( 2\hat{S}_z^2 - \hat{S}_x^2 - \hat{S}_y^2, \right) \notag \\
+            Q_{x^2-y^2} &= \hat{S}_x^2 - \hat{S}_y^2, \notag \\
+            Q_{xy} &= \hat{S}_x\hat{S}_y + \hat{S}_y\hat{S}_x, \\
+            Q_{yz} &= \hat{S}_y\hat{S}_z + \hat{S}_z\hat{S}_y, \notag \\
+            Q_{zx} &= \hat{S}_z\hat{S}_x + \hat{S}_x\hat{S}_z. \notag 
+        \end{align}
+        It should be noted that the overall coefficient is arbitrary when we only consider quadrupoles. In contrast, the ratio of the coefficients between each component must not be changed,
+        and the overall coefficient is also important if we deal with the quadrupole together with other moments.
+        In such a situation, it may be mathematically standard to impose the orthonormal condition for each Lie algebra generators
+        \begin{equation}
+            \Tr (T_\alpha^\dagger T_\beta) = 5\delta_{\alpha \beta} = \Tr (\hat{S}_{z}^\dagger \hat{S}_{z}).
+        \end{equation}
+        $5$ in the middle is set so that the dipole operators are normalized as usual definition of spin operators in eq.\eqref{eq:SU4-matrix}\footnote{In mathematical context, this normalization factor is usually taken as 1. This factor affects only the overall prefactor of the Hamiltonian in my case.}.
+        Note that this constant depends on the spin-$S$.
+        This constraint modifies the definition of the quadrupole operators as
+        \begin{align}\label{eq:defQ2}
+            Q_{3z^2-x^2-y^2} &= \frac{\sqrt{5}}{6}\left( 2\hat{S}_z^2 - \hat{S}_x^2 - \hat{S}_y^2, \right) \notag \\
+            Q_{x^2-y^2} &= \frac{1}{2}\sqrt{\frac{5}{3}} \left( \hat{S}_x^2 - \hat{S}_y^2, \right) \notag \\
+            Q_{xy} &= \frac{1}{2}\sqrt{\frac{5}{3}} \left( \hat{S}_x\hat{S}_y + \hat{S}_y\hat{S}_x\right), \\
+            Q_{yz} &= \frac{1}{2}\sqrt{\frac{5}{3}} \left( \hat{S}_y\hat{S}_z + \hat{S}_z\hat{S}_y\right), \notag \\
+            Q_{zx} &= \frac{1}{2}\sqrt{\frac{5}{3}} \left( \hat{S}_z\hat{S}_x + \hat{S}_x\hat{S}_z\right). \notag 
+        \end{align}
+        These multipole operators can be obtained by symmetrizing each term in the spherical harmonics with appropriate modification of the coefficients.
+        For example, the $l=2$ parts of the linear combination of the spherical harmonics so that the combined one is real are
+        \begin{align}\label{eq:spheQ}
+            Y_{2,-2} &= i\frac{1}{\sqrt{2}}\left( Y_2^{-2} - Y_2^2 \right) = \frac{1}{2}\sqrt{\frac{15}{\pi}}\frac{xy}{r^2} \propto \sqrt{3}xy, \notag \\
+            Y_{2,-1} &= i\frac{1}{\sqrt{2}}\left( Y_2^{-1} + Y_2^1 \right) = \frac{1}{2}\sqrt{\frac{15}{\pi}}\frac{yz}{r^2} \propto \sqrt{3}yz, \notag \\
+            Y_{2,0} &= Y_2^0 = \frac{1}{4}\sqrt{\frac{5}{\pi}}\frac{2z^2-x^2-y^2}{r^2} \propto \frac{1}{2}(2z^2-x^2-y^2), \\
+            Y_{2,1} &= \frac{1}{\sqrt{2}}\left( Y_2^{-1} - Y_2^1 \right) = \frac{1}{2}\sqrt{\frac{15}{\pi}}\frac{zx}{r^2} \propto \sqrt{3}zx, \notag \\
+            Y_{2,2} &= \frac{1}{\sqrt{2}}\left( Y_2^{-2} + Y_2^2 \right) = \frac{1}{4}\sqrt{\frac{15}{\pi}}\frac{x^2-y^2}{r^2} \propto \frac{\sqrt{3}}{2}(x^2-y^2). \notag 
+        \end{align}
+        Symmetrizing the $xy$ term in the first line yields $\frac{1}{2}(S_xS_y+S_yS_x)$. Multiplying a constant to all components leads to the definition \eqref{eq:defQ}\eqref{eq:defQ2}.
+        We get the octupole operators at the same manner as quadrupole operators. In the case of the quadrupole operators, eq.\eqref{eq:spheQ} is the most natural representation of the spherical harmonics. 
+        However, as for octupoles, there are several representations of the spherical harmonics such as spherical(tesseral) harmonics and cubic harmonics.
+        Both are the linear combinations of spherical harmonics, but the 
+        tesseral harmonics are the real part of the spherical harmonics, and the cubic harmonics are made so that they form the irreducible representation of the cubic point group $O_h$.
+        
+        Tesseral (spherical) based octupole operators are
+        \begin{align}\label{eq:sphe}
+            Z_3^0 = Y_3^0, \  &O_{z^3} = \frac{1}{3}\left( 2\hat{S}_z^3 - \left( \hat{S}_z\hat{S}_x^2 + \hat{S}_x\hat{S}_z\hat{S}_x + \hat{S}_x^2\hat{S}_z \right) - \left( \hat{S}_z\hat{S}_y^2 + \hat{S}_y\hat{S}_z\hat{S}_y + \hat{S}_y^2\hat{S}_z \right)  \right), \notag \\
+            Z_3^1 = Y_3^{-1} - Y_3^1, \  &O_{xz^2} = \frac{1}{3\sqrt{6}}\left( 4\left( \hat{S}_x\hat{S}_z^2 + \hat{S}_z\hat{S}_x\hat{S}_z + \hat{S}_z^2\hat{S}_x \right) -\left( \hat{S}_x\hat{S}_y^2 + \hat{S}_y\hat{S}_x\hat{S}_y + \hat{S}_y^2\hat{S}_x \right) -3\hat{S}_x^3 \right), \notag \\
+            Z_3^{-1} = Y_3^{-1} + Y_3^1, \  &O_{yz^2} = \frac{1}{3\sqrt{6}}\left( 4\left( \hat{S}_y\hat{S}_z^2 + \hat{S}_z\hat{S}_y\hat{S}_z + \hat{S}_z^2\hat{S}_y \right) -\left( \hat{S}_y\hat{S}_x^2 + \hat{S}_x\hat{S}_y\hat{S}_x + \hat{S}_x^2\hat{S}_y \right) -3\hat{S}_y^3 \right), \notag \\
+            Z_3^{-2} = Y_3^{-2} - Y_3^2, \  &O_{xyz} = \frac{1}{3}\sqrt{\frac{5}{3}} \left(\hat{S}_x\hat{S}_y\hat{S}_z + \hat{S}_x\hat{S}_z\hat{S}_y + \hat{S}_y\hat{S}_x\hat{S}_z + \hat{S}_y\hat{S}_z\hat{S}_x + \hat{S}_z\hat{S}_x\hat{S}_y + \hat{S}_z\hat{S}_y\hat{S}_x \right), \\
+            Z_3^{2} = Y_3^{-2} + Y_3^2, \  &O_{z(x^2-y^2)} = \frac{1}{3}\sqrt{\frac{5}{3}} \left( \left( \hat{S}_z\hat{S}_x^2 + \hat{S}_x\hat{S}_z\hat{S}_x + \hat{S}_x^2\hat{S}_z \right) - \left( \hat{S}_z\hat{S}_y^2 + \hat{S}_y\hat{S}_z\hat{S}_y + \hat{S}_y^2\hat{S}_z \right) \right), \notag \\
+            Z_3^{3} = Y_3^{-3} - Y_3^3, \  &O_{x(x^2-3y^2)} = \frac{1}{3}\sqrt{\frac{5}{2}} \left( \hat{S}_x^3 -\left( \hat{S}_x\hat{S}_y^2 + \hat{S}_y\hat{S}_x\hat{S}_y + \hat{S}_y^2\hat{S}_x \right) \right), \notag \\
+            Z_3^{-3} = Y_3^{-3} + Y_3^3, \  &O_{y(3x^2-y^2)} = \frac{1}{3}\sqrt{\frac{5}{2}} \left( \left( \hat{S}_y\hat{S}_x^2 + \hat{S}_x\hat{S}_y\hat{S}_x + \hat{S}_x^2\hat{S}_y \right) - \hat{S}_y^3 \right). \notag 
+        \end{align}
+        The cubic representation based octupole operators are
+        \begin{align}
+            O_{A_{2u}} &= \frac{1}{3}\sqrt{\frac{5}{3}} \left( \hat{S}_x\hat{S}_y\hat{S}_z + \hat{S}_x\hat{S}_z\hat{S}_y + \hat{S}_y\hat{S}_x\hat{S}_z + \hat{S}_y\hat{S}_z\hat{S}_x + \hat{S}_z\hat{S}_x\hat{S}_y + \hat{S}_z\hat{S}_y\hat{S}_x \right), \notag \\
+            O_x^\alpha &= \frac{1}{3} \left( 2\hat{S}_x^3 -\left(\hat{S}_x\hat{S}_y^2+\hat{S}_y\hat{S}_x\hat{S}_y + \hat{S}_y^2\hat{S}_x\right) - \left(\hat{S}_x\hat{S}_z^2 + \hat{S}_z\hat{S}_x\hat{S}_z + \hat{S}_z^2\hat{S}_x\right) \right), \notag \\
+            O_y^\alpha &= \frac{1}{3} \left( 2\hat{S}_y^3 -\left(\hat{S}_y\hat{S}_z^2+\hat{S}_z\hat{S}_y\hat{S}_z + \hat{S}_z^2\hat{S}_y\right) - \left(\hat{S}_y\hat{S}_x^2 + \hat{S}_x\hat{S}_y\hat{S}_x + \hat{S}_x^2\hat{S}_y\right) \right), \notag \\
+            O_z^\alpha &= \frac{1}{3} \left( 2\hat{S}_z^3 -\left(\hat{S}_z\hat{S}_x^2+\hat{S}_x\hat{S}_z\hat{S}_x + \hat{S}_x^2\hat{S}_z\right) - \left(\hat{S}_z\hat{S}_y^2 + \hat{S}_y\hat{S}_z\hat{S}_y + \hat{S}_y^2\hat{S}_z\right) \right), \\
+            O_x^\beta &= \frac{1}{3}\sqrt{\frac{5}{3}} \left( \left(\hat{S}_x\hat{S}_y^2+\hat{S}_y\hat{S}_x\hat{S}_y + \hat{S}_y^2\hat{S}_x\right) - \left(\hat{S}_x\hat{S}_z^2 + \hat{S}_z\hat{S}_x\hat{S}_z + \hat{S}_z^2\hat{S}_x\right) \right), \notag \\
+            O_y^\beta &= \frac{1}{3}\sqrt{\frac{5}{3}} \left(\left(\hat{S}_y\hat{S}_z^2+\hat{S}_z\hat{S}_y\hat{S}_z + \hat{S}_z^2\hat{S}_y\right) - \left(\hat{S}_y\hat{S}_x^2 + \hat{S}_x\hat{S}_y\hat{S}_x + \hat{S}_x^2\hat{S}_y\right) \right), \notag \\
+            O_z^\beta &= \frac{1}{3}\sqrt{\frac{5}{3}} \left(\left(\hat{S}_z\hat{S}_x^2+\hat{S}_x\hat{S}_z\hat{S}_x + \hat{S}_x^2\hat{S}_z\right) - \left(\hat{S}_z\hat{S}_y^2 + \hat{S}_y\hat{S}_z\hat{S}_y + \hat{S}_y^2\hat{S}_z\right) \right). \notag 
+        \end{align}
+        $O^\alpha$ are $T_{1u}$ channel and $O^\beta$ in $T_{2u}$.
+
+        We can rewrite our Hamiltonian by $\mathfrak{su}(4)$ generators. $\mathbf{S}_i \cdot \mathbf{S}_j, \mathbf{Q}_i \cdot \mathbf{Q}_j, \mathbf{O}_i \cdot \mathbf{O}_j$ are now $4^2=16$ dimensional matrix. 
+        Comparing the matrix elements of these matrices and $(\mathbf{S}_i \cdot \mathbf{S}_j)^2, (\mathbf{S}_i \cdot \mathbf{S}_j)^3$, we can see the following identity
+        \begin{align}
+            \frac{6}{5}(\mathbf{Q}_i \cdot \mathbf{Q}_j) &= (\mathbf{S}_i \cdot \mathbf{S}_j)^2 + \frac{1}{2}(\mathbf{S}_i \cdot \mathbf{S}_j) - \frac{75}{16}, \\
+            \frac{9}{10}(\mathbf{O}_i \cdot \mathbf{O}_j) &= (\mathbf{S}_i \cdot \mathbf{S}_j)^3 + 2(\mathbf{S}_i \cdot \mathbf{S}_j)^2 - \frac{507}{80}(\mathbf{S}_i \cdot \mathbf{S}_j) - \frac{225}{32},
+        \end{align}
+        hence
+        \begin{align}
+            (\mathbf{S}_i \cdot \mathbf{S}_j)^2 &= \frac{6}{5}(\mathbf{Q}_i \cdot \mathbf{Q}_j) - \frac{1}{2}(\mathbf{S}_i \cdot \mathbf{S}_j) + \frac{75}{16}, \\
+            (\mathbf{S}_i \cdot \mathbf{S}_j)^3 &= \frac{9}{10}(\mathbf{O}_i \cdot \mathbf{O}_j) - 2\left( \frac{6}{5}(\mathbf{Q}_i \cdot \mathbf{Q}_j) - \frac{1}{2}(\mathbf{S}_i \cdot \mathbf{S}_j) + \frac{75}{16} \right) + \frac{507}{80}(\mathbf{S}_i \cdot \mathbf{S}_j) + \frac{225}{32} \notag \\
+            &= \frac{9}{10}(\mathbf{O}_i \cdot \mathbf{O}_j) - \frac{12}{5}(\mathbf{Q}_i \cdot \mathbf{Q}_j) + \frac{587}{80}(\mathbf{S}_i \cdot \mathbf{S}_j) - \frac{75}{32}.
+        \end{align}
+
+\newpage
+
+\section{Ambiguities for Classical Model}
+
+\subsection{SU(2)}\label{sec:SU2}
+Here we see what happens when we apply SU(2) coherent state to our Hamiltonian \eqref{eq:Hamiltonian}.
+First, Kitaev and Heisenberg (Bi-linear) interaction do not pose any problem. 
+How about bi-quadrutic and bi-cubic terms? In \textbf{\emph{Operator level}},
+\begin{align}
+    (\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j)^2 &= (\hat{S}_i^x\hat{S}_j^x + \hat{S}_i^y\hat{S}_j^y + \hat{S}_i^z\hat{S}_j^z) (\hat{S}_i^x\hat{S}_j^x + \hat{S}_i^y\hat{S}_j^y + \hat{S}_i^z\hat{S}_j^z) \\
+    &= (\hat{S}_i^x)^2 (\hat{S}_j^x)^2 + (\hat{S}_i^y)^2 (\hat{S}_j^y)^2 + (\hat{S}_i^z)^2 (\hat{S}_j^z)^2 \\
+    & \quad + (\hat{S}_i^x \hat{S}_i^y) (\hat{S}_j^x \hat{S}_j^y) + (\hat{S}_i^y \hat{S}_i^x) (\hat{S}_j^y \hat{S}_j^x) + (\text{cyc.}) \\
+    &= \left( \frac{1}{4} \right)^2 \times 3 \\
+    & \quad +\left(\frac{i}{2}\hat{S}_i^z\right)\left(\frac{i}{2}\hat{S}_j^z\right) + \left(-\frac{i}{2}\hat{S}_i^z\right)\left(-\frac{i}{2}\hat{S}_j^z\right) + (\text{cyc.}) \\
+    &= \frac{3}{16} - \frac{1}{2}(\hat{S}_i^x\hat{S}_j^x + \hat{S}_i^y\hat{S}_j^y + \hat{S}_i^z\hat{S}_j^z) \\
+    &= \frac{3}{16} - \frac{1}{2}\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j, \label{eq:SU2-quad1}
+\end{align}
+
+\begin{align}
+    (\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j)^3  &= \left(\frac{3}{16} - \frac{1}{2}\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j \right) (\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j ) \\
+    &= \frac{3}{16}(\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j ) - \frac{1}{2} \left( \frac{3}{16} - \frac{1}{2}\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j \right) \\
+    &= -\frac{3}{32} + \frac{7}{16} (\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j). \label{eq:SU2-cubic1}
+\end{align}
+Hence, \textbf{\emph{Bi-quadrutic, Bi-cubic terms are transformed to Bi-linear term in operator level in SU(2) formalism.}}
+This arises because Pauli matrices cannot express quadrupoles and octupoles.
+In my calculation, I treated these bi-quadrutic and bi-cubic terms as \eqref{eq:SU2-quad1} and \eqref{eq:SU2-cubic1}.
+Althought this formalism is straight forward and quite correct in operator level, as Rico San pointed out, this approach might \textbf{\emph{not be appropriate as a classical limit of AKLT model}}. 
+
+Rico San's suggestion is as follows.
+Our Hilbert space is limited to $\mathbb{C}P^1$, we have to give up something. 
+Eqs.\eqref{eq:SU2-quad1} and \eqref{eq:SU2-cubic1} is analytically correct but give up physical meanings (“freeze out” the quadrupoles and octupoles).
+Instead, we give up the analytical correctness and recover the physical meanings, i.e., recovering AKLT model considered for $\mathbb{C}P^1$ subspaces by
+\begin{align}
+    (\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j)^2 &\rightarrow \langle \hat{\bold{S}}_i \cdot \hat{\bold{S}}_j \rangle \langle \hat{\bold{S}}_i \cdot \hat{\bold{S}}_j \rangle,  \label{eq:SU2-quad2} \\
+    (\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j)^3 &\rightarrow \langle \hat{\bold{S}}_i \cdot \hat{\bold{S}}_j \rangle^3.\label{eq:SU2-cubic2}
+\end{align}
+
+
+\begin{tcolorbox}
+    \textbf{Ambiguity-1}
+    What is the appropriate classical limit of our model?
+    \begin{enumerate}
+        \item Eqs.\eqref{eq:SU2-quad1} and \eqref{eq:SU2-cubic1}, used in my calculation. Correct at analytical level, but seems not appropriate \emph{as the classical limit of AKLT model}.
+        \item Eqs.\eqref{eq:SU2-quad2} and \eqref{eq:SU2-cubic2}, suggested by Rico San. It discards the operator level correctness, but captures quadrutic and cubic terms.
+    \end{enumerate}
+\end{tcolorbox}
+
+2nd approach seems more appropriate as the classical limit in my view. Fortunately or not, since we have done the 1st approach, comparing two approaches' results would be interesting.
+
+\subsection{SU(3)}\label{sec:SU3}
+In SU(2) formalism, bi-quadrutic and bi-cubic terms posed the problems. The same situation arises in SU(3) formalism by bi-cubic term.
+I do not show all (27) combinations of three spin-1 operators, but the simpler examples are
+\begin{align}
+    &(\hat{S}_i^x)^3 = \frac{1}{2\sqrt{2}} \begin{pmatrix} 1 & 0 & 1 \\ 0 & 2 & 0 \\ 1 & 0 & 1\end{pmatrix}\begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 0\end{pmatrix} =\frac{1}{2\sqrt{2}} \begin{pmatrix} 0 & 2 & 0 \\ 2 & 0 & 2 \\ 0 & 2 & 0  \end{pmatrix} = S_i^x, \\
+    &(\hat{S}_i^y)^3 = -\frac{1}{2\sqrt{2}i} \begin{pmatrix} -1 & 0 & 1 \\ 0 & -2 & 0 \\ 1 & 0 & -1\end{pmatrix}\begin{pmatrix} 0 & 1 & 0 \\ -1 & 0 & 1 \\ 0 & -1 & 0\end{pmatrix} = -\frac{1}{2\sqrt{2}} \begin{pmatrix} 0 & -2 & 0 \\ 2 & 0 & -2 \\ 0 & 2 & 0  \end{pmatrix} = S_i^y, \\
+    &(\hat{S}_i^z)^3 = S_i^z.
+\end{align}
+So the same ambiguity as SU(2) (ambiguity-1) arises. As Rico San pointed out, the 2nd approach in ambiguity-1 poses another ambiguity. Let's see it.
+As we did in SU(2), let's try to replace the bi-cubic term into products of some expectation values.
+
+\begin{align}
+    (\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j)^3 &\rightarrow \langle \hat{\bold{S}}_i \cdot \hat{\bold{S}}_j \rangle^3,  \label{eq:SU3-1} \\
+    (\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j)^3 &\rightarrow \langle \hat{(\bold{S}}_i \cdot \hat{\bold{S}}_j)^2 \rangle \langle \hat{\bold{S}}_i \cdot \hat{\bold{S}}_j \rangle,  \label{eq:SU3-2} \\
+    (\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j)^3 &\rightarrow \langle \hat{\bold{S}}_i \cdot \hat{\bold{S}}_j \rangle \langle \hat{(\bold{S}}_i \cdot \hat{\bold{S}}_j)^2 \rangle.  \label{eq:SU3-3} \\
+\end{align}
+Eq.\eqref{eq:SU3-1} uses only dipoles. Now we have dipole and quadrupoles, so eq.\eqref{eq:SU3-1} might be inappropriate.
+Eqs.\eqref{eq:SU3-2} and \eqref{eq:SU3-3} were suggested by Rico San as two independent decompositions, but I think these are equivalent, 
+because expectation values are commutative.
+Anyway, as we see, there are several ways to decompose the cubic term into the product of $S^2$ and $S$.
+Another decomposition can be constructed. Now we have dipoles and quadrupoles. Bi-quadrutic term can be decomposed into quadrupoles and dipoles as follows.
+\begin{equation}
+    (\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j)^2 = a(\hat{\bold{Q}}_i \cdot \hat{\bold{Q}}_j) + b(\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j) + c. \label{eq:S2-decomposition}
+\end{equation}
+The coefficients are dependent of the definition of quadrupole operators, but it does not matter here.
+Another decomposition is achieved by using this decomposition as:
+\begin{align}
+    (\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j)^3 &= (\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j)^2 (\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j) \\
+    &= \left( a(\hat{\bold{Q}}_i \cdot \hat{\bold{Q}}_j) + b(\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j) + c \right)(\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j) \\
+    &\rightarrow a\langle(\hat{\bold{Q}}_i \cdot \hat{\bold{Q}}_j)\rangle\langle(\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j)\rangle + ab\langle (\hat{\bold{Q}}_i \cdot \hat{\bold{Q}}_j) \rangle + (b^2+c) \langle (\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j) \rangle + bc. \label{eq:SU3-4}
+\end{align}
+At the same mannar as eq.\eqref{eq:S2-decomposition}, $(\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j)^3$ can be decomposed into 
+\begin{equation}
+    (\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j)^3 = \alpha(\hat{\bold{O}}_i \cdot \hat{\bold{O}}_j) + \beta(\hat{\bold{Q}}_i \cdot \hat{\bold{Q}}_j) + \gamma(\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j) + \delta .\label{eq:S2-decomposition}
+\end{equation}
+In that sense, decomposition eq.\eqref{eq:SU3-4} naturally "translate" the $(\hat{\bold{O}}_i \cdot \hat{\bold{O}}_j)$ term into the product of $(\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j)$ and $(\hat{\bold{Q}}_i \cdot \hat{\bold{Q}}_j)$.
+
+The second ambiguity is summarized as follows.
+\begin{tcolorbox}
+    \textbf{Ambiguity-2} 
+    
+    When we take the 2nd approach of ambiguity-1, what is the appropriate decomposition? 
+    In other words, what is the most natural classical limit (SU(3) limit) of AKLT model?
+    \begin{enumerate}
+        \item Eq.\eqref{eq:SU3-1}: $(\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j)^3 \rightarrow \langle \hat{\bold{S}}_i \cdot \hat{\bold{S}}_j \rangle^3,$
+        \item Eq.\eqref{eq:SU3-2}: $(\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j)^3 \rightarrow \langle \hat{(\bold{S}}_i \cdot \hat{\bold{S}}_j)^2 \rangle \langle \hat{\bold{S}}_i \cdot \hat{\bold{S}}_j \rangle,$
+        \item Eq.\eqref{eq:SU3-4}: $(\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j)^3 \rightarrow a\langle(\hat{\bold{Q}}_i \cdot \hat{\bold{Q}}_j)\rangle\langle(\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j)\rangle + ab\langle (\hat{\bold{Q}}_i \cdot \hat{\bold{Q}}_j) \rangle + (b^2+c) \langle (\hat{\bold{S}}_i \cdot \hat{\bold{S}}_j) \rangle + bc.$
+        \item Other decompositions.
+    \end{enumerate}
+\end{tcolorbox}
+
+\newpage
+
+\subsection{Is SU(2) exactly equivalent to O(3)?}\label{sec:equivalence}
+If we take the 2nd approach for Ambiguity-1 for SU(2) coherent state, bi-quadrutic and bi-cubic terms are transformed like eqs.\eqref{eq:SU2-quad2} and \eqref{eq:SU2-cubic2}.
+In that approach, we completely ignore the algebraic relationship unique in SU(2), such as \eqref{eq:pauli}. Is this SU(2) approach exactly equivalent to O(3) vector formalism?
+The answer is \emph{partially} yes. We will see this "partial" equivalence in this section.
+
+SU(2) coherent state is explicitly written as
+\begin{equation}
+    \ket{\psi} = \cos \psi_1\ket{0} + e^{i\phi_1}\sin \psi_1\ket{1}.
+\end{equation}
+The expectation values of spin operators are 
+\begin{align}
+    \expval{S^x} &= \begin{pmatrix}\cos \psi_1 & e^{-i\phi_1}\sin \psi_1\end{pmatrix}\frac{1}{2}\begin{pmatrix}0 & 1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix}\cos \psi_1 \\ e^{i\phi_1}\sin \psi_1\end{pmatrix} \\
+    &= \frac{1}{2}\begin{pmatrix}\cos \psi_1 & e^{-i\phi_1}\sin \psi_1\end{pmatrix} \begin{pmatrix}e^{i\phi_1}\sin \psi_1 \\ \cos \psi_1 \end{pmatrix} \\
+    &= \frac{1}{2}\left( e^{i\phi_1}\sin \psi_1 \cos \psi_1 + e^{-i\phi_1}\sin \psi_1 \cos \psi_1 \right) \\
+    &= \frac{1}{2}\cos \phi_1 \sin 2\psi_1\label{eq:SU2-Sx}
+\end{align}
+
+\begin{align}
+    \expval{S^y} &= \begin{pmatrix}\cos \psi_1 & e^{-i\phi_1}\sin \psi_1\end{pmatrix}\frac{1}{2}\begin{pmatrix}0 & -i \\ i & 0 \end{pmatrix} \begin{pmatrix}\cos \psi_1 \\ e^{i\phi_1}\sin \psi_1\end{pmatrix} \\
+    &= \frac{i}{2}\begin{pmatrix}\cos \psi_1 & e^{-i\phi_1}\sin \psi_1\end{pmatrix} \begin{pmatrix}-e^{i\phi_1}\sin \psi_1 \\ \cos \psi_1 \end{pmatrix} \\
+    &= \frac{i}{2}\left(-e^{i\phi_1}\sin \psi_1 \cos \psi_1 + e^{-i\phi_1}\sin \psi_1 \cos \psi_1 \right) \\
+    &= \frac{1}{2}\sin \phi_1 \sin 2\psi_1\label{eq:SU2-Sy}
+\end{align}
+
+\begin{align}
+    \expval{S^z} &= \begin{pmatrix}\cos \psi_1 & e^{-i\phi_1}\sin \psi_1\end{pmatrix}\frac{1}{2}\begin{pmatrix}1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix}\cos \psi_1 \\ e^{i\phi_1}\sin \psi_1\end{pmatrix} \\
+    &= \frac{1}{2} \left(\cos^2 \phi_1 - \sin^2 \psi_1 \right) \\
+    &= \frac{1}{2} \cos 2\psi_1 \label{eq:SU2-Sz}
+\end{align}
+If we replace bi-quadrutic and bi-cubic term as square and cubic of dipole expectation values as eqs.\eqref{eq:SU2-quad2} and \eqref{eq:SU2-cubic2},
+The model (formulation) is exactly equivalent to O(3) vector. Both have two variables at each site. However, as we can see in eqs. \eqref{eq:SU2-Sx}, \eqref{eq:SU2-Sy}, and \eqref{eq:SU2-Sz}, \textbf{\emph{dipole length of SU(2) is 1/2.}}
+Usually we simulate the O(3) spins by setting each spin length 1, so this makes "partial" equivalence between O(3) and SU(2) formalism.
+
+Using eqs. \eqref{eq:SU2-quad2} and \eqref{eq:SU2-cubic2}, our Hamiltonian is effectively written as
+\begin{equation}
+    H_{SU(2)} = J_{1}\expval{\hat{\bold{S}}_{i}\cdot \hat{\bold{S}}_{j}} + J_2 \expval{\hat{\bold{S}}_{i}\cdot \hat{\bold{S}}_{j}}^2 + J_3 \expval{\hat{\bold{S}}_{i}\cdot \hat{\bold{S}}_{j}}^3.
+\end{equation}
+When the system is completely ferromagnetic, for example, angles $\psi_1, \phi_1$ are independent of sites. The energy (per site) becomes
+\begin{equation}
+    E_{FM,SU(2)} = J_1 \times \frac{1}{4} + J_2 \times \left(\frac{1}{4}\right)^2 + J_3 \times \left(\frac{1}{4}\right)^3.
+\end{equation}
+While in O(3) vector with spin length 1, FM energy is
+\begin{equation}
+    E_{FM,O(3)} = J_1 \times 1 + J_2 \times 1^2 + J_3 \times 1^3.
+\end{equation}
+Hence, in this SU(2) formalism, bi-quadrutic and bi-cubic term is underestimated compared with O(3) vector. 
+In contrast, if we regard SU(2) formalism as the more appripriate classical limit of the original Hamiltonian, O(3) simulation has to be done with each spin length 1/2.
+Which is the better? It is useful to compare SU(4) results with O(3) results. Before that, let us consider some candidates.
+The fiest candidate is just the length 1, which is widely used in classical spin research. Another one is length $1/2$ originating from SU(2).
+The third one is $\sqrt{S(S+1)}$, because spin operators satisfy the identifierstyle
+\begin{equation}
+    \hat{S}_x^2 + \hat{S}_y^2 + \hat{S}_z^2 = S(S+1).
+\end{equation}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.6\columnwidth]{/Users/sogenikegami/Documents/Research/Kitaev-AKLT/SU_N_Coherent_jax/SU4/figure/Haar-random/6-96/Emin_d2E_2.pdf}
+    \caption{Groud state energy curve for Kitaev-AKLT model by SU(4) coherent state.}
+    \label{fig:SU4-K-AKLT}
+\end{figure}
+
+\begin{figure}[t]
+    \centering
+    \subfigure[{Length $1$}]{\includegraphics[width=0.45\textwidth]{/Users/sogenikegami/Documents/Research/Kitaev-AKLT/classical_jax/main/figure/length-1/neighbor/20-80-4/Emin_d2E.pdf}}
+    \subfigure[{Length $1/2$}]{\includegraphics[width=0.45\textwidth]{/Users/sogenikegami/Documents/Research/Kitaev-AKLT/classical_jax/main/figure/length-half/half-length/Emin_d2E.pdf}} \\
+    \subfigure[{Length $\sqrt{S(S+1)}=\sqrt{15}/4$}]{\includegraphics[width=0.45\textwidth]{/Users/sogenikegami/Documents/Research/Kitaev-AKLT/classical_jax/main/figure/sqrt15-2/6-96/Emin_d2E.pdf}}
+    \subfigure[{Length $S=3/2$}]{\includegraphics[width=0.45\textwidth]{/Users/sogenikegami/Documents/Research/Kitaev-AKLT/classical_jax/main/figure/length-3_2/2-128/Emin_d2E.pdf}}
+    \caption{Ground state energy curve for Kitaev-AKLT model by O(3) vector with various length.}
+    \label{fig:O3-K-AKLT}
+\end{figure}
+
+
+In fact, Batista's paper \cite{PhysRevB.96.134408} employs this length to compare the results of their clasical model against the spin-$S$ quantum version of the model.
+The last candidate is $S$. Length $\sqrt{S(S+1)}$ is based on the "expectation value of $\hat{\mathbf{S}}^2$", but in the coherent state simulation, dipole length is different from that, since 
+the operation of taking expectation values and operator product is non-commutative. The certain expression is
+\begin{equation}
+    S(S+1) = \expval{\hat{S}_x^2 + \hat{S}_y^2 + \hat{S}_z^2} \neq \expval{\hat{S}_x}^2 + \expval{\hat{S}_y}^2 + \expval{\hat{S}_z}^2 \leq S.
+\end{equation}
+The O(3) vector model discards the multipole components and just approximate the dipole components of the originai model. In that sense, If the quantum or semi-classical ground states have
+full-length dipole, length $S$ might be the most appropriate. 
+
+
+Now it is the time to compare some numerical results. 
+Fig.\ref{fig:SU4-K-AKLT} shows the ground state energy curve for Kitaev-AKLT model with SU(4) coherent state. 
+The curve was calculated by JAX+Optax package in python, which enable us to utilize GPU and optimize the cost function at high speed.
+Among the several phases in the phase diagram, the phases $\xi=0.5$ belongs to is just the dipole ferro magnetic phase with full length dipole $3/2$.
+Comparing the energy around this parameter is the nice test which length is appropriate as the classical limit. 
+
+
+
+Figs.\ref{fig:O3-K-AKLT} are the ground state energy curve for the same model by O(3) vector with four lengths.
+Among four, length $S=3/2$ reproduces the same energy as the SU(4) around $\xi \sim 0.5$, 
+indicating that around this point SU(4) result is just the pure dipole FM phase with length $S=3/2$.
+The dipole length of this model was happened to be full-length $3/2$ for all parameters. In that sense, 
+O(3) with length $3/2$ may be the best classical limit (dipole model) for this model.
+We successfully catch the FM phase in dipole model (classical O(3) vector model). However, we could not for other phases.
+Indeed, we confirmed that an intriguing phase appeared around $0 \lesssim \xi \lesssim 0.25$ for length $3/2$ and $\sqrt{S(S+1)}$. 
+This phase was so-called non-coplanar phase, which is quite different from the usual Neel phase realized in SU(4) case.
+We see energy discrepancy even though all the SU(4) ground state phases had full-length dipole.
+This suggests that quadrupole or octupole conponent contribute to the energy and stabilizing Neel and other phases.
+We automatically define the classical limit dipole model as the same Hamiltonian as the SU(4) model, 
+but we may need to analytically calculate the dipole part Hamiltonian of the original model.
+
+Bi-quadrutic and bi-cubic terms pose this problem. If we have only bi-linear term (Heisenberg, Kitaev, Gamma, DM...), energy scale is modified but other results are independent from this problem.
+
+\newpage
+
+\section{SU(2) Magnon}\label{sec:SU2_magnon}
+In this section, we derive the SU(2) magnon dispersion for FM, Neel, zigzag states in Kitaev-AKLT model. 
+Generally, if the Hamiltonian include biquadrutic or higher terms, this single SU(2) magnon cannot correctly derive the instability points \cite{10.1093/ptep/ptu109}.
+However, we start from this simpler calculation.
+
+\subsection{FM phase}
+Holstein-Primakoff (HP) transformation is defined as
+\begin{align}
+    &S^z = S-\hat{a}^{\dagger}\hat{a}, \\
+    &S^+ = S^x+iS^y = \sqrt{2S} \sqrt{1-\frac{\hat{n}}{2S}} \hat{a}, \\ 
+    &S^- = S^x-iS^y = \sqrt{2S} \hat{a}^{\dagger} \sqrt{1-\frac{\hat{n}}{2S}},
+\end{align}
+where $\hat{a}^{\dagger}, \hat{a}$ operators are magnon creation/annihilation operators, $\hat{n}=\hat{a}^{\dagger}\hat{a}$ is an usual number operator of the boson.
+$\hat{a}^\dagger, \hat{a},$ and $\hat{n}$ follows usual boson and harmonic oscilattor commutation relationship.
+\begin{align} 
+    \left[ \hat{a}, \hat{a}^\dagger \right] = 1, \quad \left[ \hat{n}, \hat{a}^\dagger \right] = \hat{a}^\dagger, \quad \left[ \hat{n}, \hat{a} \right] = -\hat{a}.
+\end{align}
+The honeycomb lattice has two sublattices within its unit cell, so we introduce two boson operators $\hat{a}$ and $\hat{b}$.
+These different kinds of operators always commute with each other.
+Then, the Heisenberg term between A and B sublattices is rewritten as
+\begin{align}
+    \hat{\bm{S}}_A \cdot \hat{\bm{S}}_B &= \hat{S}_A^z \hat{S}_B^z + \frac{1}{2} (\hat{S}^+_A \hat{S}^-_B + \hat{S}^-_A \hat{S}^+_B)  \notag \\
+    &= (S-\hat{a}^\dagger_i \hat{a}_i)(S-\hat{b}^\dagger_i \hat{b}_i) + \frac{2S}{2} \left( \sqrt{1-\frac{\hat{a}^\dagger_i \hat{a}_i}{2S}} \hat{a}_i \hat{b}^{\dagger}_i \sqrt{1-\frac{\hat{b}^\dagger_i \hat{b}_i}{2S}} + \hat{a}^{\dagger}_i \sqrt{1-\frac{\hat{a}^\dagger_i \hat{a}_i}{2S}}   \sqrt{1-\frac{\hat{b}^\dagger_i \hat{b}_i}{2S}} \hat{b}_i  \right) \notag \\
+    &\sim S^2 - S\left( \hat{a}^\dagger_i \hat{a}_i + \hat{b}^\dagger_i \hat{b}_i - \hat{a}_i \hat{b}^{\dagger}_i - \hat{a}^\dagger_i \hat{b}_i \right).
+\end{align}
+The subscript $i$ indicates the unit cell index. If we consider the Heisenberg interaction between A sub in $i$-th unit cell and B sub in $j$-th unit cell, we only replace the subsctipt of $\hat{b}$ operators from $i$ to $j$.
+From the second line to the third line we ignore the magnon 2-body or higher interaction (e.g., $a^\dagger a^\dagger a b$). These higher interaction could be important for 
+multipole fluctuation. In the generalized spin wave formalism we can deal with these effects as quadrutic terms, instead of introducing many kinds of bosons.
+
+From above calculation, we get linear terms for both biquadrutic and bicubic interactions as follows.
+\begin{align}
+    \left( \hat{\bm{S}}_A \cdot \hat{\bm{S}}_B \right)^2  &\sim \left(S^2 - S\left( \hat{a}^\dagger_i \hat{a}_i + \hat{b}^\dagger_i \hat{b}_i - \hat{a}_i \hat{b}^{\dagger}_i - \hat{a}^\dagger_i \hat{b}_i \right) \right)\left( S^2 - S\left( \hat{a}^\dagger_i \hat{a}_i + \hat{b}^\dagger_i \hat{b}_i - \hat{a}_i \hat{b}^{\dagger}_i - \hat{a}^\dagger_i \hat{b}_i \right) \right) \notag  \\
+    &\sim S^4 - 2S^3 \left( \hat{a}^\dagger_i \hat{a}_i + \hat{b}^\dagger_i \hat{b}_i - \hat{a}_i \hat{b}^{\dagger}_i - \hat{a}^\dagger_i \hat{b}_i \right),
+\end{align}
+
+\begin{align}
+    \left( \hat{\bm{S}}_A \cdot \hat{\bm{S}}_B \right)^3  &\sim \left(S^2 - S\left( \hat{a}^\dagger_i \hat{a}_i + \hat{b}^\dagger_i \hat{b}_i - \hat{a}_i \hat{b}^{\dagger}_i - \hat{a}^\dagger_i \hat{b}_i \right) \right)\left(S^4 - 2S^3 \left( \hat{a}^\dagger_i \hat{a}_i + \hat{b}^\dagger_i \hat{b}_i - \hat{a}_i \hat{b}^{\dagger}_i - \hat{a}^\dagger_i \hat{b}_i \right) \right) \notag \\
+    &\sim S^6 - 3S^5 \left( \hat{a}^\dagger_i \hat{a}_i + \hat{b}^\dagger_i \hat{b}_i - \hat{a}_i \hat{b}^{\dagger}_i - \hat{a}^\dagger_i \hat{b}_i \right).
+\end{align}
+In the usual spin wave theory, we assume that $S$ is enough large that we can ignore $1/S$ contribution which appears in 2-body or many-body magnon interactions.
+In that sense, it is unclear whether the $S^5$ contribution is reasonable or not.
+Denoting $\hat{h}_{\rm Heis}^{i,j} = \left( \hat{a}^\dagger_i \hat{a}_i + \hat{b}^\dagger_j \hat{b}_j - \hat{a}_i \hat{b}^{\dagger}_j - \hat{a}^\dagger_i \hat{b}_j \right)$, the Heisenberg interaction around the A sub site in the unit cell $i$
+is 
+\begin{align}
+    \hat{h}_{\rm Heis}^i &= \left( \hat{\bm{S}}_{i,A} \cdot \hat{\bm{S}}_{i,B} \right) + \left( \hat{\bm{S}}_{i,A} \cdot \hat{\bm{S}}_{i-1,B} \right) + \left( \hat{\bm{S}}_{i,A} \cdot \hat{\bm{S}}_{i-2,B} \right) \notag \\
+    &\sim 3S^2 - S \left( \hat{h}_{\rm Heis}^{i,i} + \hat{h}_{\rm Heis}^{i,i-1} + \hat{h}_{\rm Heis}^{i,i-2} \right).
+\end{align}
+The AKLT interaction at A sub site in the unit cell $i$ is
+\begin{equation}
+    \hat{h}_{\rm AKLT}^{i} \sim 3S^2\left( 1+\frac{116}{243}S^2 + \frac{16}{243}S^4 \right) - S\left( 1+\frac{116}{243}2S^2 + \frac{16}{243}3S^4 \right)\left( \hat{h}_{\rm Heis}^{i,i} + \hat{h}_{\rm Heis}^{i,i-1} + \hat{h}_{\rm Heis}^{i,i-2} \right).
+\end{equation}
+
+The Kitaev interaction is slightly trickey. 
+We assume that A sub in the unit cell $i (\bm{R}_i)$  has $S^zS^z$ interaction with B sub in the same unit cell, while $S^xS^x$ with B sub in the unit cell $i-1: \bm{R}_i-\bm{a}_1$ and $S^yS^y$ with B sub in the unit cell $i-2: \bm{R}_i-\bm{a}_2$.
+Then, the Kitaev interaction is rewritten as
+\begin{align}
+    \hat{H}_{\rm Kitaev}^i &= \hat{S}^z_{i,A}\hat{S}^z_{i,B} + \hat{S}^x_{i,A}\hat{S}^x_{i-1,B} + \hat{S}^y_{i,A}\hat{S}^y_{i-2,B} \notag  \\
+    &=  \hat{S}^z_{i,A}\hat{S}^z_{i,B} + \frac{\hat{S}^+_{i,A} + \hat{S}^-_{i,A}}{2}\frac{\hat{S}^+_{i-1,B} + \hat{S}^-_{i-1,B}}{2} + \frac{\hat{S}^+_{i,A} - \hat{S}^-_{i,A}}{2i}\frac{\hat{S}^+_{i-2, B} - \hat{S}^-_{i-2, B}}{2i} \notag\\
+    &= (S-\hat{a}^\dagger_i \hat{a}_i)(S-\hat{b}^\dagger_i \hat{b}_i)  \notag \\ 
+    & \quad  +\frac{2S}{4} \left(  \sqrt{1-\frac{\hat{a}^\dagger_i \hat{a}_i}{2S}} \hat{a}_i + \hat{a}^{\dagger}_i \sqrt{1-\frac{\hat{a}^\dagger_i \hat{a}_i}{2S}} \right) \left(  \sqrt{1-\frac{\hat{b}^\dagger_{i-1} \hat{b}_{i-1}}{2S}} \hat{b}_{i-1} + \hat{b}^{\dagger}_{i-1} \sqrt{1-\frac{\hat{b}^\dagger_{i-1} \hat{b}_{i-1}}{2S}} \right) \notag \\ 
+    & \quad  -\frac{2S}{4} \left(  \sqrt{1-\frac{\hat{a}^\dagger_i \hat{a}_i}{2S}} \hat{a}_i - \hat{a}^{\dagger}_i \sqrt{1-\frac{\hat{a}^\dagger_i \hat{a}_i}{2S}} \right) \left(  \sqrt{1-\frac{\hat{b}^\dagger_{i-2} \hat{b}_{i-2}}{2S}} \hat{b}_{i-2} - \hat{b}^{\dagger}_{i-2} \sqrt{1-\frac{\hat{b}^\dagger_{i-2} \hat{b}_{i-2}}{2S}} \right) \notag \\
+    &\sim \left( S^2 -S \hat{a}^\dagger_i \hat{a}_i -S\hat{b}^\dagger_i \hat{b}_i   \right)  \notag \\ 
+    & \quad \quad  + \frac{S}{2} \left( \hat{a}_i\hat{b}_{i-1} + \hat{a}_i\hat{b}_{i-1}^\dagger + \hat{a}_i^\dagger \hat{b}_{i-1} + \hat{a}_i^\dagger\hat{b}_{i-1}^\dagger \right) \notag \\
+    & \quad \quad  - \frac{S}{2} \left( \hat{a}_i\hat{b}_{i-2} - \hat{a}_i\hat{b}_{i-2}^\dagger - \hat{a}_i^\dagger \hat{b}_{i-2} + \hat{a}_i^\dagger\hat{b}_{i-2}^\dagger \right). 
+\end{align} 
+
+In total, our Hamiltonian is reformulated using the HP bosons in the linear range as
+\begin{align}
+    H &= \cos(2\pi \xi)H_{\rm AKLT} + \sin(2\pi \xi)H_{\rm Kitaev} \notag \\
+    &=\cos(2\pi \xi)\sum_{i}h_{\rm AKLT}^{i} + \sin(2\pi \xi)\sum_{i}\hat{H}_{\rm Kitaev}^i \notag \\
+    &\sim C_{\rm const}(\xi) + C_{\rm AKLT}(\xi)\sum_{i}\left( \hat{h}_{\rm Heis}^{i,i} + \hat{h}_{\rm Heis}^{i,i-1} + \hat{h}_{\rm Heis}^{i,i-2} \right) + C_{\rm Kitaev} \sum_{i} \hat{h}_{\rm Kitaev}^i.
+\end{align}
+We summarize the Hamiltonian and the definition of the each term in a box below.
+\begin{tcolorbox}
+    \textbf{FM SU(2) magnon Hamiltonian}
+
+    Under FM assumption the Kitaev-AKLT Hamiltonian is rewritten by HP bosons as follows.
+    \begin{align}
+        H &= \cos(2\pi \xi)H_{\rm AKLT} + \sin(2\pi \xi)H_{\rm Kitaev} \notag \\
+        &\sim C_{\rm const}(\xi) + C_{\rm AKLT}(\xi)\sum_{i}\left( \hat{h}_{\rm Heis}^{i,i} + \hat{h}_{\rm Heis}^{i,i-1} + \hat{h}_{\rm Heis}^{i,i-2} \right) + C_{\rm Kitaev} \sum_{i} \hat{h}_{\rm Kitaev}^i, \label{eq:Hamiltonian_LSWT_FM}
+    \end{align}
+    with
+    \begin{align}
+        &\hat{h}_{\rm Heis}^{i,j} = \hat{a}^\dagger_i \hat{a}_i + \hat{b}^\dagger_j \hat{b}_j - \hat{a}_i \hat{b}^{\dagger}_j - \hat{a}^\dagger_i \hat{b}_j, \label{eq:hHeis} \\
+        &\hat{h}_{\rm Kitaev}^i =  \hat{a}^\dagger_i \hat{a}_i + \hat{b}^\dagger_j \hat{b}_j -\frac{1}{2}\left( \hat{a}_i\hat{b}_{i-1} + \hat{a}_i\hat{b}_{i-1}^\dagger + \hat{a}_i^\dagger \hat{b}_{i-1} + \hat{a}_i^\dagger\hat{b}_{i-1}^\dagger \right) \label{eq:hKitaev} \notag \\ 
+        & \quad \quad \quad \quad \quad \quad \quad \quad \quad + \frac{1}{2} \left( \hat{a}_i\hat{b}_{i-2} - \hat{a}_i\hat{b}_{i-2}^\dagger - \hat{a}_i^\dagger \hat{b}_{i-2} + \hat{a}_i^\dagger\hat{b}_{i-2}^\dagger \right),
+    \end{align}
+    and
+    \begin{align}
+        &C_{\rm const}(\xi) = \sum_{i}3S^2\left( 1+\frac{116}{243}S^2 + \frac{16}{243}S^4 \right) \cos(2\pi \xi) + \sum_{i} S^2\sin(2\pi \xi), \\
+        &C_{\rm AKLT}(\xi) = - S\left( 1+\frac{116}{243}2S^2 + \frac{16}{243}3S^4 \right)\cos(2\pi \xi), \\
+        &C_{\rm Kitaev}(\xi) = -S \sin(2\pi \xi).
+    \end{align}
+    The summation runs for all the unit cells $i$.
+\end{tcolorbox}
+
+The Hamiltonian can be diagonalized by the usual procedure: the Fourier transformation and the Bogoliubov transformation.
+We define the Fourier transformation of the HP bosons as
+\begin{align} 
+    &\hat{a}_{\bm{k}} = \frac{1}{\sqrt{N}}\sum_{i}e^{-i\bm{k}\cdot\bm{R}_i}\hat{a}_i, \quad  \hat{a}^\dagger_{\bm{k}} = \frac{1}{\sqrt{N}}\sum_{i}e^{+i\bm{k}\cdot\bm{R}_i}\hat{a}^\dagger_i, \label{eq:FT-HPboson-a} \\
+    &\hat{b}_{\bm{k}} = \frac{1}{\sqrt{N}}\sum_{i}e^{-i\bm{k}\cdot\bm{R}_i}\hat{b}_i, \quad  \hat{b}^\dagger_{\bm{k}} = \frac{1}{\sqrt{N}}\sum_{i}e^{+i\bm{k}\cdot\bm{R}_i}\hat{b}^\dagger_i, \label{eq:FT-HPboson-b}
+\end{align}
+and the inverse transformation as
+\begin{align}
+    &\hat{a}_i = \frac{1}{\sqrt{N}}\sum_{i}e^{+i\bm{k}\cdot\bm{R}_i}\hat{a}_{\bm{k}}, \quad  \hat{a}^\dagger_i = \frac{1}{\sqrt{N}}\sum_{i}e^{-i\bm{k}\cdot\bm{R}_i}\hat{a}^\dagger_{\bm{k}}, \\
+    &\hat{b}_i = \frac{1}{\sqrt{N}}\sum_{i}e^{+i\bm{k}\cdot\bm{R}_i}\hat{b}_{\bm{k}}, \quad  \hat{b}^\dagger_i = \frac{1}{\sqrt{N}}\sum_{i}e^{-i\bm{k}\cdot\bm{R}_i}\hat{b}^\dagger_{\bm{k}},
+\end{align}
+where the summation runs for all the unit cells and $N$ denotes the number of the unit cell.
+The boson interaction terms are transformed as follows.
+\begin{align}
+    \sum_{i}\hat{a}^\dagger_i \hat{a}_i = \sum_{\bm{k}}\hat{a}^\dagger_{\bm{k}} \hat{a}_{\bm{k}} = \sum_{\bm{k}}\hat{a}^\dagger_{\bm{-k}} \hat{a}_{\bm{-k}}, & \quad \sum_{i}\hat{b}^\dagger_i \hat{b}_i = \sum_{\bm{k}}\hat{b}^\dagger_{\bm{k}} \hat{b}_{\bm{k}}, \\
+    \sum_{i}\hat{a}_i \hat{b}_i^\dagger = \sum_{\bm{k}}\hat{a}_{\bm{k}} \hat{b}_{\bm{k}}^\dagger =\sum_{\bm{k}}\hat{a}_{-\bm{k}} \hat{b}_{-\bm{k}}^\dagger, & \quad \sum_{i}\hat{a}^\dagger_i \hat{b}_i = \sum_{\bm{k}}\hat{a}^\dagger_{\bm{k}} \hat{b}_{\bm{k}}, \\
+    \sum_{i}\hat{a}_i \hat{b}_{i-1}^\dagger = \sum_{\bm{k}} e^{+i\bm{k}\cdot \bm{a}_1}\hat{a}_{\bm{k}} \hat{b}_{\bm{k}}^\dagger = \sum_{\bm{k}} e^{\red{-}i\bm{k}\cdot \bm{a}_1}\hat{a}_{-\bm{k}} \hat{b}_{-\bm{k}}^\dagger , & \quad \sum_{i}\hat{a}^\dagger_{i} \hat{b}_{i-1} = \sum_{\bm{k}}e^{-i\bm{k}\cdot \bm{a}_1} \hat{a}^\dagger_{\bm{k}} \hat{b}_{\bm{k}}, \\
+    \sum_{i}\hat{a}_i \hat{b}_{i-2}^\dagger = \sum_{\bm{k}} e^{+i\bm{k}\cdot \bm{a}_2}\hat{a}_{\bm{k}} \hat{b}_{\bm{k}}^\dagger = \sum_{\bm{k}} e^{\red{-}i\bm{k}\cdot \bm{a}_2}\hat{a}_{-\bm{k}} \hat{b}_{-\bm{k}}^\dagger, & \quad \sum_{i}\hat{a}^\dagger_{i} \hat{b}_{i-2} = \sum_{\bm{k}}e^{-i\bm{k}\cdot \bm{a}_2} \hat{a}^\dagger_{\bm{k}} \hat{b}_{\bm{k}}, 
+\end{align}
+and 
+\begin{align}
+    \sum_{i}\hat{a}_i \hat{b}_{i-1} = \sum_{\bm{k}}e^{+i\bm{k}\cdot \bm{a}_1} \hat{a}_{\bm{k}} \hat{b}_{-\bm{k}} = \sum_{\bm{k}}e^{\red{-}i\bm{k}\cdot \bm{a}_1} \hat{a}_{-\bm{k}} \hat{b}_{\bm{k}}, & \quad \sum_{i}\hat{a}_i^\dagger \hat{b}_{i-1}^\dagger = \sum_{\bm{k}}e^{-i\bm{k}\cdot \bm{a}_1} \hat{a}_{\bm{k}}^\dagger \hat{b}_{-\bm{k}}^\dagger, \\
+    \sum_{i}\hat{a}_i \hat{b}_{i-2} = \sum_{\bm{k}}e^{+i\bm{k}\cdot \bm{a}_2} \hat{a}_{\bm{k}} \hat{b}_{-\bm{k}} = \sum_{\bm{k}}e^{\red{-}i\bm{k}\cdot \bm{a}_2} \hat{a}_{-\bm{k}} \hat{b}_{\bm{k}}, & \quad \sum_{i}\hat{a}_i^\dagger \hat{b}_{i-2}^\dagger = \sum_{\bm{k}}e^{-i\bm{k}\cdot \bm{a}_2} \hat{a}_{\bm{k}}^\dagger \hat{b}_{-\bm{k}}^\dagger.
+\end{align}
+
+The AKLT interaction in eq.\eqref{eq:Hamiltonian_LSWT_FM} is transformed as
+\begin{align}
+    &\sum_{i}\left( \hat{h}_{\rm Heis}^{i,i} + \hat{h}_{\rm Heis}^{i,i-1} + \hat{h}_{\rm Heis}^{i,i-2} \right) \notag  \\
+    & \quad = \sum_{i} \left( 3\hat{a}^\dagger_i \hat{a}_i + 3\hat{b}^\dagger_i \hat{b}_i - \left( \hat{a}_i \hat{b}^{\dagger}_i + \hat{a}_i \hat{b}^{\dagger}_{i-1} + \hat{a}_i \hat{b}^{\dagger}_{i-2}\right) - \left( \hat{a}^\dagger_i \hat{b}_i + \hat{a}^\dagger_i \hat{b}_{i-1} + \hat{a}^\dagger_i \hat{b}_{i-2} \right) \right) \notag \\
+    & \quad = \sum_{\bm{k}} \left( 3\hat{a}_{\bm{k}}^\dagger\hat{a}_{\bm{k}} + 3\hat{b}_{\bm{k}}^\dagger\hat{b}_{\bm{k}} - (1+e^{+i\bm{k}\cdot \bm{a}_1}+e^{+i\bm{k}\cdot \bm{a}_2}) \hat{a}_{\bm{k}} \hat{b}_{\bm{k}}^\dagger  - (1+e^{-i\bm{k}\cdot \bm{a}_1}+e^{-i\bm{k}\cdot \bm{a}_2}) \hat{a}_{\bm{k}}^\dagger  \hat{b}_{\bm{k}}\right) \notag \\
+    & \quad = \sum_{\bm{k}} \left( 3\hat{a}_{\bm{k}}^\dagger\hat{a}_{\bm{k}} + 3\hat{b}_{\bm{k}}^\dagger\hat{b}_{\bm{k}} - \Gamma^*(\bm{k}) \hat{a}_{\bm{k}} \hat{b}_{\bm{k}}^\dagger  - \Gamma(\bm{k}) \hat{a}_{\bm{k}}^\dagger  \hat{b}_{\bm{k}}\right) \notag \\
+    & \quad = \sum_{\bm{k}} \left( \frac{3}{2}\hat{a}_{\bm{k}}^\dagger\hat{a}_{\bm{k}} + \frac{3}{2}\hat{a}_{-\bm{k}}^\dagger\hat{a}_{-\bm{k}} + \frac{3}{2}\hat{b}_{\bm{k}}^\dagger\hat{b}_{\bm{k}} + \frac{3}{2}\hat{b}_{-\bm{k}}^\dagger\hat{b}_{-\bm{k}} \right.  \notag \\
+    & \quad \quad \quad \quad \quad \quad \left. - \frac{\Gamma(\bm{k})}{2} \hat{a}_{-\bm{k}} \hat{b}_{-\bm{k}}^\dagger - \frac{\Gamma^*(\bm{k})}{2} \hat{a}_{\bm{k}} \hat{b}_{\bm{k}}^\dagger  - \frac{\Gamma(\bm{k})}{2} \hat{a}_{\bm{k}}^\dagger  \hat{b}_{\bm{k}} - \frac{\Gamma^*(\bm{k})}{2} \hat{a}_{-\bm{k}}^\dagger  \hat{b}_{-\bm{k}}\right).
+\end{align}
+In the last line we defined $\Gamma(\bm{k}) = 1+e^{-i\bm{k}\cdot \bm{a}_1}+e^{-i\bm{k}\cdot \bm{a}_2}$.
+
+The Kitaev interaction in eq.\eqref{eq:Hamiltonian_LSWT_FM} is transformed as
+\begin{align}
+    \sum_{i}\hat{h}_{\rm Kitaev}^i &= \sum_{i} \hat{a}^\dagger_i \hat{a}_i + \hat{b}^\dagger_j \hat{b}_j -\frac{1}{2}\left( \hat{a}_i\hat{b}_{i-1} + \hat{a}_i\hat{b}_{i-1}^\dagger + \hat{a}_i^\dagger \hat{b}_{i-1} + \hat{a}_i^\dagger\hat{b}_{i-1}^\dagger \right) \notag \\ 
+        & \quad \quad \quad \quad \quad \quad \quad  + \frac{1}{2} \left( \hat{a}_i\hat{b}_{i-2} - \hat{a}_i\hat{b}_{i-2}^\dagger - \hat{a}_i^\dagger \hat{b}_{i-2} + \hat{a}_i^\dagger\hat{b}_{i-2}^\dagger \right) \notag  \\
+        &= \sum_{\bm{k}} \hat{a}_{\bm{k}}^\dagger\hat{a}_{\bm{k}} + \hat{b}_{\bm{k}}^\dagger\hat{b}_{\bm{k}} \notag \\ 
+        & \quad \quad -\frac{1}{2}\left( e^{+i\bm{k}\cdot\bm{a}_1} - e^{+i\bm{k}\cdot\bm{a}_2} \right) \hat{a}_{\bm{k}}\hat{b}_{-\bm{k}} -\frac{1}{2}\left( e^{+i\bm{k}\cdot\bm{a}_1} + e^{+i\bm{k}\cdot\bm{a}_2} \right) \hat{a}_{\bm{k}}\hat{b}_{\bm{k}}^\dagger \notag \\ 
+        & \quad \quad -\frac{1}{2}\left( e^{-i\bm{k}\cdot\bm{a}_1} + e^{-i\bm{k}\cdot\bm{a}_2} \right) \hat{a}_{\bm{k}}^\dagger \hat{b}_{\bm{k}} -\frac{1}{2}\left( e^{-i\bm{k}\cdot\bm{a}_1} - e^{-i\bm{k}\cdot\bm{a}_2} \right) \hat{a}_{\bm{k}}^\dagger \hat{b}_{-\bm{k}}^\dagger \notag \\ 
+        &= \sum_{\bm{k}}\left( \hat{a}_{\bm{k}}^\dagger\hat{a}_{\bm{k}} + \hat{b}_{\bm{k}}^\dagger\hat{b}_{\bm{k}} - f^*(\bm{k})\hat{a}_{\bm{k}}\hat{b}_{-\bm{k}} - g^*(\bm{k})\hat{a}_{\bm{k}}\hat{b}_{\bm{k}}^\dagger - g(\bm{k})\hat{a}_{\bm{k}}^\dagger \hat{b}_{\bm{k}} - f(\bm{k})\hat{a}_{\bm{k}}^\dagger\hat{b}_{-\bm{k}}^\dagger \right) \notag \\
+        &= \sum_{\bm{k}} \frac{1}{2}\left( \hat{a}_{\bm{k}}^\dagger\hat{a}_{\bm{k}} + \hat{a}_{-\bm{k}}^\dagger\hat{a}_{-\bm{k}} + \hat{b}_{\bm{k}}^\dagger\hat{b}_{\bm{k}} + \hat{b}_{-\bm{k}}^\dagger\hat{b}_{-\bm{k}}  \right. \notag \\
+        & \quad \quad \quad \quad \quad \quad  - f^*(\bm{k})\hat{a}_{\bm{k}}\hat{b}_{-\bm{k}} - f(\bm{k})\hat{a}_{-\bm{k}}\hat{b}_{\bm{k}} - g^*(\bm{k})\hat{a}_{\bm{k}}\hat{b}_{\bm{k}}^\dagger - g(\bm{k})\hat{a}_{-\bm{k}}\hat{b}_{-\bm{k}}^\dagger \notag \\
+        & \quad \quad \quad \quad \quad \quad \left.- g(\bm{k})\hat{a}_{\bm{k}}^\dagger \hat{b}_{\bm{k}} - g^*(\bm{k}) \hat{a}_{-\bm{k}}^\dagger \hat{b}_{-\bm{k}} - f(\bm{k})\hat{a}_{\bm{k}}^\dagger\hat{b}_{-\bm{k}}^\dagger - f^*(\bm{k})\hat{a}_{-\bm{k}}^\dagger\hat{b}_{\bm{k}}^\dagger \right).
+\end{align}
+In the last line we defined $f(\bm{k}) = \frac{1}{2}\left( e^{-i\bm{k}\cdot\bm{a}_1} - e^{-i\bm{k}\cdot\bm{a}_2} \right)$ and $g(\bm{k}) = \frac{1}{2}\left( e^{-i\bm{k}\cdot\bm{a}_1} + e^{-i\bm{k}\cdot\bm{a}_2} \right)$.
+Finally, we get the FM SU(2) magnon Hamiltonian
+\begin{align}
+    H &= \cos(2\pi \xi)H_{\rm AKLT} + \sin(2\pi \xi)H_{\rm Kitaev} \notag \\
+    &\sim C_{\rm const}(\xi) + C_{\rm AKLT}(\xi)\sum_{i}\left( \hat{h}_{\rm Heis}^{i,i} + \hat{h}_{\rm Heis}^{i,i-1} + \hat{h}_{\rm Heis}^{i,i-2} \right) + C_{\rm Kitaev} \sum_{i} \hat{h}_{\rm Kitaev}^i. \label{eq:FM_SU2_magnon_H_FT}
+\end{align}
+
+It is convenient to write it down in the bilinear form with BdG like matrix.
+Since eq.\eqref{eq:FM_SU2_magnon_H_FT} contains $-\bm{k}$ components, we have to prepare four component basis like
+\begin{equation}
+    \left( \hat{a}^\dagger_{\bm{k}}, \hat{b}^\dagger_{\bm{k}}, \hat{a}_{-\bm{k}}, \hat{b}_{-\bm{k}}\right) \quad \text{and} \quad \left( \hat{a}_{\bm{k}}, \hat{b}_{\bm{k}}, \hat{a}_{-\bm{k}}^\dagger, \hat{b}_{-\bm{k}}^\dagger\right)^T.
+\end{equation}
+
+\begin{tcolorbox}
+    \textbf{FM SU(2) magnon Hamiltonian (after Fourier transformation)}
+    Using this basis, our Hamiltonian \eqref{eq:FM_SU2_magnon_H_FT} is summarized as follows.
+    \begin{equation}\label{eq:BdG-form}
+        H = \sum_{\bm{k}}\left( \hat{a}^\dagger_{\bm{k}}, \hat{b}^\dagger_{\bm{k}}, \hat{a}_{-\bm{k}}, \hat{b}_{-\bm{k}}\right) \mathcal{H}(\bm{k}) \begin{pmatrix}
+            \hat{a}_{\bm{k}} \\ \hat{b}_{\bm{k}} \\ \hat{a}_{-\bm{k}}^\dagger \\ \hat{b}_{-\bm{k}}^\dagger
+        \end{pmatrix}
+    \end{equation}
+    with 
+    \begin{equation}
+        \mathcal{H}(\bm{k}) = \frac{1}{2}\begin{pmatrix}
+            3C_{\rm A} + C_{\rm K} & -C_{\rm A}\Gamma-C_{\rm K}g & 0 & -C_{\rm K}f \\
+            -C_{\rm A}\Gamma^* - C_{\rm K}g^* & 3C_{\rm A} + C_{\rm K} & -C_{\rm K}f^* & 0 \\
+            0 & -C_{\rm K}f & 3C_{\rm A} + C_{\rm K} & -C_{\rm A}\Gamma - C_{\rm K}g \\
+            -C_{\rm K}f^* & 0 & -C_{\rm A}\Gamma^*-C_{\rm K}g^* & 3C_{\rm A} + C_{\rm K}
+        \end{pmatrix}.
+    \end{equation}
+    The definitions of some functions are
+    \begin{align}
+        &\Gamma(\bm{k}) = 1+e^{-i\bm{k}\cdot \bm{a}_1}+e^{-i\bm{k}\cdot \bm{a}_2}, \\
+        &f(\bm{k}) = \frac{1}{2}\left( e^{-i\bm{k}\cdot\bm{a}_1} - e^{-i\bm{k}\cdot\bm{a}_2} \right), \\
+        &g(\bm{k}) = \frac{1}{2}\left( e^{-i\bm{k}\cdot\bm{a}_1} + e^{-i\bm{k}\cdot\bm{a}_2} \right),
+    \end{align}
+    and 
+    \begin{equation}
+        \bm{a}_1 = \left( \frac{\sqrt{3}}{2}a, \frac{3}{2}a \right), \quad \bm{a}_2 = \left( -\frac{\sqrt{3}}{2}a, \frac{3}{2}a \right),
+    \end{equation}
+    where $a$ is the bond length between A and B sublattices.
+    Two $2\times 2$ matrices 
+    \begin{equation}
+        h \equiv \frac{1}{2}\begin{pmatrix} 3C_{\rm A} + C_{\rm K} & -C_{\rm A}\Gamma-C_{\rm K}g \\ -C_{\rm A}\Gamma^* - C_{\rm K}g^* & 3C_{\rm A} + C_{\rm K} \end{pmatrix} \ \text{and} \ 
+        \Delta \equiv \frac{1}{2}\begin{pmatrix} 0 & -C_{\rm K}f \\ -C_{\rm K}f^* & 0 \end{pmatrix}
+    \end{equation}
+    make the $4\times4$ matrix simple:
+    \begin{equation}
+        \mathcal{H}(\bm{k}) = \begin{pmatrix} h & \Delta \\ \Delta & h \end{pmatrix}.
+    \end{equation}
+\end{tcolorbox}
+
+Note that biquadrutic and bicubit terms basically yield the same bilinear boson terms as the bilinear one,
+and they only modify the coefficients of $\hat{h}_{\rm Heis}$. This makes the single SU(2) magnon description worse.
+As I mentioned before, we have to include the magnon-magnon interaction terms or consider generalized spin wave theory.
+The same happens for Neel assumed calculation.
+
+The last task is to diagonalize the $4\times 4$ matrix. This unitary operation is called Bogoliubov transformation.
+When we rely on numerical diagonalization, we have to multiply $\sigma_z$ (a diagonal matrix which takes $+1$ for creation operators and $-1$ for annihilation operators)
+to our Hamiltonian. It is related to the paraunitary of the Bogoliubov transformtion matrix.
+This multiplication makes our Hamiltonian non-Hermitian and its diagonalization means solving the generalized eigenvalue problems.
+This operation is briefly understood like this: first we consider the path integral with action
+\begin{equation}
+    Z = \int \mathcal{D}\phi \exp (iS), \quad  S=\int  \hat{a}^\dagger \partial_\tau \hat{a} +  \hat{b}^\dagger \partial_\tau \hat{b} - H, \quad H = \begin{pmatrix} \hat{b}^\dagger & \hat{a} \end{pmatrix} \mathcal{H} \begin{pmatrix}\hat{b} \\ \hat{a}^\dagger \end{pmatrix}.
+\end{equation}
+Performing the partial integration for the time derivatice terms we get (after Fourier transformation)
+\begin{equation}
+    S = \int \begin{pmatrix}\hat{b}^\dagger & \hat{a} \end{pmatrix} \left[ \begin{pmatrix}
+        -\omega & 0 \\ 0 & \omega
+    \end{pmatrix} - \mathcal{H} \right]  \begin{pmatrix}\hat{b} \\ \hat{a}^\dagger \end{pmatrix} = \int \begin{pmatrix}\hat{b}^\dagger & \hat{a} \end{pmatrix} \sigma_z \left[ \omega I - \sigma_{z} \mathcal{H} \right]  \begin{pmatrix}\hat{b} \\ \hat{a}^\dagger \end{pmatrix}.
+\end{equation}
+The last one is reduced to the generalized eigenvalue problems.
+When you write code by Python or Julia or other language, you will use diagonalization function (package).
+Please take care not to use diagonalization packages for Hermitian matrices.
+
+
+\subsection{Neel phase}
+We assume Neel ordered state and derive the SU(2) single magnon band.
+Basically we can perform the same procedure to calculate the magnon band as the FM case.
+However, we have to modify the definition of HP transformation and bosons for down spins.
+Let A sub points $+z$ direction and B sub points $-z$ direction. We rotate the quantization axis of the B sublattice by $\pi$ around $x$ axis by
+\begin{align}
+    &\hat{S}^x \rightarrow \hat{S}^{x\prime} = \hat{S}^x, \\ 
+    &\hat{S}^y \rightarrow \hat{S}^{y\prime} =\hat{U}_x(\pi) \hat{S}^y \hat{U}_x(\pi)^\dagger = e^{-i\pi \hat{S}^x}\hat{S}^ye^{+i\pi \hat{S}^x} = -\hat{S}^y,  \\
+    &\hat{S}^z \rightarrow \hat{S}^{z\prime} =\hat{U}_x(\pi) \hat{S}^y \hat{U}_x(\pi)^\dagger = e^{-i\pi \hat{S}^x}\hat{S}^ze^{+i\pi \hat{S}^x} = -\hat{S}^z. 
+\end{align}
+$\hat{S}^+$ and $\hat{S}^-$ are also modified correspondingly. 
+THe Heisenberg interaction term in the rotated frame is, for example, 
+\begin{equation}
+    (\hat{\bm{S}}_A\cdot \hat{\bm{S}}_B) \rightarrow (\hat{\bm{S}}_A^{\prime}\cdot \hat{\bm{S}}_B^{\prime}) = (\hat{S}_A^x\hat{S}_B^x - \hat{S}_A^y\hat{S}_B^y - \hat{S}_A^z\hat{S}_B^z).
+\end{equation}
+From this rotation we can define the HP boson at B sublattice as
+\begin{align}
+    &\hat{S}^{z\prime} = -\hat{S}^{z} = -S + \hat{b}^\dagger\hat{b} \\
+    &\hat{S}^{+\prime} = \hat{S}^{x\prime} + i\hat{S}^{y\prime} = \hat{S}^{x} -i\hat{S}^{y} = \sqrt{2S} \hat{b}^{\dagger} \sqrt{1-\frac{\hat{n}}{2S}} \\
+    &\hat{S}^{-\prime} = \hat{S}^{x\prime} - i\hat{S}^{y\prime} = \hat{S}^x + i\hat{S}^y = \sqrt{2S} \sqrt{1-\frac{\hat{n}}{2S}} \hat{b}, 
+\end{align}
+We do not explicitly put prime mark on the spin operators from now on. 
+The bilinear, biquadrutic, bicubic interactions are, up to linear terms,
+\begin{align}
+    \hat{\bm{S}}_A \cdot \hat{\bm{S}}_B &= \hat{S}_A^z \hat{S}_B^z + \frac{1}{2} (\hat{S}^+_A \hat{S}^-_B + \hat{S}^-_A \hat{S}^+_B) \notag \\
+    &= (S-\hat{a}^\dagger_i \hat{a}_i)(\hat{b}^\dagger_i \hat{b}_i-S) + \frac{2S}{2} \left( \sqrt{1-\frac{\hat{a}^\dagger_i \hat{a}_i}{2S}} \hat{a}_i \sqrt{1-\frac{\hat{b}^\dagger_i \hat{b}_i}{2S}} \hat{b}_i  + \hat{a}^{\dagger}_i \sqrt{1-\frac{\hat{a}^\dagger_i \hat{a}_i}{2S}}    \hat{b}^{\dagger}_i \sqrt{1-\frac{\hat{b}^\dagger_i \hat{b}_i}{2S}} \right) \notag \\
+    &\sim -S^2 + S\left( \hat{a}^\dagger_i \hat{a}_i + \hat{b}^\dagger_i \hat{b}_i + \hat{a}_i \hat{b}_i + \hat{a}^\dagger_i \hat{b}_i^{\dagger} \right)  \notag\\
+    &= -S^2 + S\hat{h}_{\rm Heis}^{i,i},
+\end{align}
+\begin{align}
+    \left( \hat{\bm{S}}_A \cdot \hat{\bm{S}}_B \right)^2 \sim S^4 -2S^3 \hat{h}_{\rm Heis}^{i,i},
+\end{align}
+\begin{align}
+    \left( \hat{\bm{S}}_A \cdot \hat{\bm{S}}_B \right)^3 \sim -S^6 + 3S^5 \hat{h}_{\rm Heis}^{i,i}.
+\end{align}
+The Kitaev interaction is 
+
+\begin{align}
+    \hat{h}_{\rm Kitaev}^i &= \hat{S}^z_{i,A}\hat{S}^z_{i,B} + \hat{S}^x_{i,A}\hat{S}^x_{i-1,B} + \hat{S}^y_{i,A}\hat{S}^y_{i-2,B}  \notag \\
+    &=  \hat{S}^z_{i,A}\hat{S}^z_{i,B} + \frac{\hat{S}^+_{i,A} + \hat{S}^-_{i,A}}{2}\frac{\hat{S}^+_{i-1,B} + \hat{S}^-_{i-1,B}}{2} + \frac{\hat{S}^+_{i,A} - \hat{S}^-_{i,A}}{2i}\frac{\hat{S}^+_{i-2, B} - \hat{S}^-_{i-2, B}}{2i} \notag \\
+    &\sim (S-\hat{a}^\dagger_i \hat{a}_i)(\hat{b}^\dagger_i \hat{b}_i -S )\notag   \\ 
+    & \quad  +\frac{2S}{4} \left(  \hat{a}_i + \hat{a}^{\dagger}_i \right) \left( \hat{b}^{\dagger}_{i-1} + \hat{b}_{i-1} \right)   -\frac{2S}{4} \left(  \hat{a}_i - \hat{a}^{\dagger}_i \right) \left( \hat{b}^{\dagger}_{i-2} - \hat{b}_{i-2} \right) \notag \\
+    &\sim  -S^2 +S \hat{a}^\dagger_i \hat{a}_i  + S\hat{b}^\dagger_i \hat{b}_i  \notag \\ 
+    & \quad \quad  + \frac{S}{2} \left( \hat{a}_i\hat{b}_{i-1} + \hat{a}_i\hat{b}_{i-1}^\dagger + \hat{a}_i^\dagger \hat{b}_{i-1} + \hat{a}_i^\dagger\hat{b}_{i-1}^\dagger \right) \notag \\ 
+    & \quad \quad  - \frac{S}{2} \left( \hat{a}_i\hat{b}_{i-2}^\dagger - \hat{a}_i\hat{b}_{i-2} - \hat{a}_i^\dagger \hat{b}_{i-2}^\dagger + \hat{a}_i^\dagger\hat{b}_{i-2} \right). 
+\end{align} 
+
+We get the Hamiltonian written in HP bosons
+\begin{align}
+    H &= \cos(2\pi \xi)H_{\rm AKLT} + \sin(2\pi \xi)H_{\rm Kitaev} \notag \\
+    &\sim C_{\rm const}(\xi) + C_{\rm AKLT}(\xi)\sum_{i}\left( \hat{h}_{\rm Heis}^{i,i} + \hat{h}_{\rm Heis}^{i,i-1} + \hat{h}_{\rm Heis}^{i,i-2} \right) + C_{\rm Kitaev}(\xi) \sum_{i} \hat{h}_{\rm Kitaev}^i.
+\end{align}
+Defining the Fourier transformation of HP bosons as eqs.\eqref{eq:FT-HPboson-a} and \eqref{eq:FT-HPboson-b},
+Our Hamiltonian with bosons in the reciprocal space is
+\begin{align}
+    H &= C_{\rm const}(\xi) + C_{\rm AKLT}(\xi)\sum_{\bm{k}} \left(3\hat{a}^\dagger_{\bm{k}}\hat{a}_{\bm{k}} + 3\hat{b}^\dagger_{\bm{k}}\hat{b}_{\bm{k}} + \Gamma^*(\bm{k}) \hat{a}_{\bm{k}}\hat{b}_{-\bm{k}} + \Gamma(\bm{k}) \hat{a}_{\bm{k}}^\dagger\hat{b}_{-\bm{k}}^\dagger\right) \notag \\
+    &\quad + C_{\rm Kitaev}(\xi)\sum_{\bm{k}} \left( \hat{a}^\dagger_{\bm{k}}\hat{a}_{\bm{k}} + \hat{b}^\dagger_{\bm{k}}\hat{b}_{\bm{k}} + g^*(\bm{k}) \hat{a}_{\bm{k}}\hat{b}_{-\bm{k}} + g(\bm{k}) \hat{a}_{\bm{k}}^\dagger \hat{b}_{-\bm{k}}^\dagger + f(\bm{k}) \hat{a}_{\bm{k}}^\dagger\hat{b}_{\bm{k}} + f^*(\bm{k}) \hat{a}_{\bm{k}}\hat{b}_{\bm{k}}^\dagger \right),
+\end{align}
+where
+\begin{equation}
+    f(\bm{k}) = \frac{1}{2}\left( e^{-i\bm{k}\cdot\bm{a}_1} - e^{-i\bm{k}\cdot\bm{a}_2} \right), \quad g(\bm{k}) = \frac{1}{2}\left( e^{-i\bm{k}\cdot\bm{a}_1} + e^{-i\bm{k}\cdot\bm{a}_2} \right),
+\end{equation}
+and
+\begin{align}
+    &C_{\rm const}(\xi) = 3S^2\cos(2\pi\xi)\left(-1+\frac{116}{243}S^2-\frac{16}{243}S^4\right) + (-S^2)\sin(2\pi\xi), \\
+    &C_{\rm AKLT}(\xi) = S\cos(2\pi\xi)\left(1-\frac{232}{243}S^2+\frac{16}{81}S^4\right), \\
+    &C_{\rm Kitaev}(\xi) = S\sin(2\pi\xi).
+\end{align}
+Using the basis in eq.\eqref{eq:BdG-form}, we get the $4\times4$ matrix representation of our Hamiltonian.
+\begin{tcolorbox}
+    \textbf{Neel SU(2) magnon Hamiltonian}
+
+    \begin{equation}
+        \mathcal{H} = \frac{1}{2}\begin{pmatrix}
+            3C_{\rm A}+C_{\rm K} & C_{\rm K}f & 0 & C_{\rm A}\Gamma + C_{\rm K}g \\
+            C_{\rm K}f^* & 3C_{\rm A}+C_{\rm K} & C_{\rm A}\Gamma^* + C_{\rm K}g^*  & 0 \\
+            0 & C_{\rm A}\Gamma + C_{\rm K}g & 3C_{\rm A}+C_{\rm K} & C_{\rm K}f^* \\
+            C_{\rm A}\Gamma^* + C_{\rm K}g^* & 0 & C_{\rm K}f & 3C_{\rm A}+C_{\rm K} 
+        \end{pmatrix}.
+    \end{equation}
+    As we did in FM case, it can be simplified by introducing 2 by 2 matrices,
+    \begin{equation}
+        \mathcal{H} = \begin{pmatrix}
+            h & \Delta \\
+            \Delta & h
+        \end{pmatrix},
+    \end{equation}
+    \begin{equation}
+        h = \frac{1}{2}\begin{pmatrix}
+            3C_{\rm A}+C_{\rm K} & C_{\rm K}f \\ C_{\rm K}f^* & 3C_{\rm A}+C_{\rm K}
+        \end{pmatrix}, \quad \Delta = \frac{1}{2}\begin{pmatrix}
+            0 & C_{\rm A}\Gamma + C_{\rm K}g \\ C_{\rm A}\Gamma^* + C_{\rm K}g^* & 0
+        \end{pmatrix}.
+    \end{equation}
+\end{tcolorbox}
+
+\subsection{Zigzag phase}
+The magnetic unit cell of the zigzag state has 4 sublattices. 
+The zigzag state is the state that the 1D spin up/down chain are stacking alternatively.
+We assume that each 1D spin chain is pointing $z$-up or down, and the inter-chain bonds are $z$ directional.
+The procedure to get the BdG Hamiltonian is the same as the FM and Neel cases. 
+However, as the magnetic unit cell has four sublattices, we have to introduce four HP bosons and 
+the BdG Hamiltonian is $8\times8$ matrix.
+It is straightforward to show the following result.
+
+\begin{tcolorbox}
+    \textbf{zigzag SU(2) magnon Hamiltonian}
+
+    \begin{equation}
+        \mathcal{H} = \frac{1}{2}\begin{pmatrix}
+            h & \Delta \\ \Delta & h
+        \end{pmatrix},
+    \end{equation}
+    \begin{equation}
+        h = \begin{pmatrix}
+            g & O \\ O & g
+        \end{pmatrix}, g = \begin{pmatrix}
+            2A_A + A_F + K & g(K-2A_F) \\ g^*(K-2A_F) & 2A_A + A_F + K 
+        \end{pmatrix}
+    \end{equation}
+    \begin{equation}
+        \Delta = \begin{pmatrix}
+            a & b \\ b^\dagger & a
+        \end{pmatrix}, a = \begin{pmatrix}
+            0 & Kf \\ Kf^* & 0 
+        \end{pmatrix}, b = \begin{pmatrix}
+            0 & A_Ae^{+i\bm{k}\cdot\bm{a}_2} \\ A_Ae^{-i\bm{k}\cdot(\bm{a}_1 + \bm{a}_2)}
+        \end{pmatrix}
+    \end{equation}
+    with
+    \begin{equation}
+        g = g(\bm{k}) = \frac{1}{2}(1 + e^{+i\bm{k}\cdot\bm{a}_2}), f = f(\bm{k}) = \frac{1}{2}(1 - e^{+i\bm{k}\cdot\bm{a}_2}),
+    \end{equation}
+    \begin{align}
+        A_F &= -S\cos(2\pi\xi)\left(1 + \frac{232}{243}S^2 + \frac{16}{81}S^4\right), \\
+        A_A &= S\cos(2\pi\xi)\left(1 - \frac{232}{243}S^2 + \frac{16}{81}S^4\right), \\
+        K &= S\sin(2\pi\xi).
+    \end{align}
+
+
+\end{tcolorbox}
+
+\newpage
+
+\section{SU(N) Magnon}
+Generalized spin wave theory (GSWT) is formulated in \cite{10.1093/ptep/ptu109}. This paper also discusses the application of the GSWT to the bilinear biquadratic (BBQ) model. 
+
+\subsection{Generalized spin wave theory}
+We briefly introduce the generalized spin wave theory in this subsection.
+When we consider SU($N$) fluctuation, we prepare $N$ kinds of schwinger bosons which satisfy the following constraint
+\begin{equation}\label{eq:GSWT1-1}
+    \sum_{i=0}^{N-1} b_{\bm{r} i}^\dagger b_{\bm{r} i} = N\mathcal{S}.
+\end{equation}
+$N\mathcal{S}$ depends on spin-$S$. For example, if you consider spin-$3/2$ and SU(4), then $N\mathcal{S}=1$
+since the fundamental representation of SU(4) has dimension $4=2S+1$.
+The SU($N$) generators are expressed by bilinear forms of Schwinger bosons,
+\begin{equation}\label{eq:GSWT1-2}
+    O^{mm^\prime} = b_{\bm{r} m}^\dagger b_{\bm{r} m^\prime},
+\end{equation}
+and local operators are represented by the linear combinations of these generators
+\begin{equation}\label{eq:GSWT1-3}
+    X_{\bm{r}} = \sum_{m,m^\prime}\mathcal{X}_{\bm{r}}^{mm^\prime} \mathcal{O}_{\bm{r}}^{mm^\prime} = \mathbf{b}_{\bm{r}}^\dagger \mathcal{X}_{\bm{r}}\mathbf{b}_{\bm{r}}.
+\end{equation}
+When we choose several ansatzes, we need to apply unitary transformation to the Schwinger bosons $\tilde{\mathbf{b}_0} = U\mathbf{b}_0$.
+The $m=0$ boson is the one to be condensed
+\begin{equation}\label{eq:GSWT1-4}
+    \tilde{b}_{\bm{r}0}^\dagger = \tilde{b}_{\bm{r}0} = \sqrt{N\mathcal{S}} \sqrt{1-\frac{1}{N\mathcal{S}}\sum_{m=1}^{N-1}\tilde{b}_{\bm{r}m}^\dagger\tilde{b}_{\bm{r}m}}.
+\end{equation}
+
+Let us calculate the general interaction by the Schwinger Bosons and perform the Holstein-Prinakoff transformation.
+Here we assume $N\mathcal{S}=1$ and the following type of the two-site interaction
+\begin{equation}\label{eq:GSWT1-5}
+    \hat{A}_{\bm{r}}\hat{B}_{\bm{r^\prime}},
+\end{equation}
+where $\hat{A}$ and $\hat{B}$ are elements of the SU($N$) algebra.
+In the language of the Schwinger Bosons, the interaction \eqref{eq:GSWT1-5} is written as 
+\begin{align}\label{eq:GSWT1-6}
+    (\mathbf{b}_{\bm{r}}^\dagger A\mathbf{b}_{\bm{r}})(\mathbf{b}_{\bm{r}^\prime}^\dagger B\mathbf{b}_{\bm{r}^\prime}) &= (b_{\bm{r}m}^\dagger A_{mm^\prime}b_{\bm{r}m^\prime})(b_{\bm{r}^\prime n}^\dagger B_{nn^\prime}b_{\bm{r}^\prime n^\prime}).
+\end{align}
+As the first step, we focus on the $b_{\bm{r}m}^\dagger A_{mm^\prime}b_{\bm{r}m^\prime}$ term. 
+When $m=m^\prime=0$, this term is expanded as
+\begin{align}\label{eq:GSWT1-7}
+    b_{\bm{r}0}^\dagger A_{00}b_{\bm{r}0} &= \sqrt{1-\sum_{i=1}^{N-1}b_{\bm{r}i}^\dagger b_{\bm{r}i}} \ A_{00}  \sqrt{1-\sum_{j=1}^{N-1}b_{\bm{r}j}^\dagger b_{\bm{r}j}} \notag \\
+    &\sim \left( 1-\frac{1}{2}\sum_{i=1}^{N-1}b_{\bm{r}i}^\dagger b_{\bm{r}i} \right) A_{00} \left( 1-\frac{1}{2}\sum_{j=1}^{N-1}b_{\bm{r}j}^\dagger b_{\bm{r}j} \right) \notag \\ 
+    &\sim A_{00} - A_{00}\sum_{i=1}^{N-1} b_{\bm{r}i}^\dagger b_{\bm{r}i} .
+\end{align}
+Since we are only interested in the bilinear terms, we ignored the two-body or higher terms.
+The $m=0, m^\prime \neq 0$ case is also expanded at the same manner;
+\begin{align}\label{eq:GSWT1-8}
+    b_{\bm{r}0}^\dagger A_{0m^\prime}b_{\bm{r}m^\prime} &= \sqrt{1-\sum_{i=1}^{N-1}b_{\bm{r}i}^\dagger b_{\bm{r}i}} \ A_{0m^\prime}b_{\bm{r}m^\prime} \notag \\
+    &\sim \left( 1-\frac{1}{2}\sum_{i=1}^{N-1}b_{\bm{r}i}^\dagger b_{\bm{r}i} \right) A_{0m^\prime}b_{\bm{r}m^\prime} \notag \\ 
+    &=A_{0m^\prime}b_{\bm{r}m^\prime} -\frac{1}{2}\sum_{i=1}^{N-1} A_{0m^\prime} b_{\bm{r}i}^\dagger b_{\bm{r}i}b_{\bm{r}m^\prime} .
+\end{align}
+The $m=0, m^\prime \neq 0$ term yields one, three, and higher creation/annihilation terms. 
+The last case is $m\neq 0, m^\prime \neq 0$ term. These terms do not include $b_0$, so they are simply written as
+\begin{align}\label{eq:GSWT1-9}
+    b_{\bm{r}m}^\dagger A_{mm^\prime}b_{\bm{r}m^\prime}.
+\end{align}
+We are interested in constant and bilinear terms. From the observations above, the interaction \eqref{eq:GSWT1-5} is expanded as
+\begin{align}\label{eq:GSWT1-10}
+    (\mathbf{b}_{\bm{r}}^\dagger A\mathbf{b}_{\bm{r}})(\mathbf{b}_{\bm{r}^\prime}^\dagger B\mathbf{b}_{\bm{r}^\prime}) &= (b_{\bm{r}m}^\dagger A_{mm^\prime}b_{\bm{r}m^\prime})(b_{\bm{r}^\prime n}^\dagger B_{nn^\prime}b_{\bm{r}^\prime n^\prime}) \notag \\
+    &= A_{00}B_{00} \notag \\
+    &+ A_{00} \sum_{i=1}^{N-1}\left( B_{i0}b_{\bm{r}^\prime i}^\dagger +  B_{0i}b_{\bm{r}^\prime i}\right) + B_{00} \sum_{i=1}^{N-1}\left( A_{i0}b_{\bm{r} i}^\dagger +  A_{0i}b_{\bm{r} i}\right) \notag \\
+    &+ \left[ \sum_{i=1}^{N-1}\left( A_{i0}b_{\bm{r} i}^\dagger +  A_{0i}b_{\bm{r} i}\right) \right] \left[ \sum_{i=1}^{N-1}\left( B_{i0}b_{\bm{r}^\prime i}^\dagger +  B_{0i}b_{\bm{r}^\prime i}\right) \right] \notag \\
+    &- A_{00}B_{00}\sum_{i=1}^{N-1} b_{\bm{r}i}^\dagger b_{\bm{r}i} - A_{00}B_{00}\sum_{i=1}^{N-1} b_{\bm{r}^\prime i}^\dagger b_{\bm{r}^\prime i} \notag \\
+    &+ A_{00}\sum_{n,n^\prime=1}^{N-1}B_{nn^\prime} b_{\bm{r}^\prime n}^\dagger b_{\bm{r}^\prime n^\prime} + B_{00}\sum_{m,m^\prime=1}^{N-1}A_{mm^\prime}b_{\bm{r}m}^\dagger b_{\bm{r}m^\prime}.
+\end{align}
+The first line is constant term, and the second line is one operator terms, and from the third to the last line are the two operator (bilinear) terms.
+It is convenient to introduce the following quantity:
+\begin{equation}\label{eq:GSWT1-11}
+    t^{\alpha\beta}_{\gamma\delta} = A_{\alpha\beta}B_{\gamma\delta}.
+\end{equation}
+Then, the bilinear terms in \eqref{eq:GSWT1-10} are
+\begin{align}\label{eq:GSWT1-12}
+    (\mathbf{b}_{\bm{r}}^\dagger A\mathbf{b}_{\bm{r}})(\mathbf{b}_{\bm{r}^\prime}^\dagger B\mathbf{b}_{\bm{r}^\prime}) &= \sum_{m,n=1}^{N-1} \left( t^{m0}_{n0}b_{\bm{r}m}^\dagger b_{\bm{r}^\prime n}^\dagger +  t^{m0}_{0n}b_{\bm{r}m}^\dagger b_{\bm{r}^\prime n} + t^{0m}_{n0}b_{\bm{r}m} b_{\bm{r}^\prime n}^\dagger + t^{0m}_{0n}b_{\bm{r}m} b_{\bm{r}^\prime n} \right) \notag \\
+    &+ \sum_{m,n=1}^{N-1} \left( t^{mn}_{00}b_{\bm{r}m}^\dagger b_{\bm{r}n} + t^{00}_{mn}b_{\bm{r}^\prime m}^\dagger b_{\bm{r}^\prime n} \right) - t^{00}_{00} \sum_{i=1}^{N-1} \left( b_{\bm{r}i}^\dagger b_{\bm{r}i} + b_{\bm{r}^\prime i}^\dagger b_{\bm{r}^\prime i}\right)
+\end{align}
+As we did in the SU(2) magnon, it is convenient to perform the Fourier transformation.
+We define the Fourier transformation of the Schwinger Bosons as 
+\begin{equation}\label{eq:GSWT1-13}
+    b_{\bm{k}m}^\dagger = \frac{1}{\sqrt{N}} \sum_{i}b_{im}^\dagger e^{i\bm{k}\cdot \bm{R}_i},
+\end{equation}
+where $i$ is the unit cell index and $\bm{R}_i$ denotes the position of the $i$-th unit cell.
+When we assume our system is on the honeycomb lattice and our Hamiltonian has only nearest neighbor interactions, 
+eq.\eqref{eq:GSWT1-12} becomes
+\begin{align}\label{eq:GSWT1-14}
+    \sum_{\langle \bm{r}, \bm{r}^\prime \rangle}(\mathbf{a}_{\bm{r}}^\dagger A\mathbf{a}_{\bm{r}})(\mathbf{b}_{\bm{r}^\prime}^\dagger B\mathbf{b}_{\bm{r}^\prime}) &= \sum_{\bm{k}}\sum_{m,n=1}^{N-1}(  t^{m0}_{n0} \Gamma^*(\bm{k}) a_{\bm{k},m}^\dagger b_{-\bm{k},n}^\dagger + t^{m0}_{0n} \Gamma(\bm{k}) a_{\bm{k},m}^\dagger b_{\bm{k},n}  \notag \\
+    &+ t^{0m}_{n0} \Gamma^*(\bm{k})  b_{\bm{k},n}^\dagger a_{\bm{k},m} + t^{0m}_{0n} \Gamma(\bm{k}) a_{\bm{k},m}  b_{-\bm{k},n}  ) \notag \\
+    &+ \sum_{\bm{k}}\sum_{m,n=1}^{N-1} (3t^{mn}_{00}a_{\bm{k}m}^\dagger a_{\bm{k}n} + 3t^{00}_{mn}b_{\bm{k}m}^\dagger b_{\bm{k}n}) \notag \\
+    &- 3t^{00}_{00} \sum_{i=1}^{N-1} \left( a_{\bm{k}i}^\dagger a_{\bm{k}i} +b_{\bm{k}i}^\dagger b_{\bm{k}i} \right),
+\end{align}
+where 
+\begin{equation}
+    \Gamma(\bm{k}) = 1 + e^{-i\bm{k}\cdot \bm{R}_1} + e^{-i\bm{k}\cdot \bm{R}_2}.
+\end{equation}
+
+\subsection{FM phase in the Kitaev-AKLT model}
+In this subsection we derive the SU($N$) magnon Hamiltonian by assuming the Ferro magnetic state under the Kitaev-AKLT Hamiltonian.
+As for the AKLT interaction, We only have to utilize the eq. \eqref{eq:GSWT1-14} by setting
+\begin{equation}
+    (t_{\rm AKLT})^{\alpha\beta}_{\gamma\delta}  \equiv A^{\alpha\beta}_{\gamma\delta} = \sum_{\mu\in \left\{ x,y,z \right\}} S^\mu_{\alpha\beta}S^\mu_{\gamma\delta} + \frac{116}{243}\sum_{\mu,\nu \in \left\{ x,y,z \right\}} S^{\mu\nu}_{\alpha\beta}S^{\mu\nu}_{\gamma\delta}  + \frac{16}{243}\sum_{\mu,\nu,\rho \in \left\{ x,y,z \right\}} S^{\mu\nu\rho}_{\alpha\beta}S^{\mu\nu\rho}_{\gamma\delta},
+\end{equation}
+with $S^{\mu\nu\rho} = S^{\mu}S^{\nu}S^{\rho}$.
+The Kitaev interaction is slightly trickey.
+Defining two quantities
+\begin{align}
+    &K^{\alpha\beta}_{\gamma\delta} =  \sum_{\mu\in \left\{ x,y,z \right\}}S^\mu_{\alpha\beta}S^\mu_{\gamma\delta}, \\
+    &\tilde{K}^{\alpha\beta}_{\gamma\delta} = S^z_{\alpha\beta}S^z_{\gamma\delta} + S^x_{\alpha\beta}S^x_{\gamma\delta}e^{-i\bm{k}\cdot \bm{R}_1}  + S^y_{\alpha\beta}S^y_{\gamma\delta}e^{-i\bm{k}\cdot \bm{R}_2},
+\end{align}
+The Kitaev interaction term is transformed as
+\begin{align}
+    \sum_{i} S^z_{iA}S^z_{iB} + S^x_{iA}S^x_{(i-1)B}+ S^y_{iA}S^y_{(i-2)B}  &= \sum_{\bm{k}}\sum_{m,n=1}^{N-1}(  (\tilde{K}^{m0}_{n0})^* a_{\bm{k},m}^\dagger b_{-\bm{k},n}^\dagger + \tilde{K}^{m0}_{0n} a_{\bm{k},m}^\dagger b_{\bm{k},n}  \notag \\
+    &+ (\tilde{K}^{0m}_{n0})^* b_{\bm{k},n}^\dagger a_{\bm{k},m} + \tilde{K}^{0m}_{0n} a_{\bm{k},m}  b_{-\bm{k},n}  ) \notag \\
+    &+ \sum_{\bm{k}}\sum_{m,n=1}^{N-1} (K^{mn}_{00}a_{\bm{k}m}^\dagger a_{\bm{k}n} + K^{00}_{mn}b_{\bm{k}m}^\dagger b_{\bm{k}n}) \notag \\
+    &- K^{00}_{00} \sum_{i=1}^{N-1} \left( a_{\bm{k}i}^\dagger a_{\bm{k}i} +b_{\bm{k}i}^\dagger b_{\bm{k}i} \right).
+\end{align}
+Our Hamiltonian is given by \eqref{eq:Hamiltonian}. Modifying $A,K,\tilde{K}$ as 
+\begin{align}
+    &A^{\alpha\beta}_{\gamma\delta} = \cos (2\pi\xi) \left( \sum_{\mu\in \left\{ x,y,z \right\}} S^\mu_{\alpha\beta}S^\mu_{\gamma\delta} + \frac{116}{243}\sum_{\mu,\nu \in \left\{ x,y,z \right\}} S^{\mu\nu}_{\alpha\beta}S^{\mu\nu}_{\gamma\delta}  + \frac{16}{243}\sum_{\mu,\nu,\rho \in \left\{ x,y,z \right\}} S^{\mu\nu\rho}_{\alpha\beta}S^{\mu\nu\rho}_{\gamma\delta} \right), \\
+    &K^{\alpha\beta}_{\gamma\delta} = \sin(2\pi \xi) \sum_{\mu\in \left\{ x,y,z \right\}}S^\mu_{\alpha\beta}S^\mu_{\gamma\delta}, \\
+    &\tilde{K}^{\alpha\beta}_{\gamma\delta} = \sin(2\pi \xi) \left( S^z_{\alpha\beta}S^z_{\gamma\delta} + S^x_{\alpha\beta}S^x_{\gamma\delta}e^{-i\bm{k}\cdot \bm{R}_1}  + S^y_{\alpha\beta}S^y_{\gamma\delta}e^{-i\bm{k}\cdot \bm{R}_2} \right) ,
+\end{align}
+the Kitaev-AKLT Hamiltonian becomes
+\begin{align}
+    H &= \sum_{\bm{k}}\sum_{m,n=1}^{N-1}( \left[A^{m0}_{n0}\Gamma^*(\bm{k}) + (\tilde{K}^{m0}_{n0})^*  \right] a_{\bm{k},m}^\dagger b_{-\bm{k},n}^\dagger +  \left[A^{m0}_{0n}\Gamma(\bm{k}) + \tilde{K}^{m0}_{0n} \right] a_{\bm{k},m}^\dagger b_{\bm{k},n}  \notag \\
+    &+ \left[A^{0m}_{n0}\Gamma^*(\bm{k}) + (\tilde{K}^{0m}_{n0})^*  \right]  b_{\bm{k},n}^\dagger a_{\bm{k},m} + \left[A^{0m}_{0n}\Gamma(\bm{k}) + \tilde{K}^{0m}_{0n}  \right] a_{\bm{k},m}  b_{-\bm{k},n}  ) \notag \\
+    &+ \sum_{\bm{k}}\sum_{m,n=1}^{N-1} (\left[3A^{mn}_{00} + {K}^{mn}_{00} \right]a_{\bm{k}m}^\dagger a_{\bm{k}n} + \left[3A^{00}_{mn} + {K}^{00}_{mn} \right]b_{\bm{k}m}^\dagger b_{\bm{k}n}) \notag \\
+    &- \left[3A^{00}_{00} + {K}^{00}_{00} \right] \sum_{i=1}^{N-1} \left( a_{\bm{k}i}^\dagger a_{\bm{k}i} +b_{\bm{k}i}^\dagger b_{\bm{k}i} \right).
+\end{align}
+
+\begin{tcolorbox}
+    In the matrix form, setting basis as $\left( \mathbf{a}_{\bm{k}}^\dagger, \mathbf{b}_{\bm{k}}^\dagger, \mathbf{a}_{-\bm{k}}, \mathbf{b}_{-\bm{k}} \right)$, we get 
+\begin{equation}
+    \mathcal{H} = \frac{1}{2}\begin{pmatrix}
+        h & \Delta \\ \Delta & h
+    \end{pmatrix},
+\end{equation}
+
+\begin{equation}
+    h = \begin{pmatrix}
+        \left( 3A+K \right)^{mn}_{00}-\delta_{mn}\left( 3A+K \right)^{00}_{00} & A^{m0}_{0n}\Gamma + \tilde{K}^{m0}_{0n} \\
+        A^{0m}_{n0}\Gamma^* + (\tilde{K}^{0m}_{n0})^* & \left(   3A+K \right)^{00}_{mn}-\delta_{mn}\left( 3A+K \right)^{00}_{00}
+    \end{pmatrix},
+\end{equation}
+
+\begin{equation}
+    \Delta = \begin{pmatrix}
+        0 & A^{0m}_{0n}\Gamma + \tilde{K}^{0m}_{0n} \\ [A^{m0}_{n0}\Gamma^* + \tilde{K}^{m0}_{n0}]^T & 0
+    \end{pmatrix}.
+\end{equation}
+\end{tcolorbox}
+
+\newpage
+
+\section*{update history}
+\begin{itemize}
+    \item 2025/1/11 First draft by Sogen Ikegami
+    \item 2025/1/15 Add Section \ref{sec:equivalence} 
+    \item 2025/2/20 Add some thought about classical spin length in Sec.\ref{sec:equivalence} 
+    \item 2025/2/26 Add SU(2) magnon Section \ref{sec:SU2_magnon}
+    \item 2025/3/17 Add SU(N) magnon Section
+    \item 2025/4/15 Revise SU(2) magnon Hamiltonian. $\sum_{\bm{k}}e^{i\bm{k}\cdot \bm{a}}\hat{a}^\dagger_{\bm{k}} \hat{a}_{\bm{k}} = \sum_{\bm{k}}e^{\red{-}i\bm{k}\cdot \bm{a}}\hat{a}^\dagger_{\bm{-k}} \hat{a}_{\bm{-k}}$. Originally I missed the minus sign in the exponential factor in the r.h.s.
+        Correspondingly I revised the BdG Hamiltonian.
+\end{itemize}
+
+\newpage 
+
+\printbibliography
+%\bibliographystyle{plain}
+%\bibliography{reference.bib}
+
+
+
+\end{document}

@@ -1,0 +1,44 @@
+
+
+%\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn,bm,comment}% Align table columns on decimal point
+\usepackage{subfiles}
+% 数式
+\usepackage{amsmath,amsfonts,bm,mathcomp,physics, amssymb}
+\numberwithin{equation}{section}
+
+% 画像
+\usepackage{color,float,subfigure}
+\usepackage[dvipdfmx]{graphicx}
+% TikZ
+\usepackage{tikz}
+\usetikzlibrary{intersections, calc, arrows.meta}
+% 囲み
+\usepackage{ascmac,fancybox}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+
+\usepackage{listings,jvlisting} %日本語のコメントアウトをする場合jvlisting（もしくはjlisting）が必要
+\usepackage[margin=30truemm]{geometry}
+
+%\usepackage[x11names]{xcolor}
+\usepackage[dvipsnames]{xcolor}
+%\usepackage[colorlinks,citecolor=SpringGreen4,linkcolor=purple,dvipdfmx]{hyperref} 
+\usepackage[colorlinks,citecolor=OliveGreen,linkcolor=BrickRed,dvipdfmx]{hyperref} 
+\usepackage{pxjahyper}
+%\usepackage{hyperref}
+
+\usepackage[backend=bibtex,style=phys,%
+articletitle=false,biblabel=brackets,%
+chaptertitle=false,pageranges=false]{biblatex}
+\addbibresource{reference.bib}
+
+\newtheorem{theorem}{定理}
+\newtheorem{definition}{定義}
+%\newtheorem{mybox}{box}
+\newtcbtheorem{mybox}{My Theorem}{enhanced, %TikZの内部処理を導入する．ある程度複雑なものには必須．
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true,
+}{hoge}

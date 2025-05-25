@@ -1,0 +1,1047 @@
+\documentclass[11pt, aps, longbibliography]{article}
+\input{preemble}
+\addbibresource{reference}
+\begin{document}
+\title{量子スピン液体}
+\author{Sogen Ikegami}
+\date{\today}
+\maketitle
+
+\tableofcontents
+
+\section*{preface}
+量子スピン液体における平均場の計算のために勉強したことをまとめるノート。
+
+\section{量子スピン液体：スピノンとゲージ場}
+    \subsection{量子スピン液体の定義}
+        量子スピン液体は1970年代にP.W. Andersonが提唱したRVBに関する研究に端を発する。
+        例えば幾何学的フラストレーションの例で有名な、二次元三角格子の各頂点にスピン$1/2$があり、それらが反強磁性ハイゼンベルグ相互作用を持っているとき、
+        古典的な描像で基底状態を構成しようとすると$S_z$基底でupとdownだけでは全てのハミルトニアンの項を最小化するようなスピン配置は得られない。
+        一方、量子状態を考慮に入れると、二つのサイトの間でスピンシングレット(これを本稿ではしばしばダイマーと呼ぶ)を組めば良いことがわかるが、
+        このダイマーによる二次元格子のカバーの仕方はシステムサイズとともに指数関数的に増大していく。
+        ハミルトニアンの固有状態なこれらの状態の適切な係数による線型結合でかけるだろうということから、この状態をResonance Valence Bond(RVB)状態と呼ぶ。
+        その後の研究でこの状態が基底状態であることは否定されたが、高温超伝導の記述に応用されるなどの広がりを見せている。
+        特にRVB状態は絶対零度でも従来の秩序(例えばNeel状態)がみられないことが特徴である。この様な状態を量子スピン液体と呼ばれたりするが、
+        文脈や分野によって量子スピン液体の定義がはっきりしないまま議論が進められることがしばしばある。
+        ここではいくつか量子スピン液体の定義を試み、それぞれの定義に対するツッコミを入れてみる。
+        結論としては本稿では\hyperlink{def3}{定義3}を量子スピン液体の定義に採用する。
+
+        \begin{tcolorbox}\hypertarget{def1}{}
+            \paragraph{定義1}
+            量子スピン液体とはスピンの相関関数$\expval{S_i^\alpha S_j^\beta}$が距離無限大の極限$|r_i-r_j|\rightarrow \infty$でゼロにdecayする様な状態である。
+        \end{tcolorbox}
+        この定義はとてもシンプルであり、長距離相関がないような系を量子スピン液体と呼ぶ、という定義である。
+        しかしこの定義はかなり"ざる"である。というのも、連続対称性を持つ有限温度の$d\leq2$次元系はMermin-Wagnerの定理からこの条件を満たし、
+        直ちに量子スピン液体に当てはまってしまう。また、絶対零度に限っても2点相関関数はdecayするが4点相関関数が長距離相関を持ついわゆるspin nematic状態(多極子秩序)
+        もこの定義は排除できていない。
+
+        \begin{tcolorbox}\hypertarget{def2}{}
+            \paragraph{定義2}
+            量子スピン液体とは自発的に対称性が破れていない状態である。
+        \end{tcolorbox}
+        こちらは先ほどと近い定義になっている。しかし、こちらはいわゆる自明な状態、$T=0$常磁性を含んでしまっている。
+        例として、スピン$1/2$が並んだラダー系を考えてみよう。ラダーなので各スピンにはペアがいて、このペアが横に並んでいる状況である。
+        ペアのスピン同士の反強磁性相互作用$J$がペア間の相互作用$J^\prime$にくらべて十分強い場合、
+        基底状態としてペアでダイマーが組まれた状態が実現するだろう。この状態はラダーの対称性やスピンの対称性を破っていないため、
+        この定義を満たす。しかしこの状態はエキゾチックな状態ではなく、温度を上げるにつれ通常の常磁性に移行する。そのためこちらは$T=0$における常磁性状態となっており、
+        絶縁体でいうところの自明な絶縁体になっている。エンタングルメントの構造としても長距離エンタングルメントはなく、
+        短距離エンタングルメントのみを有し、有限段のdisentanglerで積状態に移行できてしまう。
+        AKLT状態もこのような状態である。
+
+        \begin{tcolorbox}\hypertarget{def3}{}
+            \paragraph{定義3}
+            量子スピン液体とは分数励起を伴った状態である。
+        \end{tcolorbox}
+            多くの量子スピン液体の例において分数励起は電荷はなくスピン$1/2$を運ぶspinon(とvison, flux)である。
+
+    \subsection{スピノンとゲージ場}
+        分数励起であるスピノンとそれに伴ったゲージ場を記述するためには、スピンのフェルミオン表示が便利である。またスピンにはSchwinger Bosonを用いてボゾンで表示することも可能である。
+        どちらが良いかは目的によるが、Bosonの場合は凝縮できるため秩序相をtargetにする場合に便利である。
+        まずスピン1/2の場合について考えることにする。通常スピン演算子を次のように分解する。
+        \begin{equation}\label{eq:2-1}
+            S_i^+ = f_{i\uparrow}^\dagger, \quad S_i^z = \frac{1}{2}(f_{i\uparrow}^\dagger f_{i\uparrow} - f_{i\downarrow}^\dagger f_{i\downarrow}),
+        \end{equation}
+        \begin{equation}\label{eq:2-2}
+            \left\{ f_{i,\mu}^\dagger, f_{j,\nu} \right\} = \delta_{i,j}\delta_{\mu,\nu}.
+        \end{equation}
+        各サイトにup,downのフェルミオンが定義されていると考えると、各サイトでのヒルベルト空間の次元は元の2から4に拡大されている。
+        これを元のspin-1/2のヒルベルト空間に射影するため、次の制限を課す。
+        \begin{equation}\label{eq:2-3}
+            f_{i\uparrow}^\dagger f_{i\uparrow} + f_{i\downarrow}^\dagger f_{i\downarrow} = 1 \quad \text{for all } i.
+        \end{equation}
+        この定義に従うと、ある一つのサイトでスピノンを一つ励起しようとするとそこでは制限を破ってしまう。
+        そのような場合にはもともとあったスピノンをあるストリングに沿ってずらし、もう一つのストリングの端でスピノンを消滅させるという操作をすれば良い。
+        このストリングは二次元以上で多くの取り方がある。またこのストリングを記述するために自然にゲージ場を考えることになる。
+
+        スピン演算子\eqref{eq:2-1}や制限\eqref{eq:2-3}を満たす状態はゲージ変換
+        \begin{equation}\label{eq:2-4}
+            f_{i,\sigma}^\dagger \rightarrow e^{-i\Lambda_i}f_{i,\sigma}^\dagger, \quad \Lambda_i \in [0,2\pi]
+        \end{equation}
+        のもとで不変である。実はこのゲージ変換のもとで状態が不変であるという条件と制限\eqref{eq:2-3}の条件は等価である。
+        しかし、$ f_{i,\sigma}^\dagger$自体はもちろんゲージ不変ではない。その代わり、ゲージ場$A$を各ボンドに導入することで二つの演算子のペアについてゲージ不変にすることができる。
+        ゲージ場$A_{ij}$を変換\eqref{eq:2-4}のもとで$A_{ij}\rightarrow A_{ij}+\Lambda_i-\Lambda_j$と変換するものとして、
+        \begin{equation}\label{eq:2-5}
+            f_{0\uparrow}^\dagger \exp(iA_{01} + iA_{12} + \cdots + iA_{(n-1)n})f_{n\uparrow}
+        \end{equation}
+        を考えるとこれはゲージ不変となる。これはちょうど先ほど述べた、ストリングに沿ってスピノンをシフトし、ストリングの端の点でスピノンを生成/消滅させるオペレータになっている。
+        今は$U(1)$ゲージ場を考えたが、$\mathbb{Z}_2$ゲージ場を考えることもできる。今の段階ではただ仮想的にゲージ場を導入したのみで、
+        作用やハミルトニアンにダイナミカルなゲージ場が入ることはないが、低エネルギー有効模型を考える際にはUV部分をトレースアウトすることになる。
+        その場合にはgauge-matter couplingやMaxwell作用などが現れることになる。このカップリングがどのような形になるのかは模型依存である。
+        
+        今の文脈で、ゲージ場の電荷はスピノンである。ゲージ場の一般論として、ゲージ理論は閉じ込め相(confined phase)と非閉じ込め相(deconfined phase)が存在する。
+        その名の通り、閉じ込め相では電荷励起が対を組み空間的に分解することができないのに対し、非閉じ込め相では単独の電荷が有限のエネルギーの励起になっている。
+        閉じ込めはフラックスが強く揺らぐ際に発生する。量子スピン液体を記述しようと試みてスピノンを導入し、解析した結果閉じ込め相になっている場合、
+        量子スピン液体の記述としてスピノンは間違っているわけではないが良い記述ではないことになる。この場合にはスピノンのゲージニュートラルなペアで閉じ込めが発生し、
+        整数スピン励起を運ぶマグノンによる記述が良い記述になるからである。一方、ゲージ場の揺らぎが小さい場合、非閉じ込め相が実現し、
+        \hyperlink{def3}{定義3}に従う量子スピン液体が実現する。すなわち、分数励起を伴う量子スピン液体の議論は格子ゲージ場とカップリングしたスピノンにおける閉じ込め/非閉じ込めの問題となる。
+\newpage
+
+\section{平均場による方法}
+    \subsection{SU(2)ゲージ変換}
+        もともとスピンが有しているSU(2)の構造がフェルミオンによる記述に移行した際にどのように表されるかをみていく。
+        
+        まず大域的なスピンの回転を見ていく。これはSU(2)行列$V$をダブレット$(f_{i\uparrow}, f_{i\downarrow})^T$を作用させることで回転できる。すなわち
+        \begin{equation}\label{eq:3-1-1}
+            \begin{pmatrix}
+                f_{i\uparrow} \\ f_{i\downarrow}
+            \end{pmatrix} \rightarrow V \begin{pmatrix}
+                f_{i\uparrow} \\ f_{i\downarrow}
+            \end{pmatrix}
+        \end{equation}
+        式\eqref{eq:3-1-1}の両辺をエルミート共役をとり転置すると、
+        \begin{equation}\label{eq:3-1-2}
+            \begin{pmatrix}
+                f_{i\uparrow}^\dagger \\ f_{i\downarrow}^\dagger
+            \end{pmatrix} \rightarrow V^* \begin{pmatrix}
+                f_{i\uparrow}^\dagger \\ f_{i\downarrow}^\dagger
+            \end{pmatrix}
+        \end{equation}
+        となる。ところでトレースレスのエルミートな行列$U$について、$S^{-1}US=U^*$となる行列$S$が存在する。Pauli行列表示の場合
+        $S=-i\sigma_y$と取れるので、
+        \begin{equation}\label{eq:3-1-3}
+            S\begin{pmatrix}
+                f_{i\uparrow}^\dagger \\ f_{i\downarrow}^\dagger
+            \end{pmatrix} =  \begin{pmatrix}
+                -f_{i\downarrow}^\dagger \\ f_{i\uparrow}^\dagger
+            \end{pmatrix}
+        \end{equation}
+        は\eqref{eq:3-1-2}と同じ変換性を持つ。よって、行列
+        \begin{equation}\label{eq:3-1-4}
+            F_i = \begin{pmatrix}
+                f_{i\uparrow} & -f_{i\downarrow}^\dagger \\ f_{i\downarrow} & f_{i\uparrow}^\dagger
+            \end{pmatrix}
+        \end{equation}
+        を定義すると、スピンのSU(2)回転は生成子がスピン演算子のSU(2)行列$V$を左から作用させることでできる。またこの行列$F$のもとで、スピン演算子は
+        \begin{equation}\label{eq:3-1-5}
+            S_i^\alpha = \frac{1}{4}\Tr F_i^\dagger \sigma_\alpha F_i
+        \end{equation}
+        と表すことができ、明らかにSU(2)変換に対してベクトルの変換性を示す。また制限\eqref{eq:2-3}については
+        \begin{equation}\label{eq:3-1-9}
+            \frac{1}{2}\Tr F_i^\dagger F_i \sigma_\alpha = 0
+        \end{equation}
+        で表される。$z$成分が元の制限を与え、$x,y$成分については余計な条件であるが、この形式で書くとゲージ変換に対する変換性などがわかりやすいためこのように拡張した制限の形で書いた。
+        一方、行列表示\eqref{eq:3-1-4}を横の列で見てやると、例えば$f_{i\uparrow}$と$f_{i\downarrow}^\dagger$は同じ物理的意味を持つ。したがってこれらを混ぜ合わせる変換に対して
+        スピン演算子など物理的な量は変更を受けない。
+        この変換は先ほどとは変わり、SU(2)行列$W$を右から作用させれば良い。実際この変換によってスピン演算子が不変であることは行列表示\eqref{eq:3-1-4}より明らかである。
+        よって右から作用させる変換は局所的なSU(2)ゲージ変換となる。この生成子(スピノンのSU(2)ゲージ電荷)は
+        \begin{equation}\label{eq:3-1-6}
+            K_i^l = \frac{1}{4} \Tr F_i \sigma_l F_i^\dagger
+        \end{equation}
+        で与えられる。
+        \begin{tcolorbox}
+            \paragraph{スピノンのSU(2)変換}
+            \begin{equation}\label{eq:3-1-7}
+                F_i = \begin{pmatrix}
+                    f_{i\uparrow} & -f_{i\downarrow}^\dagger \\ f_{i\downarrow} & f_{i\uparrow}^\dagger
+                \end{pmatrix}
+            \end{equation}
+            のもとで、SU(2)行列$U,W$をそれぞれ左、右から作用させることでゲージ変換ができる。
+            \begin{equation}\label{eq:3-1-8}
+                F_i \rightarrow UF_iW_i
+            \end{equation}
+            $U$は大域SU(2)変換(スピンの回転)に対応し、$W$は局所ゲージ変換に対応する。$U$のサイトのインデックス$i$は落とした。
+        \end{tcolorbox}
+
+    \subsection{Hubbard-Stratnovich変換による平均場の導入}
+        前節で定義した行列を用いてラグラジアンを経路積分形式で書くことができる。ユークリッド化した虚時間方向のラグラジアンは
+        \begin{equation}\label{eq:3-1-16}
+            \mathcal{L} = \sum_i \Tr[F_i ( \partial_\tau + \boldsymbol{A}_i^0 \cdot \boldsymbol{\sigma} ) F_i^\dagger ] - H
+        \end{equation}
+        となる。ここで$\boldsymbol{A}$は実ベクトルであり、制限\eqref{eq:3-1-9}のラグランジュ未定乗数となっている。
+        ここで、時間に依存するSU(2)ゲージ変換を行うと、ラグラジアンのゲージ不変性の要請から
+        \begin{equation}\label{eq:3-1-17}
+            F_i(\tau) \rightarrow F_i(\tau) W_i(\tau), \quad \boldsymbol{A}_i^0 \cdot \boldsymbol{\sigma} \rightarrow W_i(\tau) (\partial_\tau + \boldsymbol{A}_i^0 \cdot \boldsymbol{\sigma}) W_i^\dagger(\tau)
+        \end{equation}
+        と変換する。したがって$\boldsymbol{A}_i^0$はSU(2)ゲージ変換の時間成分の変換性を持っている。
+        次に、Hubbard-Stratonovich場がゲージ変換の空間成分の変換性を持っていることを見る。
+        そのためにハミルトニアンを行列を使って書き直してみる。
+        例えばHeisenberg相互作用の場合、
+        \begin{align}\label{eq:3-1-10}
+            \mathbf{S}_i \cdot \mathbf{S}_j &= \left( \frac{1}{4}\Tr F_i^\dagger \sigma_\alpha F_i \right) \cdot \left( \frac{1}{4}\Tr F_j^\dagger \sigma_\alpha F_j \right) \notag \\
+            &= \frac{1}{16} \sum_{\mu=1,2,3}F_{i,\alpha\beta}^\dagger \sigma^\mu_{\beta\gamma}F_{i,\gamma\alpha}F_{j,\delta\epsilon}^\dagger \sigma^\mu_{\epsilon\zeta}F_{j,\zeta\delta} \notag \\
+            &= \frac{1}{16} F_{i,\alpha\beta}^\dagger F_{i,\gamma\alpha}F_{j,\delta\epsilon}^\dagger F_{j,\zeta\delta} (2\delta_{\beta\zeta}\delta_{\gamma\epsilon}-\delta_{\beta\gamma}\delta_{\epsilon\zeta}) \notag \\
+            &= \frac{1}{8}\left( F_{i,\alpha\beta}^\dagger F_{i,\gamma\alpha} F_{j,\delta\gamma}^\dagger F_{j,\beta\delta} \right) - \frac{1}{16}\left( F_{i,\alpha\beta}^\dagger F_{i,\beta\alpha}F_{j,\delta\epsilon}^\dagger F_{j,\epsilon\delta} \right) \notag \\
+            &= -\frac{1}{8}\left( F_{i,\alpha\beta}^\dagger F_{j,\beta\delta} F_{j,\delta\gamma}^\dagger F_{i,\gamma\alpha}  \right) + \text{const.} \notag \\
+            &= -\frac{1}{8}\Tr (F_i^\dagger F_j F_j^\dagger F_i)+ \text{const.}
+        \end{align}
+        となり、それぞれの項がフェルミオンの演算子4つの積になっていることがわかる。
+        このままでは取り扱いが困難なため、Hubbard-Stratonovich(HS)変換を行う。HS変換は$V,A$をエルミート行列として、
+        \begin{equation}\label{eq:3-1-12}
+            \int D\phi^*D\phi e^{-\phi^\dagger A \phi} = 1
+        \end{equation}
+        を用いて(右辺には$(\det A)^{-1}$が出るがそれを測度に組み込んだ)、
+        \begin{align}\label{eq:3-1-13}
+            e^{\rho^\dagger V \rho} &= \int D\phi^*D\phi \exp(-\phi^\dagger V^{-1}\phi + \rho^\dagger V \rho) \notag \\
+            &= \int D\phi^*D\phi \exp\left(-(\phi+V\rho)^\dagger V^{-1}(\phi+V\rho) + \rho^\dagger V \rho \right) \notag \\
+            &= \int D\phi^*D\phi \exp\left(-\phi^\dagger V^{-1}\phi - \rho^\dagger \phi - \phi^\dagger \rho \right)
+        \end{align}
+        とする変換である。今ハミルトニアンが\eqref{eq:3-1-10}の形であるので、これを行列のフロベニウスノルム(各要素の絶対値の二乗和)$\Tr (F_i^\dagger F_j F_j^\dagger F_i) = \| F_j^\dagger F_i \|^2$に書き換えると、
+        \begin{align}\label{eq:3-1-14}
+            Z &\sim \int DF \exp \left( \frac{J}{8}\| F_j^\dagger F_i \|^2 \right) \notag \\
+            &= \int DFDQ \exp \left( -\frac{8}{J}\|Q_{ij} + \frac{J}{8}F_j^\dagger F_i \|^2 + \frac{J}{8}\| F_j^\dagger F_i \|^2  \right) \notag \\
+            &= \int DFDQ \exp \left( -\frac{8}{J}\|Q_{ij}\|^2 - \Tr [Q_{ij} F_j^\dagger F_i ] + h.c. \right) 
+        \end{align}
+        となる。途中でHubbard-Stratonovich(HS)場$Q_{ij}$を各リンクに定義した。
+        したがって、Heisenberg相互作用は
+        \begin{equation}\label{eq:3-1-11}
+            -\frac{J}{8}\Tr (F_i^\dagger F_j F_j^\dagger F_i) \rightarrow  \frac{8}{J}\Tr [Q_{ij}^\dagger Q_{ij}] +  \Tr[Q_{ij}F_{j}^\dagger F_i] + h.c.
+        \end{equation}
+        に変換される。この変換ではまだ近似は入っていない。
+        フェルミオンに関する二体相互作用が一体相互作用に変わり、$i$から$j$のホッピング強度が複素HS場$Q_{ij}$で与えられる。
+        この表式からHS場$Q$がSU(2)回転に対して不変であり、SU(2)ゲージ変換に対して
+        \begin{equation}\label{eq:3-1-15}
+            F_i \rightarrow F_iW_i, \quad Q_{ij} \rightarrow W_iQ_{ij}W_j^\dagger
+        \end{equation}
+        のように変換する。(ゲージ変換などの時間依存性を書いていないが、ここも時間に依存する場である。)
+        まとめると、ラグランジュ未定乗数として導入した各サイトに定義されている場$\boldsymbol{A}$がSU(2)ゲージ変換に対してゲージ場の時間成分の変換性を有し、
+        HS変換によって導入した各ボンドに定義されているHS場$Q_{ij}$がゲージ場の空間成分の変換性を持っている。
+
+        HS場$Q$や未定乗数$\boldsymbol{A}$は時間に依存するダイナミカルな場であるが、これを時間一定のものとし、期待値と同じにおく。
+        これが平均場近似である。
+        \begin{equation}\label{eq:3-1-18}
+            Q_{ij}(\tau) \rightarrow Q_{ij}, \quad \boldsymbol{A}_i(\tau) \rightarrow \boldsymbol{a}_i
+        \end{equation}
+        \begin{equation}\label{eq:3-1-19}
+            H_{MF} = \sum_{\langle i,j\rangle}\frac{8}{J}\Tr [Q_{ij}^\dagger Q_{ij}] + \sum_{\langle i,j\rangle}\Tr[Q_{ij}F_{j}^\dagger F_i + h.c.] + \sum_i \Tr[F_i (\boldsymbol{a} \cdot \boldsymbol{\sigma}) F_i^\dagger]
+        \end{equation}
+        これは特定の格子を仮定していないため、Heisenberg相互作用からなる系でのスピン液体、特にRVB状態を広く記述することができる。
+        平均場ハミルトニアンは通常のfree fermionの問題になっているため、$Q_{ij},\boldsymbol{a}$に対してエネルギーの変分をとり、
+        補助場と期待値の一致、すなわち自己無撞着方程式を立てる。
+        \begin{equation}\label{eq:3-1-20}
+            \frac{8}{J}Q_{ij} = \expval{F_i^\dagger F_j} = \begin{pmatrix}
+                \chi_{ij}^0 & -\eta_{ij}^0 \\ -\eta_{ij}^{0*} & -\chi_{ij}^{0*}
+            \end{pmatrix}, \quad \expval{\Tr [F_i (\boldsymbol{a}_i \cdot \boldsymbol{\sigma}) F_i^\dagger]} = 0
+        \end{equation}
+        ここで$\chi_{ij}^0 = \expval{\chi_{ij}} = \expval{f_{i\uparrow}^\dagger f_{j,\uparrow} + f_{i\downarrow}^\dagger f_{j,\downarrow}}$, $\eta_{ij}^0 = \expval{\eta_{ij}} = \expval{f_{i\uparrow}^\dagger f_{j,\downarrow}^\dagger - f_{i\downarrow}^\dagger f_{j,\uparrow}^\dagger}$
+        である。
+        $Q,\boldsymbol{a}$はゲージ場の変換性を持っているためゲージ不変ではない。よって異なる平均場が同じ量子状態を記述する可能性がある。
+        この冗長性は射影対称群(Projective symmetry group, PSG)を定義・議論することで落とすことができる。
+
+        平均場近似により得られたハミルトニアンの基底状態は単にバンドを書いて負のエネルギーについてフェルミオンが占有している状態となる。
+        しかしこれは一般に制限\eqref{eq:2-3}\eqref{eq:3-1-9}を満たす物理的な状態ではない。
+        ここから有効な量子状態を得るための方法はいくつかあり、有名なものとしてはGutzwiller projectionをモンテカルロ法を用いて行うものや、
+        対称性の議論に基づいて揺らぎを議論する方法などがある。
+
+        $Q,\boldsymbol{a}$はハミルトニアンを見るとわかる通り、スピンのSU(2)回転に対しては不変である。したがって平均場ハミルトニアンは
+        特定の向きを持たず、平均場の基底状態は全体でスピンシングレットとなっており、長距離秩序を持たない。よってこの時点で\hyperlink{def1}{定義1}
+        の意味での量子スピン液体を実現する。しかし我々の興味は\hyperlink{def3}{定義3}の意味で量子スピン液体となっているかどうか、
+        すなわち、ゲージ場の非閉じ込めになっているかどうかである。
+        ハミルトニアンは分数化したスピノンのtight-binding模型であったから、平均場のレベルでは非閉じ込め相になっている。
+        平均場近似は$1/N$でスケールする量子揺らぎにおいて、$N\rightarrow \infty$の極限で厳密になる。そこで、平均場の基底状態というある意味
+        人工的な量子スピン液体状態から始めてそこに揺らぎ(特にゲージ場の揺らぎ)を加えた際にスピノンが非閉じ込めを保つか、直ちに
+        閉じ込め相に移るかの解析が重要である。非閉じ込めを保つ場合、平均場はとても良いスタート地点と言って良い。
+        
+    \subsection{例:$\pi$-flux状態}
+
+
+    \subsection{ゲージ揺らぎ}
+    平均場近似は$N\rightarrow \infty$で厳密なため、そこから揺らぎを導入することは$N$を十分に大きいが有限に落とすような操作である。
+    このような場合に相転移が見つかるかが問題であり、見つからなければ平均場の時点である程度元の量子模型を記述できていることになる。
+    したがってここから揺らぎを考えていくわけだが、全ての揺らぎを考えることはできないので、
+    gappedとなっている自由度はトレースアウトして、gaplessモードの不安定性を考えることにする。
+
+    フェルミオンの密度揺らぎは模型によってgappedかgaplessかは異なるが、gappedになっている場合が大まかに大まかに三パターンある。
+    \begin{enumerate}
+        \item HS場$Q$が並進対称性を破り、フェルミオンが通常の絶縁体となっている場合。
+        \item 平均場が有限のペアリングのチャンネル$\eta \neq 0$を持っており、基底状態がBCSのような超伝導状態になっている場合。
+        \item 平均場が非自明なフラックスを持っており、基底状態が整数量子ホール状態のようにLandau準位を整数個占有している場合。
+    \end{enumerate}
+
+    また、ゲージ場の揺らぎも当然重要である。特にゲージ場が連続群になっている場合、gapless励起が考えられる。ゲージ不変性から通常の
+    質量項は禁止されるが、Anderson-Higgs機構(ゲージ対称性の破れによる質量項の現れ)によりgappedになる可能性もある。
+    元々の模型ではSU(2)対称性を持っていたが、実は平均場$Q$が一部その対称性を破っており、対称性が低下している場合が模型によりある。
+    そこで与えられた平均場からどのようにゲージ場の揺らぎを構成するかについて見ていくことにする。
+
+    先ほども述べた通り平均場はSU(2)ゲージ変換に対して不変ではないため、二つの異なる平均場が同じ状態を表すことがある。
+    したがって、並進対称性を破る平均場が対称性を破らない量子スピン液体を記述することも考えられる。
+    例えば$\pi$-flux状態の場合、$Q$を$x$方向に一つ並進させると、$x$方向の場は異なる平均場$\tilde{Q}$となるが、これは
+    ゲージ変換$W_i = (-1)^{i_y}$で元に戻る。すなわち、並進とゲージ変換を組み合わせて異なる二つの平均場が同値であることを確認できた。
+    このように物理的な対称性は非自明な形で平均場に押し込められている。これはスピノンのホッピングを記述するために、
+    一つの平均場はゲージ固定をして得られるものとなっているため、元のスピン模型に比べて低い対称性を持っているように見えるためである。
+    今例で見たことを一般化してみよう。これが射影対称群(PSG)である。
+
+    \begin{tcolorbox}
+        \paragraph{Projective Symmetry Group(PSG)}
+        $V$を今考える格子における格子点の集合として、$T:V\rightarrow V$を$i \mapsto T(i)$を格子が持つ並進対称性とする。
+        与えられた平均場のパラメータ${Q_{ij}, \boldsymbol{a}}$に対して、PSGは次の条件を満たす並進対称とゲージ変換の組$(T,W)$で定義される。
+        \begin{equation}\label{eq:3-4-1}
+            Q_{ij} = W_iQ_{T(i)T(j)}W_j^\dagger, \quad \boldsymbol{a}_i\cdot \boldsymbol{\sigma} = W_i (\boldsymbol{a}_{T(i)}\cdot \boldsymbol{\sigma})W_j^\dagger \quad \text{for all }i,j
+        \end{equation}
+    \end{tcolorbox}
+
+    \begin{tcolorbox}
+        \paragraph{Invariant gauge group(IGG)}
+        不変ゲージ群(IGG)を、PSGのうち$T$が恒等操作であるような元$(T=I,W)$として定義する。
+    \end{tcolorbox}
+    これから見るように、IGGがゲージ群を決め、平均場の解の周りにおけるゲージ場の揺らぎはIGGを考えれば良いことになる。
+
+    ある平均場に対するIGGを$\mathcal{I}$とする。一つの例として、$\mathcal{I}$が$U(1)$と同型とすると、IGGの定義から並進対称の操作なしで
+    平均場を不変に保つゲージ変換は
+    \begin{equation}\label{eq:3-4-2}
+        W^\theta: i \mapsto W_i^\theta = \exp(i\theta \boldsymbol{n}_i \cdot \sigma), \quad \theta \in [0,2\pi]
+    \end{equation}
+    とかける。回転角$\theta$はサイトによらずグローバルにとっている。各サイトでの回転軸を$z$軸に回すことができる。
+    \begin{equation}\label{eq:3-4-3}
+        V_i W_i^\theta V_i^\dagger = \exp(i\theta \sigma_z)
+    \end{equation}
+    このための変換$V_i\in SU(2)$は新たなゲージを決めており、新たな平均場は
+    \begin{equation}\label{eq:3-4-4}
+        \tilde{Q}_{ij}^0 = V_iQ_{ij}V_j^\dagger
+    \end{equation}
+    となる。この$V$によるゲージ変換は上記の通り平均場を不変に保たない。したがってこの変換は、
+    元の平均場からゲージ場の揺らぎを考えやすいような(物理的には同じだが)異なる平均場に移行する操作である。
+    この新たなゲージのもとで、平均場のゲージ場による揺らぎは実の場$A_{ij}$で
+    \begin{equation}\label{eq:3-4-5}
+        \tilde{Q}_{ij} = \tilde{Q}_{ij}^0e^{iA_{ij}\sigma_z}
+    \end{equation}
+    とかける。この場$A$は$U(1)$ゲージ場の空間成分を持つことを示せる。そのために
+    ゲージ変換$\exp[i\theta(i)\sigma_z]$を考える。先ほどとは異なり、回転角もサイト依存性を入れた。
+    そうすると平均場$Q$は
+    \begin{align}\label{eq:3-4-6}
+        e^{i\theta(i)\sigma_z} \tilde{Q}_{ij} &= e^{i\theta(i)\sigma_z}\tilde{Q}_{ij}^0e^{iA_{ij}\sigma_z} \notag \\
+        &= e^{i\theta(i)\sigma_z} V_i Q_{ij}^0 V_j^\dagger e^{iA_{ij}\sigma_z} \notag \\
+        &= V_i W_i^{\theta(i)}Q_{ij}^0 V_j^\dagger e^{iA_{ij}\sigma_z} 
+    \end{align}
+    と変形できる。$W$はIGGの元であったことから、$\theta = \theta(i)$とすることでIGGの定義より
+    $W_i^{\theta(i)}Q_{ij}^0 = Q_{ij}^0W_i^{\theta(i)}$なので、
+    \begin{align}\label{eq:3-4-7}
+        \tilde{Q}_{ij} &\rightarrow V_i Q_{ij}^0 W_i^{\theta(i)} V_j^\dagger e^{iA_{ij}\sigma_z} e^{-i\theta(j)\sigma_z} \notag \\
+        &= V_i Q_{ij}^0 V_j^\dagger e^{i\theta(i)\sigma_z} e^{iA_{ij}\sigma_z} e^{-i\theta(j)\sigma_z} \notag \\
+        &= \tilde{Q}_{ij}^0 e^{i\theta(i)\sigma_z} e^{iA_{ij}\sigma_z} e^{-i\theta(j)\sigma_z}
+    \end{align}
+    となる。すなわち、回転角がサイトに依存する$U(1)$ゲージ変換$W_i^{\theta(i)}$
+    のもとで、今各リンクに定義した実場$A$は$A_{ij}\rightarrow A_{ij} + \theta(i)- \theta(j)$と
+    変換する$U(1)$ゲージ場である。
+
+    \subsection{PSG}
+    PSGは平均場ハミルトニアンの持つ対称性であった。しかし、PSGの有用性は摂動を加えた際にも系のPSGは保たれるという点にある。
+    これを見るために、まず元々のスピン模型のラグラジアンを$\mathcal{L}(F,Q)$とする。この時点でHS場$Q$は一つの平均場に固定されていないとする。
+    すると、このラグラジアンは任意の格子の並進対称性$T$とゲージ変換$W$に対して不変である。
+    \begin{equation}\label{eq:3-5-1}
+        \mathcal{L}(F,Q) = \mathcal{L}(PFP^{-1},PQP^{-1}), \quad P=(W,T).
+    \end{equation}
+    この時点で$P$は何らかの平均場$Q_0$に対するPSGである必要はない。しかし、$P$が$Q_0$に対するPSGの元である場合、
+    定義から$Q_0 = PQ_0P^{-1}$であるので、$\mathcal{L}^0(F,\delta Q) = \mathcal{L}(F,Q_0 + \delta Q)$
+    を揺らぎを記述するラグラジアンだとすると、
+    \begin{align}\label{eq:3-5-2}
+        \mathcal{L}^0(F,\delta Q) &= \mathcal{L}(F, Q_0 + \delta Q) \notag \\
+        &= \mathcal{L}(PFP^{-1}, P(Q_0 + \delta Q)P^{-1}) \notag \\
+        &= \mathcal{L}(PFP^{-1}, Q_0 + P(\delta Q)P^{-1}) \notag \\
+        &= \mathcal{L}^0(PFP^{-1}, P(\delta Q)P^{-1})
+    \end{align}
+    である。ゆえに揺らぎを記述するラグラジアンもPSGの元に対して不変である。さらに
+    平均場の基底状態や平均場ハミルトニアンもPSGの元で不変であるので、ある平均場$Q_0$まわりの
+    揺らぎの理論は、$Q_0$におけるPSGを対称性として持っている。ゆえに、
+    平均場から揺らぎを加えると基底状態等は何らかの変化を受けるが、相転移が起こらない限り対称性はPSGのまま保たれることとなる。
+    これは、PSGが平均場の一点における性質ではなく、何らかの相の性質を示すものであることを示す。
+    この性質から、量子スピン液体がPSGにより分類され、どの相に属するかは平均場を見れば良いことになる。
+
+    さらにPSGは揺らぎの有効理論を作る際の指針を与える観点からも有用である。UVをトレースアウトする際、
+    PSG不変でない項は揺らぎの理論$\mathcal{L}^0(F, \delta Q)$に許されないからである。
+
+\newpage 
+
+\section{$S\geq1$スピン}\label{sec:higher-spin}
+    \subsection{導入}
+        \cite{PhysRevB.82.144422}に基づいて議論を行う。$S\geq1$の場合、$S=1/2$の場合の自然な拡張として
+        次の交換関係を満たす$2S+1$種類のフェルミオンを導入する。
+        \begin{equation}\label{eq:highS-MF-1}
+            \left\{f_m,f_n^\dagger \right\} = \delta_{mn}, \quad -S\leq m,n \leq S
+        \end{equation}
+        スピン演算子はこれらのフェルミオンにより
+        \begin{equation}\label{eq:highS-MF-2}
+            \hat{\boldsymbol{S}} = C^\dagger \boldsymbol{I}C
+        \end{equation}
+        と表される。ここで$C=(f_S, f_{S-1}, \cdots, f_{-S})^T$であり$\boldsymbol{I}$は通常の$S_z$基底での$S_x,S_y,S_z$演算子の行列表示である。
+        ここで各サイトにおけるヒルベルト空間は$2S+1$次元から$2^{2S+1}$次元に拡大しており、元の物理的なヒルベルト空間に戻す条件が
+        \begin{equation}\label{eq:highS-MF-3}
+            (\hat{N}_i - N_f) \ket{\text{phys}} = 0
+        \end{equation}
+        となる。particleの描像で$N_f=1$であり、holeの描像で$N_f=2S$である。$S=1/2$の場合は元のヒルベルト空間のparticle-hole対称性に由来して
+        どちらの描像も同じになっている。
+        $C$はスピノルの変換性を持っており、スピン演算子はベクトルの変換性を持つ。また、別のスピノルとして
+        \begin{equation}\label{eq:highS-MF-4}
+            \bar{C} = (f_{-S}^\dagger, -f_{-S+1}^\dagger, \cdots, (-1)^{S-m}f_{-m}^\dagger, \cdots, (-1)^{2S}f_{S}^\dagger)^T
+        \end{equation}
+        がある。これがスピノルであることを確かめるために、二つのサイトのシングレットを考えるが、これは$C_i^\dagger \bar{C}_j$で実現できる。
+        \begin{equation}\label{eq:highS-MF-5}
+            \frac{1}{\sqrt{2S+1}}C_i^\dagger \bar{C}_j \ket{vac} = \frac{1}{\sqrt{2S+1}}\sum_{m=-S}^{S}(-1)^{S^m}\ket{m_i,-m_j}
+        \end{equation}
+        したがって$C_i^\dagger \bar{C}_j$は回転によりスカラーの変換性を示し、$C$がスピノルであることから$\bar{C}$もスピノルである。この二つのスピノルを並べて、
+        $(2S+1)\times 2$行列を$F=(C,\bar{C})$で定義する。これは$S=1/2$の場合の自然な拡張になっている(前章で導入した$F$とは$\bar{C}$の符号が異なるが基本的に同じである)。
+        例として$S=3/2$の場合、
+        \begin{equation}
+            F^\dagger = \begin{pmatrix}
+                f_{3/2}^\dagger & f_{1/2}^\dagger & f_{-1/2}^\dagger & f_{-3/2}^\dagger \\
+                f_{-3/2} & -f_{-1/2} & f_{1/2} & -f_{3/2}
+            \end{pmatrix}, \quad
+            F = \begin{pmatrix}
+                f_{3/2} & f_{-3/2}^\dagger \\ f_{1/2} & -f_{-1/2}^\dagger \\
+                f_{-1/2} & f_{1/2}^\dagger \\ f_{-3/2} & -f_{-3/2}^\dagger
+            \end{pmatrix}
+        \end{equation}
+        である。
+        それによりスピン演算子は
+        \begin{equation}\label{eq:highS-MF-6}
+            \hat{\boldsymbol{S}} = \frac{1}{2}\Tr [F^\dagger \boldsymbol{I} F]
+        \end{equation}
+        とかけ、制限は
+        \begin{equation}\label{eq:highS-MF-7}
+            \Tr [F\sigma_zF^\dagger] = (2S+1) - 2\hat{N} = (2S+1) - 2N_f = \pm(2S-1)
+        \end{equation}
+        となる。最初の等号は演算子の恒等式、真ん中の等号が制限である。最後の等号はparticle描像の場合$+$,hole描像の場合負号である。
+        $S=1/2$の場合から予想がつく通り、$SU(2)$の既約$(2S+1)$次元表現$U$の$F$への左作用は$SU(2)$の大域回転となる。
+        \begin{equation}\label{eq:highS-MF-8}
+            F \rightarrow UF, \quad \hat{\boldsymbol{S}} = \frac{1}{2}\Tr [F^\dagger \boldsymbol{I} F] \rightarrow \frac{1}{2}\Tr [F^\dagger U^\dagger \boldsymbol{I} UF] = \frac{1}{2}\Tr [F^\dagger R\boldsymbol{I} F] =R \hat{\boldsymbol{S}}
+        \end{equation}
+        一方、$2\times 2$ユニタリ行列による右作用はスピン演算子を変化させない。これはフェルミオン表示による拡大したヒルベルト空間の内部対称性を意味している。
+        $S=1/2$の場合この行列群は$SU(2)$に取れたが、一般にはそうはならず、半整数スピンの場合に$SU(2)$、整数スピンの場合は半直積$\mathbb{Z}_2 \rtimes U(1) = \left\{e^{i\sigma_z \theta}, \sigma_xe^{i\sigma_z \theta} | \theta \in \mathbb{R} \right\}$
+        となる。これは$F$の中に$(c_0, c_0^\dagger)$の列があるかどうかに起因しており、整数、半整数スピンの基本的な性質の違いがある。
+        制限は右作用によってどのように変化するだろうか。$S=1/2$の場合は右辺が0であるので何も気にしなくて良いのだったが、高スピンの場合は真面目に考えた方が良いだろう。
+        まず整数スピンで$W=e^{i\sigma_z \theta}$の場合、$\sigma_z$と交換するので何も変化はない。一方、$W=\sigma_xe^{i\sigma_z \theta}$の場合、
+        $W\sigma_zW^\dagger = \sigma_xe^{i\sigma_z \theta} \sigma_z e^{-i\sigma_z \theta} \sigma_x =  \sigma_x \sigma_z \sigma_x =-\sigma_z$であるから、
+        particle-、hole-描像を入れ替える操作であることがわかる。
+        一方、半整数の場合、制限を$S=1/2$の場合と同様に$x,y$成分にも広げて
+        \begin{equation}\label{eq:highS-MF-9}
+            \Tr[F \boldsymbol{\sigma} F^\dagger] = [0, 0, \pm(2S-1)]^T
+        \end{equation}
+        として、$SU(2)$行列を$F$の右から作用させると、単に回転行列を作用させ、
+        \begin{equation}\label{eq:highS-MF-10}
+            \Tr[F \boldsymbol{\sigma} F^\dagger] \rightarrow (R^{-1})[0, 0, \pm(2S-1)]^T
+        \end{equation}
+        となる。したがってこの場合、無限通りの制限の掛け方があることになる。このような場合、どの制限(どの表示)を取るかによって
+        経路積分表示が異なるものになる。これらの平均場は一見異なるものであるが、右作用による内部対称性を用いた移動によって移り変われる場合は等価である。
+        Heisenberg模型の場合、うまく"mix"した表示を取ることでparticle-hole対称性を回復することができ、その場合内部対称性はほぼ\footnote{今から見る通り、particle-hole対称性をうまく回復させることで時間に依存しないゲージ変換に対しては
+        ゲージ対称にできるが、制限に関して時間成分のゲージ変換で対称とはならない。}
+        ゲージ対称性となる。
+
+        \eqref{eq:highS-MF-10}ではいわば制限の空間が$SU(2)$となっているが、
+        そのうち$\sigma_z$で生成される$U(1)$の変換に対しては制限は不変である。(制限の$x,y$成分は$z$成分が満たされれば自動的に満たされることに注意。)
+        したがって異なる制限は$SU(2)/U(1) \simeq S^2$となる。
+
+        それでは$SU(2)$内部対称性に対してラグラジアンを不変にする方法について見ていこう。制限$\Tr[F_i \boldsymbol{\sigma} F_i]/(2S-1) = [\hat{M}_i^x, \hat{M}_i^y, \hat{M}_i^z] = [0,0,1]$を
+        ラグランジュ未定乗数で導入できる。
+        \begin{equation}\label{eq:highS-MF-19}
+            \delta(\hat{M}_i^x)\delta(\hat{M}_i^y)\delta(\hat{M}_i^z-1) = \left(\frac{1}{2\pi}\right)^3 \int d\lambda_i^xd\lambda_i^yd\lambda_i^z \exp\left( i(\lambda_i^x\hat{M}_i^x + \lambda_i^y\hat{M}_i^y + \lambda_i^z(\hat{M}_i^z-1)) \right)
+        \end{equation}
+        $SU(2)$変換によって制限は$R^{-1}[0,0,1] = [n^x,n^y,n^z] = \hat{\boldsymbol{n}}^T$に変換される。$\hat{\boldsymbol{n}}^T$は$S^2$球面上の一点を指すベクトルである。
+        $SU(2)$不変な定式化はこの制限を球面上で平均をとってやることで達成できる。
+        \begin{align}\label{eq:highS-MF-20}
+            &\expval{\delta(\hat{M}_i^x - n^x)\delta(\hat{M}_i^y - n^y)\delta(\hat{M}_i^z - n^z)} \notag \\
+            & \quad = \frac{1}{4\pi} \left(\frac{1}{2\pi}\right)^3 \int d^2\boldsymbol{\hat{n}} \int d^3 \lambda_i \exp\left( i\boldsymbol{\lambda}_i \cdot (\boldsymbol{\hat{M}}_i-\boldsymbol{\hat{n}}_i) \right) \notag \\
+            &=  \frac{1}{4\pi} \left(\frac{1}{2\pi}\right)^3 \int d^3 \lambda_i \exp\left( i\boldsymbol{\lambda}_i \cdot \boldsymbol{\hat{M}}_i \right)  \int d^2\boldsymbol{\hat{n}}  \exp \left( -i\boldsymbol{\lambda}_i \cdot \boldsymbol{\hat{n}}_i \right)
+        \end{align}
+
+        ここで、最後の積分は単に$\boldsymbol{\lambda}$からの角度を気にすればよく、
+        \begin{align}\label{eq:highS-MF-21}
+            \frac{1}{4\pi}\int d^2\boldsymbol{\hat{n}}  \exp \left( -i\boldsymbol{\lambda}_i \cdot \boldsymbol{\hat{n}}_i \right) &= \frac{1}{4\pi}  \int_0^{2\pi} d\phi \int_0^{\pi} d\theta  \sin\theta e^{-i|\boldsymbol{\lambda}|\cos\theta} \notag \\
+            &= \frac{1}{2}\int_0^{\pi} d\theta  \sin\theta e^{-i|\boldsymbol{\lambda}|\cos\theta} \notag \\
+            &= \frac{\sin |\boldsymbol{\lambda}_i|}{|\boldsymbol{\lambda}_i|}
+        \end{align}
+        となるので、$|\boldsymbol{\lambda}_i| = \lambda_i$として
+        \begin{equation}\label{eq:highS-MF-22}
+            \expval{\delta(\hat{M}_i^x - n^x)\delta(\hat{M}_i^y - n^y)\delta(\hat{M}_i^z - n^z)} = \left(\frac{1}{2\pi}\right)^3\int d^3 \lambda_i \exp\left( i \left(\boldsymbol{\lambda}_i \cdot \boldsymbol{\hat{M}}_i -i \log \frac{\sin \lambda_i}{\lambda_i} \right)  \right)  
+        \end{equation}
+        が得られる。$i\boldsymbol{\lambda} = \tilde{\boldsymbol{\lambda}}$として、"ほぼ"$SU(2)$対称なラグラジアン
+        \begin{equation}\label{eq:highS-MF-23}
+            \mathcal{L} = \frac{1}{2} \sum_{i} \left[ \Tr[F_i (\partial_\tau - \tilde{\boldsymbol{\lambda}_i}\cdot \boldsymbol{\sigma})F_i^\dagger] - (2S-1) \log \frac{\sinh \tilde{\lambda_i}}{ \tilde{\lambda}_i} \right] + H
+        \end{equation}
+        が得られた。$SU(2)$内部対称性の変換に対してスピンは不変であり、制限の方が依存するのであったが、
+        この構成法は制限の方も依存しない形にできている。しかし、時間依存するゲージ変換に対してはこれは不変ではない。これが先ほどから"ほぼ”ゲージ対称性と言っている意味である。
+        ここからHS変換により平均場を導入して自己無撞着方程式をおくのだが、粒子の制限については
+        \begin{align}\label{eq:highS-MF-24}
+            0 = \frac{\delta \mathcal{L}}{\delta \tilde{\boldsymbol{\lambda}}} &= \frac{\delta}{\delta \tilde{\boldsymbol{\lambda}}} \left( -\frac{2S-1}{2}\tilde{\boldsymbol{\lambda}_i} \cdot \boldsymbol{M}_i - \frac{2S-1}{2}\log \frac{\sinh \tilde{\lambda}_i}{\lambda_i} \right) \notag \\
+            &= -\frac{2S-1}{2} \left( \boldsymbol{M}_i + \frac{\delta \lambda_i}{\delta \tilde{\boldsymbol{\lambda}_i}} \frac{\delta}{\delta \lambda_i}\log \frac{\sinh \tilde{\lambda}_i}{\lambda_i}  \right) \notag \\
+            &= -\frac{2S-1}{2} \left( \boldsymbol{M}_i + \frac{\tilde{\boldsymbol{\lambda}_i}}{\lambda_i} \left( \coth \lambda_i - \frac{1}{\lambda_i} \right) \right) 
+        \end{align}
+        から、
+        \begin{equation}\label{eq:highS-MF-25}
+            \frac{\delta \mathcal{L}}{\delta \tilde{\boldsymbol{\lambda}}} \rightarrow \expval{\hat{\boldsymbol{M}_i}} +  \frac{\tilde{\boldsymbol{\lambda}_i}}{\lambda_i^2} \left( \lambda_i \coth \lambda_i -1 \right) = 0
+        \end{equation}
+        となる。$\tilde{\boldsymbol{\lambda}}\cdot \boldsymbol{\sigma}$はいわばフェルミオンの種類に依存した化学ポテンシャルのようになっている。
+        したがって$\tilde{\boldsymbol{\lambda}}$がゼロベクトルのとき、フェルミオンの区別がなくなり、
+        結果としてparticle-hole対称性が保たれ、$\expval{N}=(2S+1)/2$となる。
+        実際の数値的な計算の過程としては、まず初期値$\boldsymbol{\lambda}_0$を適当に設定してハミルトニアンとその固有ベクトルを決定し、
+        それらから$\boldsymbol{M}$を計算、自己無撞着方程式によって$\boldsymbol{\lambda}$を更新していき、収束したら打ち切るということを反復する。
+        次の節で導入するHS場に対しても同様である。
+
+        ここで一つ注意が必要である。今は無限個ある内部対称性から適当に足し合わせて対称性が良いラグラジアンを構成しただけにすぎない。
+        これが必ずしもあらゆる平均場の理論の中で最も低い基底エネルギーを実現するとは限らない。
+        原理的には全ての考えられる平均場をためし、その中からエネルギーが低い解を選択するプロセスが必要である。
+
+
+    \subsection{$S=3/2$ Heisenberg相互作用の平均場}
+        例として$S=3/2$のHeisenberg相互作用をfermionで書いてみる。
+        $SU(2)$の4次元既約表現について、次の恒等式がある。\footnote{すべての項をfermionで分解して再整理する途方もない計算を避けるため
+        行列の表示のまま変形することを試す過程で以下の等式も導いた。しかしこの分解は$\alpha,\beta$と$\gamma,\delta$の組を常に維持しているのでのちの計算を考えるとややナンセンスであったが、
+        恒等式\eqref{eq:highS-MF-11}の右辺第二項よりあとを違う表式で書き下せる。
+        \begin{align}
+            \sum_{\mu}T_{\alpha\beta}^\mu T_{\gamma\delta}^\mu &= S^z_{\alpha\alpha}S^z_{\gamma\gamma}\delta_{\alpha\beta}\delta_{\gamma\delta} + 2S^x_{\alpha,\alpha+1}S^x_{\delta+1,\delta}\delta_{\alpha+1,\beta}\delta_{\gamma,\delta+1} + 2S^x_{\beta+1,\beta}S^x_{\gamma,\gamma+1}\delta_{\alpha,\beta+1}\delta_{\gamma+1,\delta} \notag \\
+            &= S^z_{\alpha\alpha}S^z_{\gamma\gamma}\delta_{\alpha\beta}\delta_{\gamma\delta} + (S^x_{\alpha,\alpha+1}S^x_{\delta+1,\delta} + S^y_{\alpha,\alpha+1}S^y_{\delta+1,\delta})\delta_{\alpha+1,\beta}\delta_{\gamma,\delta+1} \notag \\
+            & \quad + (S^x_{\beta+1,\beta}S^x_{\gamma,\gamma+1} + S^y_{\beta+1,\beta}S^y_{\gamma,\gamma+1})\delta_{\alpha,\beta+1}\delta_{\gamma+1,\delta} \notag 
+        \end{align}
+        Lie代数の二つの生成子の積の和に関する等式はFierz恒等式なるものがあるそうである。$SU(N)$の基本表現に対するFierz恒等式は見つけられたが、
+        $SU(2)$の$d$次元既約表現に関するFierz恒等式は発見できなかった。(あるかどうかも理解していない)}
+        \begin{align}\label{eq:highS-MF-11}
+            \sum_{\mu}T_{ij}^\mu T_{kl}^\mu &= \sum_{\mu}T_{il}^\mu T_{kj}^\mu + \frac{3}{4}\delta_{il}\delta_{kj} - \frac{3}{4}\delta_{ij}\delta_{kl} + (-1)^{i+j-1}\frac{3}{2}\delta_{i\bar{k}}\delta_{j\bar{l}}
+        \end{align}
+        $\bar{i}=(2S+1)-i+1$である。
+        これを用いて、
+        \begin{align}\label{eq:highS-MF-12}
+            \mathbf{S}_i \cdot \mathbf{S}_j &= \frac{1}{4} \Tr[F_i^\dagger \boldsymbol{I}F_i]\cdot \Tr[F_j^\dagger \boldsymbol{I}F_j] \notag \\
+            &= \frac{1}{4}F_{i,\alpha\beta}^\dagger S_{\beta\gamma}^\mu F_{i,\gamma\alpha}F_{j,\delta\epsilon}^\dagger S_{\epsilon\zeta}^\mu F_{j,\zeta\delta} \notag \\
+            &= \frac{1}{4}F_{i,\alpha\beta}^\dagger F_{i,\gamma\alpha}F_{j,\delta\epsilon}^\dagger F_{j,\zeta\delta} \notag \\
+            &\quad \times \left( \sum_{\mu}S_{\beta\zeta}^\mu S_{\epsilon\gamma}^\mu + \frac{3}{4}\delta_{\beta\zeta}\delta_{\gamma\epsilon} - \frac{3}{4}\delta_{\beta\gamma}\delta_{\epsilon\zeta} + (-1)^{\beta+\gamma-1}\frac{3}{2}\delta_{\beta\bar{\epsilon}}\delta_{\gamma\bar{\zeta}} \right) \notag \\
+            &= \frac{1}{4} F^{\dagger}_{i,\alpha\beta} S_{\beta\zeta}^\mu F_{i,\gamma\alpha} F_{j,\delta\epsilon}^\dagger S_{\epsilon\gamma}^\mu F_{j,\zeta\delta} + \frac{3}{16} F_{i,\alpha\beta}^\dagger F_{i,\gamma\alpha} F_{j,\delta \gamma}^\dagger F_{j,\beta\delta}  \notag \\
+            & \quad - \frac{3}{16} F_{i,\alpha\beta}^\dagger F_{i,\beta\alpha} F_{j,\delta\epsilon}^\dagger F_{j,\epsilon\delta} - (-1)^{\beta+\gamma}\frac{3}{8}F_{i,\alpha\beta}^\dagger F_{i,\gamma \alpha} F_{j,\delta\bar{\beta}}^\dagger F_{j,\bar{\gamma}\delta} \notag \\
+            &\Rightarrow  -\frac{1}{4} F^{\dagger}_{i,\alpha\beta} S_{\beta\zeta}^\mu F_{j,\zeta\delta} F_{j,\delta\epsilon}^\dagger S_{\epsilon\gamma}^\mu  F_{i,\gamma\alpha} - \frac{3}{16} F_{i,\alpha\beta}^\dagger F_{j,\beta\delta} F_{j,\delta \gamma}^\dagger F_{i,\gamma\alpha}   \notag \\
+            & \quad - \frac{3}{16} F_{i,\alpha\beta}^\dagger F_{i,\beta\alpha} F_{j,\delta\epsilon}^\dagger F_{j,\epsilon\delta} - (-1)^{\beta+\gamma}\frac{3}{8}F_{i,\alpha\beta}^\dagger (F_j^\dagger)^T_{\bar{\beta}\delta} (F_{j}^T)_{\delta\bar{\gamma}}  F_{i,\gamma \alpha} \notag \\
+            &= -\frac{1}{4}\Tr[F_i^\dagger S^\mu F_j F_j^\dagger S^\mu F_i] - \frac{3}{16}\Tr[F_i^\dagger F_j F_j^\dagger F_i] \notag \\
+            & \quad  - \frac{3}{16} \Tr[F_i^\dagger F_i]\Tr[F_j^\dagger F_j] - \frac{3}{8}\Tr[F_i^\dagger P (F_j^\dagger)^T F_j^T P F_i] 
+        \end{align}
+        となる。五つ目の等号では要素の入れ替えを行なっており、その回数の偶奇によって符号を反転させる操作を行なっている。
+        また同じサイトでのフェルミオンの交換は単に符号が出るだけでなく1も出うる。これに関して計算を落としてしまっているため、等号を使うのを避けた。
+        1が出る交換を行なった場合残るのは単一サイト内におけるフェルミオンの生成消滅を記述する過程である。
+        行列$P$は
+        \begin{equation}
+            P = \begin{pmatrix}\label{eq:highS-MF-13}
+                0 & 0 & 0 & 1 \\ 0 & 0 & -1 & 0 \\ 0 & 1 & 0 & 0 \\ -1 & 0 & 0 & 0 
+            \end{pmatrix}
+        \end{equation}
+        で定義される行列である。右上から左下にかけて$1$が並ぶ行列で添え字の反転$\bar{i}$を普通の添え字に戻す役割を持ち、さらに$(-1)$のprefactorを吸収するため
+        負符号を入れた。式のまま負号を入れると現在の定義とは逆の符号になるが、$P$は2回出てくるため全体に$-1$をかけた。
+        最後の項に関する順序の交換はexactである。
+        さらに具体的に行列積を観察すると次の関係がわかる。
+        \begin{equation}\label{eq:highS-MF-15}
+            P(F^\dagger)^T = F
+        \end{equation}
+        これを用いると\eqref{eq:highS-MF-12}の最後の項は第二項に等しい。
+        よってHeisenberg相互作用は次の形で書けることがわかった。\footnote{参照した論文\cite{PhysRevB.82.144422}でも交換から出てくる単一サイトの項は書いていないため、さらにしっかり計算したらその寄与もないことを示せるのかもしれない。またbiquadratic相互作用などを考える際には定数も重要である。}
+        \begin{align}\label{eq:highS-MF-14}
+            \mathbf{S}_i \cdot \mathbf{S}_j =  -\frac{1}{4}\Tr[(F_i^\dagger \boldsymbol{I} F_j) \cdot (F_j^\dagger \boldsymbol{I} F_i)] - \frac{9}{16}\Tr[F_i^\dagger F_j F_j^\dagger F_i]  - 3
+        \end{align}
+        ここで$S=1/2$の場合と同様にHS変換を行うと相互作用項をdecoupleすることができ、
+        自己無撞着方程式をおくことで平均場近似を行うことができる。そこで
+        \begin{align}\label{eq:highS-MF-16}
+            Q_{ij} &= F_i^\dagger F_j =\begin{pmatrix}
+                C_i^\dagger C_j & C_i^\dagger\bar{C}_j \\
+                \bar{C}_i^\dagger C_j & \bar{C}_i^\dagger \bar{C}_j
+            \end{pmatrix} = \begin{pmatrix}
+                \chi_{ij} & \Delta^\dagger_{ij} \\
+                \Delta_{ij} & -\chi^\dagger_{ij}
+            \end{pmatrix}, \notag \\
+            \quad \boldsymbol{V}_{ij} &= F_i^\dagger \boldsymbol{I}F_j = \begin{pmatrix}
+                C_i^\dagger \boldsymbol{I}C_j & C_i^\dagger \boldsymbol{I}\bar{C}_j \\
+                \bar{C}_i^\dagger \boldsymbol{I}C_j & \bar{C}_i^\dagger \boldsymbol{I}\bar{C}_j
+            \end{pmatrix} = \begin{pmatrix}
+                \boldsymbol{v}_{ij} & -\boldsymbol{u}_{ij}^\dagger \\ 
+                \boldsymbol{u}_{ij} & \boldsymbol{v}_{ij}^\dagger
+            \end{pmatrix}
+        \end{align}
+        を導入すると、これらとラグランジュ未定乗数は$SU(2)$変換$F_i\rightarrow F_iW_i$に対してゲージ場の変換
+        \begin{equation}\label{eq:highS-MF-17}
+            U_{ij} \rightarrow W_i^\dagger U_{ij} W_j, \quad \boldsymbol{V}_{ij} \rightarrow W_i^\dagger \boldsymbol{V}_{ij} W_j, \quad \tilde{\boldsymbol{\lambda}_i}\cdot \boldsymbol{\sigma} \rightarrow W_i^\dagger \left( \tilde{\boldsymbol{\lambda}_i}\cdot \boldsymbol{\sigma} - \partial_\tau \right) W_j
+        \end{equation}を示す。先ほどの"ほぼ"$SU(2)$ゲージ対称な定式化では、前述の通り時間に依存しないゲージ変換に対して
+        系はゲージ対称性を持つが、時間依存の変換ではゲージ依存な理論になる。
+        各行列要素の定義に対する関係(例えば(1,2)成分が$\Delta_{ij}^\dagger$となること)の証明や、以下の性質
+        \begin{align}\label{eq:highS-MF-18}
+            \chi_{ji} &= \chi_{ij}^\dagger \\
+            \Delta_{ji} &= \Delta_{ij} \\
+            \boldsymbol{u}_{ji} &= -\boldsymbol{u}_{ij} \\
+            \boldsymbol{v}_{ji} &=\boldsymbol{v}_{ij}^\dagger 
+        \end{align}
+        の証明はAppendix.\ref{sec:app1}に載せた。
+        したがって、Heisenberg模型の$SU(2)$不変な定式化による平均場ハミルトニアンは\footnote{ここのベクトルの二乗の項の係数チェック}
+        \begin{align}\label{eq:highS-MF-26}
+            H_{MF} &= -J\sum_{\langle i,j \rangle} \left[ \frac{1}{4} \left( C_i^\dagger \boldsymbol{I}C_j \cdot \boldsymbol{v}_{ij}^\dagger + \bar{C}_i^\dagger \boldsymbol{I} C_j \cdot \boldsymbol{u}_{ij}^\dagger + h.c. \right) - \frac{1}{4} \left( |\boldsymbol{u}|^2 + |\boldsymbol{v}|^2 \right) \right.  \notag \\ 
+            &\quad \quad \left. + \frac{9}{16}\left( \chi^*C_i^\dagger C_j + \Delta^* \bar{C}_iC_j + h.c.\right) - \frac{9}{16} \left( |\chi|^2 + |\Delta|^2 \right) \right] \notag \\
+            &\quad \quad  - \frac{2S-1}{2}\sum_i \left[ \tilde{\boldsymbol{\lambda}_i} \cdot \boldsymbol{M}_i + \log \frac{\sinh \lambda_i}{\lambda_i}  \right]
+        \end{align}
+        となる。$SU(2)$不変な定式化は最終項の$\log$に反映されており、違う描像では異なるハミルトニアンとなることに注意せよ。
+
+
+
+    最初の項から順番に係数を$a=-1/4,b=-9/16,c=-3$とすると、biquadratic項は
+    \begin{align}
+        (\mathbf{S}_i \cdot \mathbf{S}_j)^2 &= \left( a\Tr[(F_i^\dagger \boldsymbol{I} F_j) \cdot (F_j^\dagger \boldsymbol{I} F_i)] + b\Tr[F_i^\dagger F_j F_j^\dagger F_i] + c\right)^2 
+    \end{align}
+
+\newpage 
+
+\section{$\mathbb{Z}_2$スピン液体}
+    \subsection{Kitaev模型}
+        \subsubsection{模型の対称性とPSG\cite{PhysRevB.86.085145}}
+        Kitaev模型の対称性について確認しておくことにする。スピン軌道相互作用により、対称操作は実空間とスピン空間に同時に作用するものとする。
+        まず空間群として、格子の基本並進ベクトルで生成される並進対称性$T_1,T_2$がある。格子は$C_6$対称性があるが、これだけでは模型に対する対称性とはなっていない。
+        考えやすくするため、Jackeli-Khaliulinの提案の通りハニカム格子を3D正方格子に埋め込み、回転軸を$\hat{n} = \frac{1}{\sqrt{3}} \left[1,1,1\right]$ととると、
+        スピン空間の回転行列はロドリゲスの公式から、
+        \begin{align}\label{eq:Kit-Sym-1}
+            R_{C_6} &= I\cos \theta +(1-\cos \theta) \hat{n}\hat{n}^T + \sin \theta [\hat{n}]_{\times} \notag \\
+            &= \frac{1}{2}\begin{pmatrix}
+                1 & 0 & 0 \\ 0 & 1 & 0 \\0 & 0 & 1
+            \end{pmatrix} + \frac{1}{6}\begin{pmatrix}
+                1 & 1 & 1 \\ 1 & 1 & 1 \\ 1 & 1 & 1
+            \end{pmatrix} + \frac{\sqrt{3}}{2}\frac{1}{\sqrt{3}} \begin{pmatrix}
+                0 & -1 & 1 \\ 1 & 0 & -1 \\ -1 & 1 & 0
+            \end{pmatrix} \notag \\
+            &= \frac{1}{3}\begin{pmatrix}
+                2 & -1 & 2 \\ 2 & 2 & -1 \\ -1 & 2 & 2
+            \end{pmatrix}
+        \end{align}
+        となる。そこで、まず格子に対して$C_6$回転を行うとボンドの相互作用が変わり、続けてスピン空間に$C_6$回転を行うとスピンの成分が混ざり
+        とても元の模型には戻らない。しかし、$(111)$面での鏡映を行うと対称性となる。実際、スピン空間に対する鏡映の行列は
+        \begin{equation}\label{eq:Kit-Sym-2}
+            M_{(111)} = I - 2\hat{n}\hat{n}^T = \frac{1}{3}\begin{pmatrix}
+                1 & -2 & -2 \\ -2 & 1 & -2 \\ -2 & -2 & 1
+            \end{pmatrix}
+        \end{equation}
+        であり、スピン空間の変換行列は
+        \begin{equation}\label{eq:Kit-Sym-3}
+            M_{(111)}R_{C_6} = \begin{pmatrix}
+                0 & -1 & 0 \\ 0 & 0 & -1 \\ -1 & 0 & 0
+            \end{pmatrix}
+        \end{equation}
+        となる。よってKitaev模型は$C_6$回転と面内の鏡映操作の対称性を持つ。
+
+        また、$x=y$平面における鏡映$\sigma$の対称性も持つ。さらに$S=1/2$の場合、時間反転対称性$\mathcal{T}$を持つ。これは一つのスピンに対して
+        $\mathcal{T}^2 = -1$だが、二つの副格子からなるので全体としては$\mathcal{T}^2 = 1$である。よって、Kitaev模型の持つ対称群(Symmetry Group, SG)は
+        $\langle \mathcal{T}, T_1, T_2, C_6, \sigma | \mathcal{T}^2=1, \sigma^2 = 1, (C_6)^6=1 \rangle$である。
+
+        ハミルトニアンをフェルミオン表示した際、行列にはゲージの自由度があったのだった。フェルミオン表示の際の
+        対称操作はこのゲージ自由度に作用すると考えると、各対称操作における行列を具体的に書くことができる。
+        \eqref{eq:3-1-8}を参照。
+        そうすると、$F$に左から作用するスピンのSU(2)回転に関して、次のことがわかる。
+        \begin{align}\label{eq:Kit-Sym-4}
+            U_{T_1} &= U_{T_1} = I, \notag \\
+            U_{C_6}(A) &= U_{C_6}(B) = \sigma_{C_6} \\
+            U_\sigma(A) &= U_\sigma(B) = \sigma_\sigma \notag 
+        \end{align}
+        ここで、\eqref{eq:Kit-Sym-3}から$U_{C_6}$は$c$軸に対する$-120$°回転であり、
+        \begin{align}\label{eq:Kit-Sym-5}
+            \sigma_{C_6} &= \exp(+i\frac{\pi}{3}\hat{n}\cdot \overrightarrow{\sigma}) = \cos(\frac{\pi}{3}) + i\sin(\frac{\pi}{3})\hat{n}\cdot \overrightarrow{\sigma} \notag \\
+            &= \frac{1}{2} + \frac{i}{2} (\sigma_x + \sigma_y + \sigma_z)
+        \end{align}
+        と求められる(単にSO(3)の二重被覆を求めれば良い)。同様にして、
+        $\sigma_\sigma = i(\sigma_x - \sigma_y)/\sqrt{2}$である。
+        アンチユニタリな時間反転操作はユニタリの後複素共役を取る操作$\mathcal{K}$を行う。スピノンの行列$F$に対して
+        \begin{equation}\label{eq:Kit-Sym-6}
+            F_i \rightarrow \mathcal{K}U_\mathcal{T}^\dagger(i)F_iW_\mathcal{T}(i)\mathcal{K}
+        \end{equation}
+        とする。時間反転に対するユニタリ行列$U$は
+        \begin{equation}\label{eq:Kit-Sym-7}
+            U_\mathcal{T}(A) = U_\mathcal{T}(B) = i\sigma_y
+        \end{equation}
+        である。Kitaevの原論文で示されたMajorana fermionによる厳密解の構成はあるゲージの取り方により今のフェルミオン表示と関連づけられ、
+        \begin{equation}\label{eq:Kit-Sym-8}
+            F_i = \frac{1}{\sqrt{2}}(\chi_i^0 I + i \chi_i^1 \sigma_x + i\chi_i^2 \sigma_y + i\chi_i^3 \sigma_z )
+        \end{equation}
+        となる。つまり$f_{i\uparrow} = \frac{1}{\sqrt{2}}(\chi_i^0 + i\chi_i^3), f_{i\downarrow} = \frac{1}{\sqrt{2}}(\chi_i^1 - i\chi_i^2)$である。
+        Majorana表示でMajoranaの平均場を取るとfree Majorana fermionの表示となり、ここから元のヒルベルト空間に射影すると基底状態が求められ、
+        スピン相関関数がshort-rangedであることもわかる。さらにMajorana Fermi液体にはエンタングルメントが入っておりトポロジカル秩序相になっている。
+        Majorana表示の際、$\chi^0$のみがDirac coneを持つMajoranaバンドとなっており、他の三つはfluxに対応したフラットバンドになっている。
+        あるゲージで固定してMajoranaとスピノンのフェルミオンを対応づけたことを考えると、フェルミオン表示にはもはや元のSU(2)対称性はない。もしSU(2)ゲージ変換を施すと
+        Majoranaバンドは混ざりあい、直ちにゲージ不変でないことがわかる。
+        ゲージ対称性はMajoranaの符号変換、つまり$\mathbb{Z}_2$まで落ちている。これが実はKitaev模型の平均場ansatzesにおけるPSGである。
+
+        PSGの元による操作で$\chi_0$は他のflavorと混じってはいけない。$\chi_0$は$F$の中で$F\sim \chi^0I$という形で入っているので、
+        $\chi_0I \rightarrow \pm \chi_0 U_g^\dagger W_g$と変換されなければならず、
+        すべての対称群の元$g\in$ SGに対して$W_g=\pm U_g$でなければならない。
+        具体的には
+        \begin{align}\label{eq:Kit-Sym-9}
+            W_{T_1} &= W_{T_2} = I, \quad W_{C_6}(A) = -W_{C_6}(B) = \sigma_{C_6} \\
+            W_\sigma(A) &= -W_\sigma(B) = \sigma_\sigma, \quad W_\mathcal{T}(A) = -W_\mathcal{T}(B) = i\sigma_y \notag
+        \end{align}
+        となる。符号についてはまず、回転と鏡映は$\expval{i\chi_A^\alpha \chi_B^\alpha} = u_{ij}^\alpha = -u_{ji}^\alpha$であり、
+        格子の回転で符号が反転することから、その符号を吸収するために副格子により符号を異なるものにしている。時間反転についても$i$が反転するのを吸収するために
+        一つの副格子について負符号をつけた。このPSGはハニカム格子における$\mathbb{Z}_2$量子スピン液体の中で(I)(B)というクラスに分類されるものである。
+
+        \subsubsection{$S=3/2: SO(6)$ Majorana fermion}
+        元々$S=3/2$の系に興味があったので、$S=3/2$Kitaev模型での計算を見ていく。
+        $S=1/2$の場合には可解であったが、$S\geq 1$の場合には可解ではなくなってしまう。
+        その一方、フラックスはうまく定義できて、ハミルトニアンと交換することから$\mathbb{Z}_2$ゲージ場
+        およびそれと相互作用するMajorana fermionの描像で進むのは依然として良い戦略となる。しかし、
+        Kitaev以外のbiquadraticやbicubic相互作用を考えると多体の相互作用がものすごいことになってしまう。
+        複素フェルミオンはある程度演算子の数こそ抑えられるものの、ゲージ場の構造が見えにくいという弱点があり一長一短である。
+        なお、$S=3/2$におけるMajorana fermionでの描像は$S=3/2$の対称性を$SU(4)$のカルタン部分代数としてみなした際の$SU(4)\simeq SO(6)$という関係に裏付けられている。
+
+        通常のMajorana fermionの反交換関係を満たす6つのMajorana fermion $\theta_i^\mu, \eta_{i}^\mu, \ \mu \in \left\{x,y,z\right\}$を導入する
+        \footnote{$SO(6)$ Majorana fermionは$S=3/2$のほか、(擬)スピンと軌道の自由度がある系でも導入されている。その場合、$\theta,\eta$がそれぞれの自由度を表すことになる。}。\cite{PhysRevB.102.075110,41467-022-31503-0,PhysRevB.108.075111}
+        \begin{equation}\label{eq:SO6Majorana-1}
+            \left\{ \theta_i^\mu, \theta_j^\nu \right\} = \left\{ \eta_i^\mu, \eta_j^\nu \right\} = 2\delta_{ij}\delta_{\mu\nu}, \quad \left\{ \theta_i^\mu, \eta_j^\nu \right\} = 0
+        \end{equation}
+        Kitaev模型の文脈では$\theta$がgauge Majoranaであり、$\eta$が遍歴Majoranaとなる。
+        これらを用いてスピン演算子を
+        \begin{align}\label{eq:SO6Majorana-2}
+            S_i^\alpha = \frac{i}{4}\epsilon_{abc}\eta_i^b \eta_i^c - \frac{i}{2}\eta_i^a \tilde{\theta}_i^a 
+        \end{align}
+        \begin{equation}\label{eq:SO6Majorana-3}
+            \tilde{\theta}_i^x = \theta_i^z - \sqrt{3}\theta_i^x, \ \tilde{\theta}_i^y = \theta_i^z + \sqrt{3}\theta_i^x, \ \tilde{\theta}_i^z = -2\theta_i^z
+        \end{equation}
+        で定義する。今各サイトのヒルベルト空間は$\sqrt{2}^6=8$次元あるので、これを半分に削減しなければならない。
+        このために制限
+        \begin{equation}\label{eq:SO6Majorana-4}
+            D_i = i\eta_i^x\eta_i^y\eta_i^z\theta_i^x\theta_i^y\theta_i^z = 1
+        \end{equation}
+        を課す。これは複素フェルミオンで表した際のフェルミオンパリティが偶奇のどちらかに制限するのと等価になっている。
+        平均場の計算などをしたのちに得られたMajorana fermionベースの波動関数を元のヒルベルト空間に戻すには射影演算子
+        \begin{equation}\label{eq:SO6Majorana-5}
+            \mathcal{P}_i = \frac{1+D_i}{2}
+        \end{equation}
+        を状態に作用させれば良い。制限を変形させると$i\eta_i^b\eta_i^c = \epsilon_{abc}\eta_i^a \theta_i^x\theta_i^y\theta_i^z$が得られるので、$\theta_i^{xyz}=-i\theta_i^x\theta_i^y\theta_i^z$
+        を用いるとスピン演算子\eqref{eq:SO6Majorana-2}は
+        \begin{equation}\label{eq:SO6Majorana-6}
+            S_i^a = \frac{i}{2} \eta_i^a \left( \theta_i^{xyz} - \tilde{\theta}_i^a \right)
+        \end{equation}
+        と書き直せる。さらにこれを用いてKitaev相互作用を書いてみる。通常のKitaev Hamiltonianは
+        \begin{align}\label{eq:SO6Majorana-7}
+            H &= \sum_{\langle i,j \rangle_a}J_a S_i^a S_j^a \\
+            &= -\frac{i}{4} \sum_{\langle i,j \rangle_a}J_\alpha (i\eta_i^a\eta_j^a)\left( \theta_i^{xyz} - \tilde{\theta}_i^a \right)\left( \theta_j^{xyz} - \tilde{\theta}_j^a \right) \notag \\
+            &= -\frac{i}{4} \sum_{\langle i,j \rangle_a}J_\alpha u_{ij}^a \left( \theta_i^{xyz} - \tilde{\theta}_i^a \right)\left( \theta_j^{xyz} - \tilde{\theta}_j^a \right)
+        \end{align}
+        となる。最後で$u_{ij}^a = i\eta_i^a\eta_j^a$を定義した。これはハミルトニアンと交換し、異なるボンドでも交換することから
+        良い量子数となる。$(u_{ij}^a)^2=1$であることからこれが$\mathbb{Z}_2$に値をとる。異なるボンドで交換する事実は一つのサイトから出ている三つのボンドがそれぞれ異なる
+        Ising相互作用を持っているからであり、Heisenberg相互作用などを加えると直ちに交換しなくなる。
+        しかし、その場合においてもMajoranaを使うアプローチが良いことが知られている。
+
+        $\mathbb{Z}_2$ゲージとなる$u$をc数としてもなお、ハミルトニアン\eqref{eq:SO6Majorana-7}
+        はFree Majorana fermionではなく、4つや6つの遍歴Majoranaの積となっている項がある。
+        まずquadraticなFree Majorana fermionの部分$H^{(2)}(\left\{u\right\})$は
+        \begin{align}\label{eq:SO6Majorana-8}
+            H^{(2)}(\left\{u\right\}) = -\frac{i}{4}\sum_{\langle i,j \rangle_a}J_\alpha \tilde{\theta}_i^a \tilde{\theta}_j^a
+        \end{align}
+        であり、そのほかの項は平均場分解をすることで
+        \begin{align}\label{eq:SO6Majorana-9}
+            H_{MF}(\left\{u\right\}) &= H^{(2)}(\left\{u\right\}) + \frac{i}{4} \sum_{\langle i,j \rangle_a}J_\alpha u_{ij}^a \left\{ \frac{\epsilon_{opq}\epsilon_{rst}}{4} \expval{\theta_i^o\theta_i^p\theta_j^r\theta_j^s} \theta_i^q\theta_j^t  \right. \notag \\
+            & \quad + \frac{\epsilon_{lmn}}{2} \left( \theta_i^m \theta_i^n \expval{\theta_i^l\theta_j^x\theta_j^y\theta_j^z} - \theta_j^m \theta_j^n \expval{\theta_j^l\theta_i^x\theta_i^y\theta_i^z} \right) \notag \\
+            & \left. \quad + \frac{\epsilon_{uvw}}{2} \left[ \left( Q_i^{uv}\theta_i^w\tilde{\theta}_j^a - \Delta_{ij}^{w\tilde{a}}\theta_i^u\theta_i^v + iQ_i^{uv}\Delta_{ij}^{w\tilde{a}} \right) \right] - (i \leftrightarrow  j)\right\}
+        \end{align}
+        が得られる。ここで
+        \begin{equation}\label{eq:SO6Majorana-10}
+            Q_i^{ab} = -\expval{i\theta_i^a\theta_i^b}, \quad \Delta_{ij}^{ab} = \expval{i\theta_i^a\theta_j^b}
+        \end{equation}
+        を定義した。このような計算を行う際にはfermionによる演算子の交換における符号の変化に細心の注意が必要である。
+        $\epsilon$についている$1/2,1/4$の係数は反対称テンソルの添え字についてすべての和をとった際に出る同じ項のダブルカウントをなくすようについている。
+        また4つの演算子の積の期待値はWickの定理にしたがってさらに分解できて、
+        \begin{align}\label{eq:SO6Majorana-11}
+            \expval{\theta_i^o\theta_i^p\theta_j^r\theta_j^s} &= -Q_i^{op}Q_j^{rs} + \Delta_{ij}^{or}\Delta_{ij}^{ps} - \Delta_{ij}^{os}\Delta_{ij}^{pr} \notag \\
+            \expval{\theta_i^l\theta_j^x\theta_j^y\theta_j^z} &= \Delta_{ij}^{lx}Q_j^{yz} + \Delta_{ij}^{ly}Q_j^{zx} + \Delta_{ij}^{lz}Q_j^{xy} \\
+            \expval{\theta_j^l\theta_i^x\theta_i^y\theta_i^z} &= -\Delta_{ij}^{xl}Q_i^{yz} - \Delta_{ij}^{yl}Q_i^{zx} - \Delta_{ij}^{zl}Q_i^{xy} \notag
+        \end{align}
+        となる。
+        これは二つのmatter fermionを残す平均場分解をすべて行っていることになり、平均場の数は$Q$が各サイトごとに3つ、$\Delta$が各ボンドごとに9つとなる。
+        ここで計算を進めると平均場の数がかなり膨らんでしまうが、様々な対称性を課すと平均場の数を減らすことができる。
+        しかし例えば、元々のHamiltonianが持つ対称性を平均場の仮説として課した場合、その対称性の自発的な破れがないことを仮定することになるため
+        一般にはどの対称性も他の計算や手法、またはすべての平均場をそのまま扱った計算と比較しなければ正当化はされない。
+
+        対称性による平均場の制限について見ていく。元々のKitaev模型は時間反転をもち、パラメータによっては反転対称性、回転対称性を持つ。
+        \paragraph{並進対称性}
+        まず一番簡単な制限としては並進対称性がある。基底状態も並進対称性を保つと仮定すると
+        各サイトやボンドで定義された平均場は一つのサイトやボンドを見れば良いことになる。ただしこの仮定で反強磁性などの秩序も捨てていることに注意せよ。
+        この仮定のもとで平均場の数は$Q$が3つ、$\Delta$が3種類のボンドで各ボンドは$9$つ種類があるので27個、合計30個の平均場に絞られる。
+        Néel状態などを含めたいように2つの副格子を区別して並進対称性を課す場合、ボンドは増えずサイトが二種類になるので33個の平均場となる。
+
+        \paragraph{時間反転対称性}
+        時間反転操作でスピン演算子に負符号が付くとともに、状態も$m\rightarrow -m$とともに符号がつく。これを実現するには
+        Majorana fermionへの時間反転操作を
+        \begin{equation}\label{eq:SO6Majorana-12}
+            (\eta^x, \eta^y, \eta^z) \rightarrow (\eta^x, \eta^y, \eta^z), \quad (\theta^x, \theta^y, \theta^z) \rightarrow (\theta^x, -\theta^y, \theta^z)
+        \end{equation}
+        とすれば良い。アンチユニタリであることから$i\rightarrow -i$も忘れてはならない。
+        時間反転による$\theta$の変換性を示すものとして$t_x=t_z=1, t_y=-1$を定義しておく。
+        また時間反転操作は物理量に対して考えなくてはならない。今の場合$i\theta \theta$の組み合わせはゲージ不変ではなく、ゲージ不変なのは
+        $iu_{ij}\theta_i\theta_j$のような組なのでこれに対して時間反転操作を考えると
+        \begin{equation}\label{eq:SO6Majorana-13}
+            iu_{ij}^{\gamma}\theta_i^a\theta_j^b = i\expval{i\eta_i^\gamma\eta_j^\gamma}\theta_i^a\theta_j^b \rightarrow (-i) \cdot -u_{ij}^\gamma t_at_b\theta_i^a\theta_j^b = iu_{ij}^\gamma t_at_b\theta_i^a\theta_j^b
+        \end{equation}
+        と変換する。ゲージ場を固定すると他の場の期待値、つまり$\Delta$の変換性がわかる。
+        時間反転対称性を要請すると$\Delta \rightarrow t_at_b\Delta = \Delta$が要請されるので、
+        $t_at_b=-1$、つまり$a$または$b$のどちらかが$y$のとき$\Delta = 0$となる。これはボンドの方向に依存しない。
+        \begin{equation}\label{eq:SO6Majorana-14}
+            \Delta_{\langle ij \rangle_\gamma}^{\lambda y} = \Delta_{\langle ij \rangle_\gamma}^{y\lambda} = 0 \quad \lambda \neq y
+        \end{equation}
+        これにより$4\times3=12$個の平均場を減らせたことになる。
+        また$\theta^y$のフレーバーはボンドを介した他のMajoranaとの相互作用は発生せず、オンサイトのみで他のフレーバーと混ざることになる。
+        時間反転対称性の仮定は自発的に時間反転が破れたカイラルスピン液体を捨てていることになる。例えば磁場を入れたりする際の仮定としては明らかに不適当である。
+
+        \paragraph{鏡映対称性:$Q$}
+        相互作用の係数が$J_x=J_y$のとき、ハミルトニアンは鏡映対称性を持っている。$z$方向のボンドに直行するような面で鏡映を考えることができて、
+        この場合$n=(1,-1,0)/\sqrt{2}$なので
+        \begin{equation}\label{eq:SO6Majorana-15}
+            R = -(I-2nn^T) = \begin{pmatrix}
+                0 & -1 & 0 \\ -1 & 0 & 0 \\0 & 0 & -1
+            \end{pmatrix}
+        \end{equation}
+        に従って、
+        \begin{equation}\label{eq:SO6Majorana-16}
+            R[S_i^x, S_i^y, S_i^z] \rightarrow [-S_{R(i)}^y, -S_{R(i)}^x, -S_{R(i)}^z]
+        \end{equation}
+        と変換する。考える鏡映面によってサイトがどこに変換されるかが変わり、特にボンドに直行する面で異なる副格子に、
+        ボンドを含む面の鏡映で同じ副格子に移り合う変換を考えることができる。仮説として副格子で異なる平均場をとっても良いという立場で
+        進めているとすると、二種類の鏡映操作を分けて考える必要がある。ひとまず副格子は考えないとすると、これらの変換によって
+        $Q_{i,x^2-y^2} \rightarrow -Q_{R(i),x^2-y^2}$となるが、並進対称性の仮定より$Q_{R(i),x^2-y^2} = Q_{i,x^2-y^2}$であり、
+        鏡映対称性の要請から$Q_{i,x^2-y^2}=0$が課される。Majorana fermionで書くと$Q_{x^2-y^2}=-i\theta_i^y\theta_i^z$
+        であるので(\hyperlink{app_Majorana-mf}{Appendix \ref{sec:app2}}を参照)、
+        \begin{equation}\label{eq:SO6Majorana-17}
+            \expval{Q_{x^2-y^2}} = -\expval{i\theta_i^y\theta_i^z} = Q_{i}^{yz} = 0
+        \end{equation}
+        となる。前者は四極子の$Q$で後者はMajorana平均場として導入した$Q$である。
+        また、八極子$O_{i,xyz}$も鏡映操作によって$-O_{R(i),xyz}$と変換するので、鏡映対称性の仮定のもとで$O_{xyz}=0$であるが、
+        Majoranaで書くとこれは$-i\theta_i^z\theta_i^x$なので、
+        \begin{equation}\label{eq:SO6Majorana-18}
+            \expval{O_{xyz}} = -\expval{i\theta_i^z\theta_i^x} = Q_{i}^{zx} = 0
+        \end{equation}
+        となる\footnote{こちらは時間反転を考えてもわかる。八極子は時間反転奇なので時間反転対称性の要請のもとで消える。}。鏡映対称性で二つの平均場が減らせたことになる。
+
+        \paragraph{鏡映対称性:$\Delta$}
+        鏡映操作による$\Delta$の変換性を調べるために、まずMajorana fermionがどう変換するかを見ておく。
+        スピン演算子の変換性\eqref{eq:SO6Majorana-16}から、Majorana fermionは
+        \begin{equation}\label{eq:SO6Majorana-19}
+            R[\eta^x_i, \eta^y_i, \eta^z_i] \rightarrow [-\eta_{R(i)}^y, -i\eta_{R(i)}^x, -i\eta_{R(i)}^z], \quad R[\theta_i^x, \theta_i^y, \theta_i^z] \rightarrow [-\theta_{R(i)}^x, -\theta_{R(i)}^y, \theta_{R(i)}^z]
+        \end{equation}
+        と変換すれば良い\footnote{これは先行研究\cite{PhysRevB.102.075110}によるが、他の変換も考えられるはずである。元の変換として$SU(2)$や$SO(3)$やらを考えているのに対して
+        Majorana fermionは$SO(6)$で変換するので、Majorana におけるいくつかの対称操作はゲージ冗長性のようなものがあるはずであり、PSGのようなものを考えなくてはならない。}。
+        この変換を表すものとして$s_x=s_y=-1, s_z=1$とすると、
+        副格子を反転させる鏡映$M$と保つ変換$C$に対して
+        \begin{align}\label{eq:SO6Majorana-20}
+            M(iu_{AB}^\gamma \theta_A^a\theta_B^b) = is_as_b\expval{i\eta_{B}^{M(\gamma)}\eta_{A}^{M(\gamma)}} \theta_{B}^a\theta_{A}^b = is_as_bu_{AB}^{M(\gamma)}\theta_A^b \theta_B^a
+        \end{align}
+        \begin{equation}\label{eq:SO6Majorana-21}
+            C(iu_{AB}^\gamma \theta_A^a\theta_B^b) = is_as_b\expval{i\eta_{A}^{M(\gamma)}\eta_{B}^{M(\gamma)}} \theta_{A}^a\theta_{B}^b = is_as_bu_{AB}^{M(\gamma)}\theta_A^a \theta_B^b
+        \end{equation}
+        ここで、ゼロフラックスを仮定すると$u=1$であり、$M$対称性は
+        \begin{equation}\label{eq:SO6Majorana-22}
+            \Delta_{\langle ij\rangle_\gamma}^{ab} = s_as_b\Delta_{\langle ij\rangle_{M(\gamma)}}^{ba}
+        \end{equation}
+        を、$C$対称性は
+        \begin{equation}\label{eq:SO6Majorana-23}
+            \Delta_{\langle ij\rangle_\gamma}^{ab} = s_as_b\Delta_{\langle ij\rangle_{M(\gamma)}}^{ab}
+        \end{equation}
+        を要請する。二つを組み合わせると$\Delta_\gamma^{ab}= \Delta_\gamma^{ba} $であり、$C$対称性から
+        \begin{align}\label{eq:SO6Majorana-24}
+            \Delta_z^{xz} &= \Delta_z^{zx} = \Delta_z^{yz} = \Delta_z^{zy} = 0, \notag \\
+            \Delta_y^{ab} &= s_as_b\Delta_x^{ab}
+        \end{align}
+        となる。
+        
+        \begin{tcolorbox}
+            \paragraph{対称性の帰結}
+            時間反転対称性\eqref{eq:SO6Majorana-14}と組み合わせると$z$方向のボンドは対角項$\Delta_z^{aa}$しか残らない。
+            $y$方向のボンドは同じく時間反転対称性から対角項と$\Delta_y^{xz}=\Delta_y^{zx}$が残るが、鏡映対称性の帰結である\eqref{eq:SO6Majorana-24}
+            よりすべて$x$方向の量と等しくなる。ゆえに並進対称性、時間反転対称性、鏡映対称性を仮定した場合の独立な平均場は
+            \begin{equation}\label{eq:SO6Majorana-25}
+                Q^{xy}, \Delta_x^{xz}, \Delta_{x}^{a}, \Delta_{z}^{a} \quad a\in \left\{ x,y,z \right\}
+            \end{equation}
+            の8つになる。$Q^{xy}$はオンサイトの四極子$Q_{3z^2-r^2}$の物理的な意味を持つ。
+        \end{tcolorbox}
+        
+        \paragraph{Isotropic point: $C_3$対称性}
+        相互作用がすべて等しい($J_x=J_y=J_z$)とき、前節では$C_6$対称性について言及したが、もう少し軽い$C_3$対称性についてみる。
+        この場合には格子面に対する鏡映を考えることなく、格子とスピンに関する$C_3$回転のみで対称性となる。この変換で副格子の入れ替わりも起きず、
+        $(S_x,S_y,S_z) \rightarrow (S_z, S_x, S_y)$と変換する。これを実現するMajoranaの変換として
+        \begin{equation}\label{eq:SO6Majorana-26}
+            C_3(\eta_i^x, \eta_i^y, \eta_i^z) = (\eta_{R(i)}^y, \eta_{R(i)}^z, \eta_{R(i)}^x)
+        \end{equation}
+        \begin{equation}\label{eq:SO6Majorana-27}
+            C_3 \begin{pmatrix}
+                \theta_i^x \\ \theta_i^y \\ \theta_i^z
+            \end{pmatrix} = \begin{pmatrix}
+                -1/2 & 0 & -\sqrt{3}/2 \\ 0 & 1 & 0 \\ \sqrt{3}/2 & 0 & -1/2
+            \end{pmatrix} \begin{pmatrix}
+                \theta_{R(i)}^x \\ \theta_{R(i)}^y \\ \theta_{R(i)}^z
+            \end{pmatrix}
+        \end{equation}
+        がある。これにより例えば$\Delta_x^{zz}$は
+        \begin{align}\label{eq:SO6Majorana-28}
+            \Delta_x^{zz} &= \expval{i\theta_i^z\theta_j^z} \rightarrow \expval{i \left(\frac{\sqrt{3}}{2}\theta_{R(i)}^x -\frac{1}{2}\theta_{R(i)}^z \right)\left(\frac{\sqrt{3}}{2}\theta_{R(j)}^x -\frac{1}{2}\theta_{R(j)}^z \right)} \notag \\
+            &= \expval{i \left( \frac{3}{4}\theta_{R(i)}^x\theta_{R(j)}^x -\frac{\sqrt{3}}{4}\theta_{R(i)}^x\theta_{R(j)}^z -\frac{\sqrt{3}}{4}\theta_{R(i)}^z\theta_{R(j)}^x + \frac{1}{4}\theta_{R(i)}^z\theta_{R(j)}^z \right)} \notag \\
+            &= \frac{3}{4}\Delta_{z}^{xx} -\frac{\sqrt{3}}{4}\Delta_{z}^{xz} -\frac{\sqrt{3}}{4}\Delta_{z}^{zx} + \frac{1}{4}\Delta_{z}^{zz}
+        \end{align}
+        と移る。ここで格子に関する$C_3$回転で$z\rightarrow x \rightarrow y \rightarrow z$とボンドの種類が移り変わることを仮定した。
+        $\Delta$がどのように変換されるかは\hyperlink{app_Majorana-mf}{Appendix \ref{sec:app2}}に示した。
+        また$Q$については
+        \begin{equation}\label{eq:SO6Majorana-29}
+            Q^{xy} = -\expval{i\theta^x\theta^y} \rightarrow -\expval{i\left( -\frac{1}{2}\theta^x - \frac{\sqrt{3}}{2}\theta^z \right) \theta^y } = -\frac{1}{2}Q^{xy} + \frac{\sqrt{3}}{2}Q^{yz}
+        \end{equation}
+        \begin{equation}\label{eq:SO6Majorana-30}
+            Q^{yz} = -\expval{i\theta^y\theta^z} \rightarrow -\expval{i \theta^y \left( \frac{\sqrt{3}}{2}\theta^x - \frac{1}{2}\theta^z \right)} = -\frac{\sqrt{3}}{2}Q^{xy} - \frac{1}{2}Q^{yz}
+        \end{equation}
+        式\eqref{eq:SO6Majorana-30}から$\sqrt{3}Q^{yz} = -Q^{xy}$なので、式\eqref{eq:SO6Majorana-29}
+        より$\sqrt{3}Q^{xy} = Q^{yz} = -Q^{xy}/\sqrt{3}$。ゆえに$Q^{xy}=0$となる。
+        他の対称性の仮定で他の$Q$も禁止されていたので、isotropic pointではオンサイトの平均場$Q$は禁止されるということになる。
+
+
+        \subsubsection{$\mathbb{Z}_2$ 1-form 対称性}
+
+    \subsection{PSGの分類}
+
+\newpage
+
+\appendix
+
+\section{Appendix}
+    \subsection{Complex fermion Mean-fieldの添え字に関する符号}\label{sec:app1}\hypertarget{app_mf1}{}
+        Chap.\ref{sec:higher-spin}で導入した平均場\eqref{eq:highS-MF-16}について、その添え字の入れ替えに対する変換を見る。
+        地味ではあるが曖昧さを残すことなく理解しておくことで、系全体の対称性を課すことによって
+        どの平均場が有限になって良いかを区別できるので大切な作業となる。
+        
+        まず、Heisenberg相互作用の計算で導入した$P$行列\eqref{eq:highS-MF-13}の性質から見ていく。
+        なお、ここからの話は整数スピンか半整数スピンかで性質が異なる。これは$P^T=P^{-1}=\pm P$の違いによるもので、
+        ここからは半整数の場合に限るとする。この場合$P^T=P^{-1}=-P$であり、
+        $\bar{C}=PC^*$が成り立つ。式\eqref{eq:highS-MF-16}は
+        \begin{align}\label{eq:append1-1}
+            Q_{ij} &= F_i^\dagger F_j =\begin{pmatrix}
+                C_i^\dagger C_j & C_i^\dagger\bar{C}_j \\
+                \bar{C}_i^\dagger C_j & \bar{C}_i^\dagger \bar{C}_j
+            \end{pmatrix} = \begin{pmatrix}
+                \chi_{ij} & \Delta^\dagger_{ij} \\
+                \Delta_{ij} & -\chi^\dagger_{ij}
+            \end{pmatrix}, \notag \\
+            \quad \boldsymbol{V}_{ij} &= F_i^\dagger \boldsymbol{I}F_j = \begin{pmatrix}
+                C_i^\dagger \boldsymbol{I}C_j & C_i^\dagger \boldsymbol{I}\bar{C}_j \\
+                \bar{C}_i^\dagger \boldsymbol{I}C_j & \bar{C}_i^\dagger \boldsymbol{I}\bar{C}_j
+            \end{pmatrix} = \begin{pmatrix}
+                \boldsymbol{v}_{ij} & -\boldsymbol{u}_{ij}^\dagger \\ 
+                \boldsymbol{u}_{ij} & \boldsymbol{v}_{ij}^\dagger
+            \end{pmatrix}
+        \end{align}
+        のように定義したのであった。例えば
+        \begin{align}\label{eq:append1-2}
+            C_i^\dagger \bar{C}_j &= C_i^\dagger PC_j^* = -(C_i^\dagger PC_j^*)^T = C_j^\dagger P C_i^* = C_j^\dagger \bar{C}_i = \Delta_{ij}^\dagger \\
+            \Delta_{ji} &= \bar{C}_j^\dagger C_i = C_j^T P^\dagger C_i = -C_j^T \bar{C}_i^* = (C_j^T \bar{C}_i^*)^T = \bar{C}_i^\dagger C_j = \Delta_{ij}
+        \end{align}
+        から確かに$Q$の$(1,2)$成分が$\Delta_{ij}^\dagger$であること、そして$\Delta_{ij}=\Delta_{ji}$が確かめられた。
+        $\chi$に対しても同様にして
+        \begin{align}\label{eq:append1-7}
+            \bar{C}_i^\dagger \bar{C}_j &= C_i^TP^\dagger P C_j^* = -C_i^T C_j^* = -(C_i^\dagger C_j)^* = -\chi_{ij}^\dagger \notag \\
+            \chi_{ji} &= C_j^\dagger C_i = (C_i^\dagger C_j)^\dagger = \chi_{ij}^\dagger
+        \end{align}
+        がわかる。
+        
+        $\boldsymbol{V}$の成分に対しても同様の関係を導くことができる。そのためにまず、$\boldsymbol{I}$と$P$の関係を見ておく。
+        回転の演算子$\hat{R}$に対して$C$の作用は回転行列$D(R)$で書かれるので、
+        \begin{equation}\label{eq:append1-3}
+            \hat{R}\bar{C} = D(R)\bar{C} = D(R)PC^*
+        \end{equation}
+        である一方、
+        \begin{equation}\label{eq:append1-4}
+            \hat{R}\bar{C} = \hat{R}(PC^*) = P\hat{R}C^* = PD(R)^*C^*
+        \end{equation}
+        である。この二つを比べて、$D(R)P = PD(R)^*$を得る。つまり$P$行列は回転演算子の表現行列を共役におくる変換である。
+        具体的な表示として$D(R) = e^{i\boldsymbol{I}\cdot \boldsymbol{R}}, D(R)^* = e^{-i\boldsymbol{I}^* \cdot \boldsymbol{R}}$
+        とかけるので、
+        \begin{equation}\label{eq:append1-5}
+            P^{-1} D(R)P = P^{-1} e^{i\boldsymbol{I}\cdot \boldsymbol{R}} P = e^{iP^{-1}\boldsymbol{I}P\cdot \boldsymbol{R}} = e^{-i\boldsymbol{I}^* \cdot \boldsymbol{R}}
+        \end{equation}
+        であり、
+        \begin{equation}\label{eq:append1-6}
+            P^{-1}\boldsymbol{I}P = -\boldsymbol{I}^* = -\boldsymbol{I}^T
+        \end{equation}
+        が成り立つ。$P^{-1}=-P$に注意すると、
+        \begin{align}\label{eq:append1-8}
+            \bar{C}_i^\dagger \boldsymbol{I}\bar{C}_j &= C_i^T P^T  \boldsymbol{I} P C_j^* = -C_i^T \boldsymbol{I}^T C_j^* = (C_i^T \boldsymbol{I}^T C_j^*)^T = C_j^\dagger\boldsymbol{I} C_i = \boldsymbol{v}_{ij}^\dagger \notag \\
+            \boldsymbol{v}_{ji} &= C_j^\dagger \boldsymbol{I} C_i = \boldsymbol{v}_{ij}^\dagger 
+        \end{align}
+        であり、
+        \begin{align}\label{eq:append1-9}
+            C_i^\dagger \boldsymbol{I} \bar{C}_j &= C_i^\dagger \boldsymbol{I} P C_j^* = C_i^\dagger P^T \boldsymbol{I}^* C_j^* = \bar{C}_i^T\boldsymbol{I}^* C_j^* = (\bar{C}_i^\dagger \boldsymbol{I} C_j)^* = -(\bar{C}_i^\dagger \boldsymbol{I} C_j)^\dagger = -\boldsymbol{u}_{ij}^\dagger \notag \\
+            \boldsymbol{u}_{ji} &=  C_j^\dagger \boldsymbol{I} \bar{C}_i = -\boldsymbol{u}_{ij}
+        \end{align}
+        となる。まとめると
+        \begin{align}\label{eq:append1-10}
+            \chi_{ji} &= \chi_{ij}^\dagger \\
+            \Delta_{ji} &= \Delta_{ij} \\
+            \boldsymbol{u}_{ji} &= -\boldsymbol{u}_{ij} \\
+            \boldsymbol{v}_{ji} &=\boldsymbol{v}_{ij}^\dagger 
+        \end{align}
+        である。
+
+
+    \subsection{$SO(6)$ Majorana fermion mean-field の計算}\label{sec:app2}\hypertarget{app_Majorana-mf}{}
+        $S=3/2$の計算に6つのMajorana fermionを採用した場合の種々の(面倒な)計算を記す。
+        特に符号の間違いなどが起きやすいため計算過程を明示しておく。
+        \paragraph{四極子の計算}
+        四極子はスピン演算子を用いて定義される。他のノートでも記した通り、多極子はLie代数$\mathfrak{su}(4)$などの生成子をなし、
+        その全体にかかる係数に自由度がある。通常は生成子に対して規格化のようなことを行うことができて、それに従って係数を決めるが
+        物理の文脈でよく出てくる四極子の定義などはそれとは異なる係数になっている。今回はMajorana fermion表示した際の係数が
+        綺麗になるように定義されたものを使う(先行研究\cite{PhysRevB.102.075110}で用いられている)。他の文脈での四極子などと比べる際にはスケールに注意が必要である。
+
+        まず、
+        \begin{align}\label{eq:app-MajoranaMF-1}
+            S_z^2 &= \frac{i}{2}(\eta_i^x\eta_i^y - \eta_i^z\tilde{\theta}_i^z) \times \frac{i}{2}(\eta_i^x\eta_i^y - \eta_i^z\tilde{\theta}_i^z) \notag \\
+            &= -\frac{1}{4}\left( \eta_i^x\eta_i^y\eta_i^x\eta_i^y - \eta_i^x\eta_i^y\eta_i^z\tilde{\theta}_i^z - \eta_i^z\tilde{\theta}_i^z\eta_i^x\eta_i^y + \eta_i^z\tilde{\theta}_i^z\eta_i^z\tilde{\theta}_i^z \right) \notag \\
+            &= -\frac{1}{4}\left( -1 -2\eta_i^x\eta_i^y\eta_i^z\tilde{\theta}_i^z - (-2\theta_i^z)^2 \right) \notag \\
+            &= -\frac{1}{4}\left( -5 +4\eta_i^x\eta_i^y\eta_i^z\theta_i^z \right) \notag \\
+            &= -i\theta_i^x\theta_i^y + \frac{5}{4}
+        \end{align}
+        最後の行では制限$D_i = i\eta_i^x\eta_i^y\eta_i^z\theta_i^x\theta_i^y\theta_i^z = 1$を変形して
+        $\eta_i^x\eta_i^y\eta_i^z\theta_i^z = i\theta_i^x\theta_i^y$を用いた
+        \footnote{制限を用いた変形は特に注意が必要である。制限の変形として$\eta_i^x\eta_i^y\eta_i^z = -i\theta_i^x\theta_i^y\theta_i^z$も正しい変形だが、これを$\eta_i^x\eta_i^y\eta_i^z\theta_i^z$
+        に代入すると$-i\theta_i^x\theta_i^y\theta_i^z\theta_i^z = -i\theta_i^x\theta_i^y $となり、符号が異なる結果が得られる。これは代入という操作は制限の変形をしたものに``右から''$\theta_i^z$をかけていることに由来している。
+        Majorana fermionの場合自らの演算子の積が反交換しないことから、演算子を右からかけるか左からかけるかによって符号が異なる結果が得られる。
+        これを回避するため演算子はすべて左からかける(すべて右からに統一しても良い)ことを徹底しなければならない。}。よって
+        \begin{align}\label{eq:app-MajoranaMF-2}
+            Q_{3z^2-r^2} &\equiv \frac{1}{3} \left(3S_z^2 - S(S+1)\right) \notag \\
+            &=  \frac{1}{3} \left( -3i\theta_i^x\theta_i^y + \frac{15}{4} - \frac{3}{2}\cdot\frac{5}{2} \right) \notag \\
+            &= -i\theta_i^x\theta_i^y
+        \end{align}
+        となる。他の四極子演算子も同様にして計算することができる。
+        \begin{align}\label{eq:app-MajoranaMF-3}
+            S_x^2 &= \frac{i}{2}(\eta_i^y\eta_i^z - \eta_i^x\tilde{\theta}_i^x) \times \frac{i}{2}(\eta_i^y\eta_i^z - \eta_i^x\tilde{\theta}_i^x) \notag \\
+            &= -\frac{1}{4} \left( -1 -2\eta_i^x\eta_i^y\eta_i^z\tilde{\theta}_i^x - \left(\theta_i^z - \sqrt{3}\theta_i^x\right)^2 \right) \notag \\
+            &= \frac{1}{4} \left( 5 + 2\eta_i^x\eta_i^y\eta_i^z\tilde{\theta}_i^x  \right)
+        \end{align}
+        \begin{align}\label{eq:app-MajoranaMF-4}
+            S_y^2 &= \frac{i}{2}(\eta_i^z\eta_i^x - \eta_i^y\tilde{\theta}_i^y) \times \frac{i}{2}(\eta_i^z\eta_i^x - \eta_i^y\tilde{\theta}_i^y) \notag \\
+            &= -\frac{1}{4} \left( -1 -2\eta_i^x\eta_i^y\eta_i^z\tilde{\theta}_i^y - \left(\theta_i^z + \sqrt{3}\theta_i^x\right)^2 \right) \notag \\
+            &= \frac{1}{4} \left( 5 + 2\eta_i^x\eta_i^y\eta_i^z\tilde{\theta}_i^y  \right)
+        \end{align}
+        から、
+        \begin{align}\label{eq:app-MajoranaMF-5}
+            Q_{x^2-y^2} &\equiv \frac{1}{\sqrt{3}} \left( S_x^2-S_y^2 \right) \notag \\
+            &= \frac{1}{2\sqrt{3}}\eta_i^x\eta_i^y\eta_i^z\left( \tilde{\theta}_i^x - \tilde{\theta}_i^y \right) \notag \\
+            &= \frac{1}{2\sqrt{3}}\eta_i^x\eta_i^y\eta_i^z \times -2\sqrt{3}\theta_i^x \notag \\
+            &= -\eta_i^x\eta_i^y\eta_i^z\theta_i^x \notag \\
+            &= -i\theta_i^y\theta_i^z
+        \end{align}
+        となる。
+
+        \paragraph{$C_3$対称性}
+        $C_3$対称性による$\Delta$の移り変わりを見ておく。
+        \eqref{eq:SO6Majorana-28}のような計算を繰り返すことで次のような関係がわかる。
+        まず$y$が入っていない$x$のボンドの$\Delta$についてまとめると、
+        \begin{equation}\label{eq:app-MajoranaMF-1-1}
+            \begin{pmatrix}
+                \Delta_x^{zz} \\ \Delta_x^{xx} \\ \Delta_x^{xz}\\ \Delta_x^{zx}
+            \end{pmatrix} = \frac{1}{4} \begin{pmatrix}
+                1 & 3 & -\sqrt{3} & -\sqrt{3} \\ 3 & 1 & \sqrt{3} & \sqrt{3} \\ \sqrt{3} & -\sqrt{3} & 1 & -3 \\ \sqrt{3} & -\sqrt{3} & -3 & 1
+            \end{pmatrix} \begin{pmatrix}
+                \Delta_z^{zz} \\ \Delta_z^{xx} \\ \Delta_z^{xz}\\ \Delta_z^{zx}
+            \end{pmatrix}
+        \end{equation}
+
+
+\newpage
+\printbibliography
+
+
+\end{document}

@@ -1,0 +1,215 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{none/global//global/global/global}
+  \entry{Nemoto_2000}{article}{}{}
+    \name{author}{1}{}{%
+      {{hash=NK}{%
+         family={Nemoto},
+         familyi={N\bibinitperiod},
+         given={Kae},
+         giveni={K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{NK1}
+    \strng{fullhash}{NK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{abstract}{%
+    Generalized coherent states are developed for SU(n) systems for arbitrary n. This is done by first iteratively determining explicit representations for the SU(n) coherent states and then determining parametric representations useful for applications. For SU(n), the set of coherent states is isomorphic to a coset space SU(n)/SU(n-1), and thus shows the geometrical structure of the coset space. These results provide a convenient (2n-1)-dimensional space for the description of arbitrary SU(n) systems. We further obtain the metric and measure on the coset space and show some properties of the SU(n) coherent states.%
+    }
+    \verb{doi}
+    \verb 10.1088/0305-4470/33/17/307
+    \endverb
+    \field{number}{17}
+    \field{pages}{3493}
+    \field{title}{Generalized coherent states for SU(n) systems}
+    \verb{url}
+    \verb https://dx.doi.org/10.1088/0305-4470/33/17/307
+    \endverb
+    \field{volume}{33}
+    \field{journaltitle}{Journal of Physics A: Mathematical and General}
+    \field{year}{2000}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{PhysRevB.108.L241108}{article}{}{}
+    \name{author}{3}{}{%
+      {{hash=IR}{%
+         family={Iwazaki},
+         familyi={I\bibinitperiod},
+         given={Ryuta},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=SH}{%
+         family={Shinaoka},
+         familyi={S\bibinitperiod},
+         given={Hiroshi},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=HS}{%
+         family={Hoshino},
+         familyi={H\bibinitperiod},
+         given={Shintaro},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {American Physical Society}%
+    }
+    \strng{namehash}{IR+1}
+    \strng{fullhash}{IRSHHS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1103/PhysRevB.108.L241108
+    \endverb
+    \field{issue}{24}
+    \field{pages}{L241108}
+    \field{title}{Material-based analysis of spin-orbital Mott insulators}
+    \verb{url}
+    \verb https://link.aps.org/doi/10.1103/PhysRevB.108.L241108
+    \endverb
+    \field{volume}{108}
+    \field{journaltitle}{Phys. Rev. B}
+    \field{year}{2023}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{PhysRevB.96.134408}{article}{}{}
+    \name{author}{8}{}{%
+      {{hash=SAM}{%
+         family={Samarakoon},
+         familyi={S\bibinitperiod},
+         given={A.\bibnamedelima M.},
+         giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=BA}{%
+         family={Banerjee},
+         familyi={B\bibinitperiod},
+         given={A.},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=ZSS}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={S.-S.},
+         giveni={S\bibinithyphendelim S\bibinitperiod},
+      }}%
+      {{hash=KY}{%
+         family={Kamiya},
+         familyi={K\bibinitperiod},
+         given={Y.},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=NSE}{%
+         family={Nagler},
+         familyi={N\bibinitperiod},
+         given={S.\bibnamedelima E.},
+         giveni={S\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=TDA}{%
+         family={Tennant},
+         familyi={T\bibinitperiod},
+         given={D.\bibnamedelima A.},
+         giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=LSH}{%
+         family={Lee},
+         familyi={L\bibinitperiod},
+         given={S.-H.},
+         giveni={S\bibinithyphendelim H\bibinitperiod},
+      }}%
+      {{hash=BCD}{%
+         family={Batista},
+         familyi={B\bibinitperiod},
+         given={C.\bibnamedelima D.},
+         giveni={C\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {American Physical Society}%
+    }
+    \strng{namehash}{SAM+1}
+    \strng{fullhash}{SAMBAZSSKYNSETDALSHBCD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1103/PhysRevB.96.134408
+    \endverb
+    \field{issue}{13}
+    \field{pages}{134408}
+    \field{title}{Comprehensive study of the dynamics of a classical Kitaev spin liquid}
+    \verb{url}
+    \verb https://link.aps.org/doi/10.1103/PhysRevB.96.134408
+    \endverb
+    \field{volume}{96}
+    \field{journaltitle}{Phys. Rev. B}
+    \field{year}{2017}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{10.1093/ptep/ptu109}{article}{}{}
+    \name{author}{3}{}{%
+      {{hash=MRA}{%
+         family={Muniz},
+         familyi={M\bibinitperiod},
+         given={Rodrigo\bibnamedelima A.},
+         giveni={R\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=KY}{%
+         family={Kato},
+         familyi={K\bibinitperiod},
+         given={Yasuyuki},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=BCD}{%
+         family={Batista},
+         familyi={B\bibinitperiod},
+         given={Cristian\bibnamedelima D.},
+         giveni={C\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MRA+1}
+    \strng{fullhash}{MRAKYBCD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{abstract}{%
+    We present a mathematical framework for the multi-boson approach that has been used several times for treating spin systems. We demonstrate that the multi-boson approach corresponds to a generalization of the traditional spin-wave theory from SU(\$2\$) to SU(\$N\$), where \$N\$ is the number of states of the local degree of freedom. Low-energy excitations are waves of the local order parameter that fluctuates in the SU(\$N\$) space of unitary transformations of the local spin states, instead of the SU(\$2\$) space of local spin rotations. Since the generators of the SU(\$N\$) group can be represented as bilinear forms in \$N\$-flavored bosons, the low-energy modes of the generalized spin-wave theory (GSWT) are described with \$N-1\$ different bosons, which provide a more accurate description of low-energy excitations even for the usual ferromagnetic and antiferromagnetic phases. The generalization enables the treatment of quantum spin systems whose ground states exhibit multipolar ordering as well as the detection of instabilities of magnetically ordered states (dipolar ordering) towards higher multipolar orderings. We illustrate the advantages of the GSWT by applying it to a bilinear^^e2^^80^^93biquadratic model of arbitrary spin \$S\$ on hypercubic lattices, and then analyzing the spectrum of dipolar phases in order to find their instabilities. In contrast to the known results for \$S=1\$ when the biquadratic term in the Hamiltonian is negative, we find that there is no nematic phase between the ferromagnetic or antiferromagnetic orderings for \$S\&gt;1\$.%
+    }
+    \verb{doi}
+    \verb 10.1093/ptep/ptu109
+    \endverb
+    \verb{eprint}
+    \verb https://academic.oup.com/ptep/article-pdf/2014/8/083I01/4321660/ptu10
+    \verb 9.pdf
+    \endverb
+    \field{issn}{2050-3911}
+    \field{number}{8}
+    \field{pages}{083I01}
+    \field{title}{Generalized spin-wave theory: Application to the bilinear^^e2^^80^^93biquadratic model}
+    \verb{url}
+    \verb https://doi.org/10.1093/ptep/ptu109
+    \endverb
+    \field{volume}{2014}
+    \field{journaltitle}{Progress of Theoretical and Experimental Physics}
+    \field{month}{08}
+    \field{year}{2014}
+  \endentry
+\enddatalist
+\endinput

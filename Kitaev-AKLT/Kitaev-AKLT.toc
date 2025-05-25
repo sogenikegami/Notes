@@ -1,0 +1,15 @@
+\contentsline {section}{\numberline {1}Setup}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Model}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Spin operators}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Multipole Operators}{3}{subsection.1.3}%
+\contentsline {section}{\numberline {2}Ambiguities for Classical Model}{7}{section.2}%
+\contentsline {subsection}{\numberline {2.1}SU(2)}{7}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}SU(3)}{8}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Is SU(2) exactly equivalent to O(3)?}{10}{subsection.2.3}%
+\contentsline {section}{\numberline {3}SU(2) Magnon}{14}{section.3}%
+\contentsline {subsection}{\numberline {3.1}FM phase}{14}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Neel phase}{20}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Zigzag phase}{22}{subsection.3.3}%
+\contentsline {section}{\numberline {4}SU(N) Magnon}{23}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Generalized spin wave theory}{23}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}FM phase in the Kitaev-AKLT model}{25}{subsection.4.2}%

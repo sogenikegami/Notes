@@ -1,0 +1,35 @@
+\contentsline {section}{\numberline {1}量子スピン液体：スピノンとゲージ場}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}量子スピン液体の定義}{2}{subsection.1.1}%
+\contentsline {paragraph}{定義1}{2}{section*.3}%
+\contentsline {paragraph}{定義2}{2}{section*.4}%
+\contentsline {paragraph}{定義3}{2}{section*.5}%
+\contentsline {subsection}{\numberline {1.2}スピノンとゲージ場}{3}{subsection.1.2}%
+\contentsline {section}{\numberline {2}平均場による方法}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}SU(2)ゲージ変換}{5}{subsection.2.1}%
+\contentsline {paragraph}{スピノンのSU(2)変換}{6}{section*.6}%
+\contentsline {subsection}{\numberline {2.2}Hubbard-Stratnovich変換による平均場の導入}{6}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}例:$\pi $-flux状態}{8}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}ゲージ揺らぎ}{8}{subsection.2.4}%
+\contentsline {paragraph}{Projective Symmetry Group(PSG)}{9}{section*.7}%
+\contentsline {paragraph}{Invariant gauge group(IGG)}{9}{section*.8}%
+\contentsline {subsection}{\numberline {2.5}PSG}{10}{subsection.2.5}%
+\contentsline {section}{\numberline {3}$S\geq 1$スピン}{11}{section.3}%
+\contentsline {subsection}{\numberline {3.1}導入}{11}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}$S=3/2$ Heisenberg相互作用の平均場}{14}{subsection.3.2}%
+\contentsline {section}{\numberline {4}$\mathbb {Z}_2$スピン液体}{17}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Kitaev模型}{17}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}模型の対称性とPSG\blx@tocontentsinit {0}\cite {PhysRevB.86.085145}}{17}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}$S=3/2: SO(6)$ Majorana fermion}{18}{subsubsection.4.1.2}%
+\contentsline {paragraph}{並進対称性}{20}{section*.9}%
+\contentsline {paragraph}{時間反転対称性}{21}{section*.10}%
+\contentsline {paragraph}{鏡映対称性:$Q$}{21}{section*.11}%
+\contentsline {paragraph}{鏡映対称性:$\Delta $}{22}{section*.12}%
+\contentsline {paragraph}{対称性の帰結}{22}{section*.13}%
+\contentsline {paragraph}{Isotropic point: $C_3$対称性}{22}{section*.14}%
+\contentsline {subsubsection}{\numberline {4.1.3}$\mathbb {Z}_2$ 1-form 対称性}{23}{subsubsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.2}PSGの分類}{23}{subsection.4.2}%
+\contentsline {section}{\numberline {A}Appendix}{24}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Complex fermion Mean-fieldの添え字に関する符号}{24}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}$SO(6)$ Majorana fermion mean-field の計算}{25}{subsection.A.2}%
+\contentsline {paragraph}{四極子の計算}{25}{section*.15}%
+\contentsline {paragraph}{$C_3$対称性}{26}{section*.16}%
