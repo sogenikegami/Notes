@@ -1,0 +1,77 @@
+\contentsline {section}{\numberline {1}二次元における共形普遍性}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}二次元における共形群}{3}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}複素座標の導入}{3}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.2}大域共形変換}{3}{subsubsection.1.1.2}%
+\contentsline {subsubsection}{\numberline {1.1.3}共形変換の生成子}{3}{subsubsection.1.1.3}%
+\contentsline {subsubsection}{\numberline {1.1.4}プライマリー場}{4}{subsubsection.1.1.4}%
+\contentsline {subsection}{\numberline {1.2}Ward恒等式}{5}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}正則形式のWard恒等式}{5}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}共形Ward恒等式}{7}{subsubsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.3}自由場と演算子積展開}{7}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Free Boson}{8}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}Free Fermion}{9}{subsubsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.4}中心電荷}{10}{subsection.1.4}%
+\contentsline {section}{\numberline {2}演算子による定式化}{13}{section.2}%
+\contentsline {subsection}{\numberline {2.1}演算子による定式化：動径量子化}{13}{subsection.2.1}%
+\contentsline {paragraph}{エルミート共役}{13}{section*.3}%
+\contentsline {paragraph}{モード展開}{14}{section*.4}%
+\contentsline {subsection}{\numberline {2.2}Virasoro代数}{15}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}共形変換の生成子}{15}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}ヒルベルト空間}{16}{subsubsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.3}Free Boson}{17}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}シリンダーにおける正準量子化}{18}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}頂点演算子}{19}{subsubsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.3}Fock空間}{20}{subsubsection.2.3.3}%
+\contentsline {subsubsection}{\numberline {2.3.4}Twisted boundary condition}{21}{subsubsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.4}Free Fermion}{22}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}正規順序積}{24}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}共形族と演算子代数}{24}{subsection.2.6}%
+\contentsline {subsubsection}{\numberline {2.6.1}descendant場}{24}{subsubsection.2.6.1}%
+\contentsline {subsubsection}{\numberline {2.6.2}共形族}{24}{subsubsection.2.6.2}%
+\contentsline {subsubsection}{\numberline {2.6.3}演算子代数}{25}{subsubsection.2.6.3}%
+\contentsline {subsubsection}{\numberline {2.6.4}共形ブロック}{26}{subsubsection.2.6.4}%
+\contentsline {subsubsection}{\numberline {2.6.5}共形ブートストラップ}{27}{subsubsection.2.6.5}%
+\contentsline {section}{\numberline {3}ミニマルモデルI}{27}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Verma加群}{27}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}最高ウェイト状態}{27}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Virasoro指標}{28}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}特異ベクトルと可約Verma加群}{28}{subsubsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.2}Kac行列式}{29}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}ユニタリ性とKac行列式}{29}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}$c\geq 1$表現のユニタリ性}{30}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}$c<1$表現のユニタリ性}{31}{subsubsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.3}ミニマルモデル}{31}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}simple example}{31}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}演算子代数の切り捨て}{32}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}ミニマルモデル}{33}{subsubsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.4}例}{34}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Yang-Lee singularity}{34}{subsubsection.3.4.1}%
+\contentsline {section}{\numberline {4}ミニマルモデルII}{35}{section.4}%
+\contentsline {subsection}{\numberline {4.1}既約加群とミニマル指標}{35}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}ミニマルモデルにおける可約Verma加群の構造}{35}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}指標}{36}{subsubsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.2}explicit form of singular vectors}{37}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}相関関数における微分方程式}{40}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}特異ベクトルによる微分方程式}{40}{subsubsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.2}ミニマルモデルにおける2点関数の微分方程式}{42}{subsubsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.3}ミニマルモデルにおける4点関数の微分方程式}{44}{subsubsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.4}Fusion rules}{46}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}微分方程式によるFusion rule}{46}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}Fusion Algebra}{48}{subsubsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.3}ミニマルモデルにおけるFusion Rules}{49}{subsubsection.4.4.3}%
+\contentsline {section}{\numberline {5}クーロンガスの定式化}{54}{section.5}%
+\contentsline {paragraph}{背景電荷}{54}{section*.5}%
+\contentsline {paragraph}{遮蔽演算子}{54}{section*.6}%
+\contentsline {paragraph}{ミニマルモデルの頂点演算子へのマップ}{54}{section*.7}%
+\contentsline {paragraph}{共形ブロック}{55}{section*.8}%
+\contentsline {section}{\numberline {6}Modular invariance}{55}{section.6}%
+\contentsline {paragraph}{Free bosonとFree fermion}{55}{section*.9}%
+\contentsline {paragraph}{compactified boson, multi-component, orbifold boson}{56}{section*.10}%
+\contentsline {paragraph}{真空のラベル$m,n$}{56}{section*.11}%
+\contentsline {paragraph}{ミニマルモデル}{56}{section*.12}%
+\contentsline {paragraph}{ミニマルモデルにおける指標のモジュラー変換性}{57}{section*.13}%
+\contentsline {paragraph}{Ferlinde公式}{57}{section*.14}%
+\contentsline {section}{\numberline {7}有限サイズスケーリングと境界}{57}{section.7}%
+\contentsline {paragraph}{有限サイズ}{57}{section*.15}%
+\contentsline {paragraph}{境界のあるCFT (BCFT)}{57}{section*.16}%
+\contentsline {paragraph}{Boundary Operator}{57}{section*.17}%
