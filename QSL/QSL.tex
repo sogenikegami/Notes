@@ -816,7 +816,7 @@
         鏡映操作による$\Delta$の変換性を調べるために、まずMajorana fermionがどう変換するかを見ておく。
         スピン演算子の変換性\eqref{eq:SO6Majorana-16}から、Majorana fermionは
         \begin{equation}\label{eq:SO6Majorana-19}
-            R[\eta^x_i, \eta^y_i, \eta^z_i] \rightarrow [-\eta_{R(i)}^y, -i\eta_{R(i)}^x, -i\eta_{R(i)}^z], \quad R[\theta_i^x, \theta_i^y, \theta_i^z] \rightarrow [-\theta_{R(i)}^x, -\theta_{R(i)}^y, \theta_{R(i)}^z]
+            R[\eta^x_i, \eta^y_i, \eta^z_i] \rightarrow [-\eta_{R(i)}^y, -\eta_{R(i)}^x, -\eta_{R(i)}^z], \quad R[\theta_i^x, \theta_i^y, \theta_i^z] \rightarrow [-\theta_{R(i)}^x, -\theta_{R(i)}^y, \theta_{R(i)}^z]
         \end{equation}
         と変換すれば良い\footnote{これは先行研究\cite{PhysRevB.102.075110}によるが、他の変換も考えられるはずである。元の変換として$SU(2)$や$SO(3)$やらを考えているのに対して
         Majorana fermionは$SO(6)$で変換するので、Majorana におけるいくつかの対称操作はゲージ冗長性のようなものがあるはずであり、PSGのようなものを考えなくてはならない。}。
@@ -828,7 +828,9 @@
         \begin{equation}\label{eq:SO6Majorana-21}
             C(iu_{AB}^\gamma \theta_A^a\theta_B^b) = is_as_b\expval{i\eta_{A}^{M(\gamma)}\eta_{B}^{M(\gamma)}} \theta_{A}^a\theta_{B}^b = is_as_bu_{AB}^{M(\gamma)}\theta_A^a \theta_B^b
         \end{equation}
-        ここで、ゼロフラックスを仮定すると$u=1$であり、$M$対称性は
+        ここで、ゼロフラックスを仮定すると$u=1$であり\footnote{これはゲージ固定をしている。$\Delta$はゲージ不変量でないので対称操作による一般的な変換性を見ることはできず、
+        あるゲージを固定した上での仮の変換性を推定しているに過ぎない。}
+        、$M$対称性は
         \begin{equation}\label{eq:SO6Majorana-22}
             \Delta_{\langle ij\rangle_\gamma}^{ab} = s_as_b\Delta_{\langle ij\rangle_{M(\gamma)}}^{ba}
         \end{equation}
@@ -891,7 +893,33 @@
 
 
         \subsubsection{$\mathbb{Z}_2$ 1-form 対称性}
+        高次形式対称性は通常の対称性から拡張された概念になっている。
+        この拡張は学部で習うような対称性の概念を少し変える必要がある。
+        Hamiltonianと交換するユニタリ演算子やNoetherカレントが保存するような生成子で生成されるユニタリ演算子
+        が我々の想像する対称性だが、この対称性を局所演算子に作用するトポロジカル欠陥の中でも群構造があるもの
+        として捉え直す。
+        ある一部の領域だけ対称変換を施すと、その内部は対称性の定義から理論(分配関数)が変わらないが、
+        領域の境界では修正が必要となる。例えばイジング模型である領域の中だけスピンフリップをしても中の理論は外側と変わらないが、
+        境界だけ相互作用の符号が変わる。このように対称変換はある領域の境界に挿入される欠陥と見ることができる。
+        さらに、大雑把に言ってHamiltonianと交換するというのは時空多様体の中で
+        対称変換が作用する欠陥が(他の演算子とぶつからない限り)ぐにゃぐにゃ変形できる、つまりトポロジカルであることを主張する。
+        対称性の群$G$に対してこの欠陥も群構造を取ることが要請される。
+        この対称性は$d+1$次元のうち$d$次元の欠陥となり、余次元は1である。
 
+        これを群構造を持たないものや余次元が$p+1$であるものに拡張したのが一般化対称性と呼ばれているもので、
+        群構造を持たない、特に逆元がないようなものを(非可逆)non-invertible対称性、または圏論的対称性(Categorical symmetry)
+        と呼ばれたりする。これは二つの対称変換のFusionに対して(Fibonacci anyonのように)非自明なFusion matrixを持つ。
+        また余次元が$p+1$であるようなものを$p$形式対称性、高次形式対称性と呼ぶ。例えば1形式対称性は
+        余次元が2で線上演算子に作用するトポロジカル欠陥である。Kitaev模型やToricコード、$\mathbb{Z}_N$
+        ゲージ理論に現れるようなWilson loopはまさにゲージ不変な線上演算子になっていて、これに作用する
+        トポロジカル欠陥はまさに1形式となっている。
+
+
+    \subsection{Kitaev+AKLT模型}
+    本節では$S=3/2$Kitaev模型にfluxが保たれないような項、具体的にはbilinear, biquadratic, bicubic相互作用を入れることを考える。
+    この場合$\mathbb{Z}_2$ゲージ場はstaticではなくなるので、$\theta$同士だけではなく$\eta$が混ざった平均場も考える必要がある。
+    これを念頭に置いてすべてのハミルトニアンをMajorana fermionで書き下し、すべての平均場を考え、対称性によって落とすことを考える。
+    前節で行った$Q, \Delta$の対称性の解析はそのまま使える。
     \subsection{PSGの分類}
 
 \newpage
